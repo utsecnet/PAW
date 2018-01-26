@@ -2,33 +2,24 @@
 
 **What is a PAW?**
 
-In short, a PAW is one solution to the problem of credential theft, replay and pivoting attacks, and privilege escalation.  PAW is a method of administrating network devices in a more secure and more hardend environment than what most admins are used to.  
+In short, a PAW is one solution to the problem of credential theft, replay and pivoting attacks, and privilege escalation.  PAW is a method of administrating network devices in a more secure and more hardend environment than what most admins are used to.  A successfull PAW deployment will contain many security controls aimed to enable a more [Defense in Depth](https://en.wikipedia.org/wiki/Defense_in_depth_(computing)) security strategy.solution 
 
 **Okay, but what is a PAW?**
 
-A PAW is the workstation the admin uses to administrate the network.  It adhears to the [Clean Source Security Principal](https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#CSP_BM).  It allows outbound connections to 
+A PAW is the workstation the admin uses to access and administrate the network using privileged credentials.  It provides the admin a secure method to perform day-to-day administrative tasks on network devices such as Domain Controllers, member servers, user workstations, networking equipment, and cloud admin portals (like Azure and AWS).  Because the PAW adhears to the [Clean Source Security Principal](https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#CSP_BM) it prevents the logged on user from freely surfing the internet, checking email, running applications outside of the AppLocker whitelist, or insecurly accessing network devices that could expose risk to credential theft.  In essence, it provides the admin everything they need to do their job and nothing more [Lease Privilege Security](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
+**How is a PAW physically different than a normal workstation where I administrate my servers with RDP and MMC?**
 
+The PAW is a physical workstation, preferably a laptop, that runs Windows 10 Enterprise Edition (1709+) as the primary host OS.  This device is used to administrate the network and all the systems on it.  It has the Hyper-V role installed that, in addition to several additional security features like Credential Guard, hosts a VM that provides the admin day-to-day internet access and email.  PAWs have several hardware requirements to make for the most secure deployemnt:
 
+- TPM 2.0
+- Enough hard drive, CPU, and RAM resources to have a pleasant experience in your day-to-day VM
+- A GPU compatible with RemoteFX, preferably with at least 2GB dedicated VRAM
 
+Additionally, you should be aware of DMA attacks and consider purchasing hardware that does not come with DMA ports (Thunderbolt, PCI-E, Firewire, ExpressCard).  See [Sami Laiho's Win-Fu Blog](http://blog.win-fu.com/2017/02/the-true-story-of-windows-10-and-dma.html) for more details about DMA attacks and mitigation.
 
+If a single workstation that handles the load of two is not optimal for your environment, you can split the roles onto seperate laptops.  One for secure administration, one for internet and email.  
 
+**Is it difficult to configure PAWs?**
 
-Q: What is the purpose of this repository?
-A: To provide Systems and Security Administrators a resource for building out their PAW environment.  This repository has several scripts, GPO settings, and tutorials that will guide you to building a baseline PAW deployment adhearing to the Clean Source Principal.
-
-Q: What is a PAW?
-A: https://4sysops.com/archives/understand-the-microsoft-privileged-access-workstation-paw-security-model/
-
-
-
-Micorosoft has provided several baseline resources for aiding administrators setting up a PAW environment.  These files can be found here:
-
-https://gallery.technet.microsoft.com/Privileged-Access-3d072563
-
-However, they have negelected to release the windows firewall configuration settings, which is pivital in adhearing to the Clean Source Principal.
-
-The prupose of these files is to provide PAW administrators a functional baseline firewall configuration that only permits inbound authenticated traffic from other Tier 0 servers and devices.  This is done using IPSec with Windows Defender Firewall with Advanced Security.
-
-What is a PAW? 
-
+The main purpose of this repo is to make the configuration simpler.  Initially, it is quite complex.  As I look at my GPOs that are designed to address only PAWs, I count 36 and growing.
