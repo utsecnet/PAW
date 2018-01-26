@@ -2,6 +2,7 @@
 
 If you want to use Shadow Groups to aide in managing your devices, you will need to keep your PAW devices seperate from your day-to-day devices.  This is how I have AD setup:
 
+///
 DOMAIN.COM
 Company
 ├── Computers
@@ -18,6 +19,7 @@ Company
         ├── Tier 0
         ├── Tier 1
         └── Tier 2
+///
 
 ## Users
 
