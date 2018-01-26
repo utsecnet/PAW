@@ -1,4 +1,4 @@
-##FAQ
+## FAQ
 
 Q: What is the purpose of this repository?
 A: To provide Systems and Security Administrators a resource for building out their PAW environment.  This repository has several scripts, GPO settings, and tutorials that will guide you to building a baseline PAW deployment adhearing to the Clean Source Principal.
