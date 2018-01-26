@@ -18,8 +18,8 @@ The PAW is a physical workstation, preferably a laptop, that runs Windows 10 Ent
 
 Additionally, you should be aware of DMA attacks and consider purchasing hardware that does not come with DMA ports (Thunderbolt, PCI-E, Firewire, ExpressCard).  See [Sami Laiho's Win-Fu Blog](http://blog.win-fu.com/2017/02/the-true-story-of-windows-10-and-dma.html) for more details about DMA attacks and mitigation.
 
-If a single workstation that handles the load of two is not optimal for your environment, you can split the roles onto separate laptops.  One for secure administration, one for internet and email.  
+If a single workstation that handles the load of two is not optimal for your environment, you can split the roles onto separate laptops.  One workstation for secure administration, and one for internet and email.  
 
 **Is it difficult to configure PAWs?**
 
-The main purpose of this repo is to make the configuration simpler.  Initially, it is quite complex.  As I look at my GPOs that are designed to address only PAWs, I count 36 and growing.
+The main purpose of this repo is provide baseline configuration templates and walkthroughs to make the configuration simpler.  Initially, it is quite complex.  As I look at my GPOs that are designed to address only PAWs, I count 36 and growing.  The biggest complexity, however, is changing your IT team's paradigm of remote administration.  You will be doing things very different than you are used to.  As the saying goes, it is fundamentally impossible to improve something without making changes.
