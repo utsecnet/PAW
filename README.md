@@ -1,0 +1,1 @@
+The prupose of these files is to provide PAW administrators a functional baseline Windows Firewall with Advanced Security configuration such that the only allowed inbound traffic comes from other Tier 0 servers.  This traffic must be authenticated via IPSec policies.  All other inbound traffic is denied.  
