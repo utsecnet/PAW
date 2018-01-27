@@ -1,44 +1,55 @@
 ## Active Directory
 
-If you want to use Shadow Groups to aide in managing your devices, you will need to keep your PAW devices seperate from your day-to-day devices.  This is how I have AD setup:
+If you want to use Shadow Groups to aide in managing your devices, you will need to keep your PAW devices separate from your day-to-day devices.  This is how I have AD setup:
 
 ```
 DOMAIN.COM
-└── Company
-    ├── Computers
-    │   └── Location A
-    │       ├── PAW
-    │       ├── Servers
-    │       ├── Workstations
-    │       └── VMs
-    ├── Groups
-    │   └── Security Groups
-    │       └── PAW
-    └── Users
-        └── PAW Accounts
-            ├── Tier 0
-            ├── Tier 1
-            └── Tier 2
++-- Company
+    +-- Computers
+        +-- Location A
+            +-- PAW
+                +-- Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
+                +-- Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
+                +-- Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
+            +-- Servers
+                +-- Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
+                +-- Tier 1   - - - - Will hold Tier 1 servers (most member servers)
+            +-- Workstations - - - - Put all workstation objects here, in you own hierarchy
+            +-- VMs          - - - - All VMs, including your PAWs day-to-day VM
+    +-- Groups
+        +-- Security Groups
+            +-- PAW          - - - - All groups related to PAW management
+    +-- Users
+        +-- PAW Accounts
+            +-- Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+            +-- Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
+            +-- Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
 ```
 
 ## Users
 
 Each Domain Admin will have the following accounts:
-* Tier 0 account: Member of domain admins, but also only a local user on the Tier 0 PAW.  does not have admin rights on PAW itself.
-* Tier 0 - Maintenance account:  allows the admin to elevate to perform administrative tasks on the PAW, since the Tier 0 account will be a standard user on the Tier 0 PAW.
-* Tier 1 account: Used to allow the user to RDP to Tier 1 member servers.
-* Tier 2 account (optional): If the user will ever log on to employee workstations, they will need this account.
-* Normal domain user account: used for logging into the PAW VM to do day-to-day tasks.
+
+* **Tier 0 account**: Member of domain admins, but also only a local user on the Tier 0 PAW.  Does not have admin rights on PAW itself.
+* **Tier 0 - Maintenance account**:  This account is an administrator on all Tier 0 PAWs.  It is also the account I like to use to elevate my standard user to perform admin tasks on my PAW since my Tier 0 account does not have local admin access.
+* **Tier 1 account**: Used to allow the user to RDP to Tier 1 member servers.
+* **Tier 2 account (optional)**: If the user will ever log on to employee workstations, they will need this account.
+* **Normal domain user account**: used for logging into the PAW VM to do day-to-day tasks.
+* **Local user account**: Used as a contingency for any lost domain trusts.  In other words, if you fubar the domain and you can no longer log in to your PAW, this is the account you would use.
+* **Local administrator account**: This account will be managed by LAPS.  Also used for fixing domain trust issues.  You would login with the local user account and elevate to this account to do admin stuff.
 
 Each server administrator will have:
-* Tier 1 accont: They will log into thier PAW with this account and RDP (with Remote Admin mode) to Tier 1 servers.
-* Normal domain user account: used for logging into the PAW VM to do day-to-day tasks.
-* Access to server LAPS account.  They can use this if RDP with RA is too restrictive.
+
+* **Tier 1 account**: They will log into their PAW with this account and RDP (with Remote Admin mode) to Tier 1 servers.
+* **Tier 1 - Maintenance account**: This account is an administrator on all Tier 1 PAWs.  It is also the account I like to use to elevate my standard Tier 1 user to perform admin tasks on my PAW since my Tier 0 account does not have local admin access.
+* **Normal domain user account**: used for logging into the PAW VM to do day-to-day tasks.
+* **Access to server LAPS accounts**.  They can use this if RDP with RA is too restrictive.
 
 Each Helpdesk user will have:
-* Tier 2 account: They will log into their PAW with this account and RDP (with Remote Admin mode to Tier 2 workstations.
-* Normal domain user account: used for logging into the PAW VM to do day-to-day tasks.
-* Access to workstation LAPS account.  They can use this if RDP with RA is too restrictive.  
+
+* **Tier 2 account**: They will log into their PAW with this account and RDP (with Remote Admin mode to Tier 2 workstations.
+* **Normal domain user account**: used for logging into the PAW VM to do day-to-day tasks.
+* **Access to all workstation LAPS accounts**.  They can use this if RDP with RA is too restrictive.  
 
 ## Groups
 
@@ -48,7 +59,7 @@ The following groups must be created in Company > Groups > SecurityGroups > RBAC
   * PAW-Tier0Computers
   * PAW-Tier1Computers
   * PAW-Tier2Computers
-* PAW-BlockPowershell - Members of this group are blocked from using Powershell via GPO.
+* PAW-BlockPowershell - Members of this group are blocked from using PowerShell via GPO.
   * PAW-Users
 * PAW-AzureAdmins - Members of this group are permitted to connect to pre-identified cloud services via Privileged Access Workstations
   * not sure yet.
