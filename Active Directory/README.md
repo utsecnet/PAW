@@ -49,7 +49,8 @@ DOMAIN.COM
         └── PAW Accounts
             ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
             ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
-            └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)```
+            └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
+```
 ## Users
 Each Domain Admin will have the following accounts:
 
