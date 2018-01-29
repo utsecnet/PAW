@@ -1,29 +1,34 @@
 ## Active Directory
 
-If you want to use Shadow Groups to aide in managing your devices, you will need to keep your PAW devices separate from your day-to-day devices.  This is how I have AD setup:
+If you want to use Shadow Groups to aide in managing your devices, you will need to keep your PAW devices separate from your day-to-day devices.  What are Shadow Groups?  It is a group that is automatically created and whose membership is automated based on OU membership.  In other words, a scheduled task runs on a regular interval and creates groups based on your Active Directory OU hierarchy.  It then takes the members of the OU and adds them as memebers of the group.  Lastly, it removes group members that may have moved to a different OU, keeping your group membership accurate.
+
+This is how I have AD setup:
 
 ```
 DOMAIN.COM
-└── Company
-    ├── Computers
-    │   └── Location A
-    │       ├── PAW
-    │       │   ├── Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
-    │       │   ├── Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
-    │       │   └── Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
-    │       ├── Servers
-    │       │   ├── Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
-    │       │   └── Tier 1   - - - - Will hold Tier 1 servers (most member servers)
-    │       ├── Workstations - - - - Put all workstation objects here, in you own hierarchy
-    │       └── VMs          - - - - All VMs, including your PAWs day-to-day VM
-    ├── Groups
-    │   └── Security Groups
-    │       └── PAW          - - - - All groups related to PAW management
-    └── Users
-        └── PAW Accounts
-            ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
-            ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
-            └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
++-- Company
+    +-- Computers
+        +-- Location A
+            +-- PAW
+                +-- Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
+                +-- Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
+                +-- Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
+            +-- Servers
+                +-- Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
+                +-- Tier 1   - - - - Will hold Tier 1 servers (most member servers)
+            +-- Workstations - - - - Put all workstation objects here, in you own hierarchy
+            +-- VMs          - - - - All VMs, including your PAWs day-to-day VM
+    +-- Groups
+        +-- Security Groups
+            +-- PAW          - - - - All groups related to PAW management
+            +-- Shadowgroups-Computers - - - Computer object's shadowgroups
+            +-- Shadowgroups-Servers - - - - Server object's shadowgroups
+            +-- Shadowgroups-Users - - - - - User's object's shadowgroups
+    +-- Users
+        +-- PAW Accounts
+            +-- Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+            +-- Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
+            +-- Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
 ```
 
 ## Users
@@ -55,33 +60,33 @@ Each Helpdesk user will have:
 
 The following groups must be created in Company > Groups > SecurityGroups > RBAC-PAW.  The sub-bullet point are the members of the specified group.
 
-* PAW-AllPAWComputers - Members of this group include all PAW Tier groups.  It is a collection of all PAW machines.
+* **PAW-AllPAWComputers** - Members of this group include all PAW Tier groups.  It is a collection of all PAW machines.
   * PAW-Tier0Computers
   * PAW-Tier1Computers
   * PAW-Tier2Computers
-* PAW-BlockPowershell - Members of this group are blocked from using PowerShell via GPO.
+* **PAW-BlockPowershell** - Members of this group are blocked from using PowerShell via GPO.
   * PAW-Users
-* PAW-AzureAdmins - Members of this group are permitted to connect to pre-identified cloud services via Privileged Access Workstations
+* **PAW-AzureAdmins** - Members of this group are permitted to connect to pre-identified cloud services via Privileged Access Workstations
   * not sure yet.
-* PAW-Tier0Admins - Members of this group are Tier 0 admins.  They can administrate Tier 0 PAWs.
+* **PAW-Tier0Admins** - Members of this group are Tier 0 admins.  They can administrate Tier 0 PAWs.
   * All Tier 0 Maintenance user accounts
-* PAW-Tier0Computers - Members of this group are Tier 0 Computers.  Used mainly for GPO filtering.
+* **PAW-Tier0Computers** - Members of this group are Tier 0 Computers.  Used mainly for GPO filtering.
   * All Tier 0 PAWs
-* PAW-Tier0Users - Members of this group are tier 0 users.  They can log into Tier 0 PAWs and servers.
+* **PAW-Tier0Users** - Members of this group are tier 0 users.  They can log into Tier 0 PAWs and servers.
   * All Tier 0 user accounts (Domain Controller and AD admins)
-* PAW-Tier1Admins - Members of this group are Tier 1 Admins.  They can administrate Tier 1 PAWs.
+* **PAW-Tier1Admins** - Members of this group are Tier 1 Admins.  They can administrate Tier 1 PAWs.
   * All Tier 1 Maintenance user accounts
-* PAW-Tier1Computers - Members of this group are Tier 1 Computers.  Used mainly for GPO filtering.
-  * All Tier 1 PAWs
-* PAW-Tier1Users - Members of this group are Tier 1 users.  They can log into Tier 1 PAWs and member servers.
+* **PAW-Tier1Computers** - Members of this group are Tier 1 Computers.  Used mainly for GPO filtering.
+  * All Tier 1 PAWs  
+* **PAW-Tier1Users** - Members of this group are Tier 1 users.  They can log into Tier 1 PAWs and member servers.
   * All Tier 1 user accounts (Domain Controller and AD admins)
-* PAW-Tier2Admins - Members of this group are Tier 2 Administrators.  They can administrate Tier 2 PAWs.
+* **PAW-Tier2Admins** - Members of this group are Tier 2 Administrators.  They can administrate Tier 2 PAWs.
   * All Tier 2 Maintenance user accounts
-* PAW-Tier2Computers - Members of this group are Tier 0 Computers.  Used mainly for GPO filtering.
+* **PAW-Tier2Computers** - Members of this group are Tier 0 Computers.  Used mainly for GPO filtering.
   * All Tier 2 PAWs
-* PAW-Tier2Users - Members of this group are Tier 2 Users.  They can log into Tier 2 PAWs.
+* **PAW-Tier2Users** - Members of this group are Tier 2 Users.  They can log into Tier 2 PAWs.
   * All Tier 2 user accounts (Domain Controller and AD admins)
-* PAW-Users - Members of this groups include all the Tier 0, 1, and 2 Users
+* **PAW-Users** - Members of this groups include all the Tier 0, 1, and 2 Users
   * PAW-Tier0Users
   * PAW-Tier1Users
   * PAW-Tier2Users
