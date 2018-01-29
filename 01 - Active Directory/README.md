@@ -53,6 +53,7 @@ DOMAIN.COM
 ```
 ## Active Directory Permissions
 Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
+
 **COMPANY.COM\Company\Computers**
 * ACL 1
   * Principal: AD-Company-Computers--DeleteComputerObjects
@@ -69,6 +70,7 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
   * Type: Allow
   * Applies to: Descendant Computer Objects
   * Permissions: Read all properties
+
 **COMPANY.COM\Company\Users\Employees**
 * ACL 1
   * Principal: AD-Company-Users--DeleteUserObjects
@@ -85,6 +87,7 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
   * Type: Allow
   * Applies to: Descendant User Objects
   * Properties: Read all properties
+
 **COMPANY.COM\Company\Computers\Disabled-Computers**
 * ACL 1
   * Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
@@ -96,6 +99,7 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
   * Type: Allow
   * Applies to: This object and all descendandt objects
   * Permissions: List contents, Read all properties, write all properties, read permissions
+
 **COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Computers**
 * ACL 1
   * Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
@@ -107,6 +111,7 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
   * Type: Allow
   * Applies to: Descendant Group objects
   * Permissions: Full control
+
 **COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Servers**
 * ACL 1
   * Principal: AD-Company-Groups-ShadowGroupsServers--Modify
@@ -118,6 +123,7 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
   * Type: Allow
   * Applies to: Descendant Group objects
   * Permissions: Full control
+
 **COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Users**
 * ACL 1
   * Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
@@ -129,6 +135,7 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
   * Type: Allow
   * Applies to: Descendant Group objects
   *  Permissions: Full control   
+
 **COMPANY.COM\CompanyUsers\Disabled-Users**
 * ACL 1
   * Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
