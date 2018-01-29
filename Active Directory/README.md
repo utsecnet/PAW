@@ -6,29 +6,29 @@ This is how I have AD setup:
 
 ```
 DOMAIN.COM
-+-- Company
-    +-- Computers
-        +-- Location A
-            +-- PAW
-                +-- Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
-                +-- Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
-                +-- Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
-            +-- Servers
-                +-- Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
-                +-- Tier 1   - - - - Will hold Tier 1 servers (most member servers)
-            +-- Workstations - - - - Put all workstation objects here, in you own hierarchy
-            +-- VMs          - - - - All VMs, including your PAWs day-to-day VM
-    +-- Groups
-        +-- Security Groups
-            +-- PAW          - - - - All groups related to PAW management
-            +-- Shadowgroups-Computers - - - Computer object's shadowgroups
-            +-- Shadowgroups-Servers - - - - Server object's shadowgroups
-            +-- Shadowgroups-Users - - - - - User's object's shadowgroups
-    +-- Users
-        +-- PAW Accounts
-            +-- Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
-            +-- Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
-            +-- Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
+└── Company
+    ├── Computers
+    │   └── Location A
+    │       ├── PAW
+    │       │   ├── Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
+    │       │   ├── Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
+    │       │   └── Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
+    │       ├── Servers
+    │       │   ├── Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
+    │       │   └── Tier 1   - - - - Will hold Tier 1 servers (most member servers)
+    │       ├── Workstations - - - - Put all workstation objects here, in you own hierarchy
+    │       └── VMs          - - - - All VMs, including your PAWs day-to-day VM
+    ├── Groups
+    │   └── Security Groups
+    │       ├── PAW          - - - - All groups related to PAW management
+    │       ├── Shadowgroups-Computers - - - Computer object's shadowgroups
+    │       ├── Shadowgroups-Servers - - - - Server object's shadowgroups
+    │       └── Shadowgroups-Users - - - - - User's object's shadowgroups
+    └── Users
+        └── PAW Accounts
+            ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+            ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
+            └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
 ```
 
 ## Users
