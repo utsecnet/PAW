@@ -8,6 +8,7 @@ This is how I have AD setup:
 DOMAIN.COM
 └── Company
     ├── Computers
+    │   ├── Disabled-Computers - - - Will hold all disabled computer accounts
     │   └── Location A
     │       ├── PAW
     │       │   ├── Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
@@ -25,6 +26,7 @@ DOMAIN.COM
     │       ├── Shadowgroups-Servers - - - - Server object's shadowgroups
     │       └── Shadowgroups-Users - - - - - User's object's shadowgroups
     └── Users
+        ├── Disabled-Users   - - - - Will hold all disabled user accounts
         └── PAW Accounts
             ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
             ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
@@ -92,4 +94,4 @@ The following groups must be created in Company > Groups > SecurityGroups > RBAC
   * PAW-Tier2Users
 
 ## Additional Resources
-For more information on what accounts count as Tier 0, [Microsoft's recommendations here](https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#T0E_BM).
+For more information on what accounts count as Tier 0, see [Microsoft's recommendations here](https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#T0E_BM).
