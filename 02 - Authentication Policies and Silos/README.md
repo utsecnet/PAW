@@ -46,3 +46,14 @@ Create a GPO and apply it to the DOMAIN.COM\Company\Computers OU called **Securi
 Update the Policy to include the new Silo
 1. Edit the policy
 2. Assign the silo you created above under Assigned Silos
+
+## Test your settings
+
+Make sure to gpupdate on your servers and your PAWs.
+
+Authentication                                                                  Result
+* RDP into a DC with your Tier 0 account from your Tier 0 PAW                   PASS
+* RDP from a DC to your Tier 0 PAW                                              PASS
+* RDP into a member Tier 1 server from your Tier 0 PAW with your Tier 0 account FAIL
+* RDP into your Tier 0 PAW from a HelpDesk workstation                          FAIL
+* Log into your Tier 0 PAW with a non-Tier 0 user account                       FAIL
