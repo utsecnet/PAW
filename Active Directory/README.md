@@ -1,9 +1,22 @@
-## Active Directory
+## Shadow Groups
+If you want to use Shadow Groups to aide in managing your devices, you will need to keep your PAW devices separate from your day-to-day devices.  This means a separate OU for your PAW devices and a separate OU for all your other workstations.  
 
-If you want to use Shadow Groups to aide in managing your devices, you will need to keep your PAW devices separate from your day-to-day devices.  What are Shadow Groups?  It is a group that is automatically created and whose membership is automated based on OU membership.  In other words, a scheduled task runs on a regular interval and creates groups based on your Active Directory OU hierarchy.  It then takes the members of the OU and adds them as memebers of the group.  Lastly, it removes group members that may have moved to a different OU, keeping your group membership accurate.
+What are Shadow Groups?
 
-This is how I have AD setup:
+Shadow Groups are groups that mirror the membership of an Active Directory OU.  If you have ever administrated a Novel Netware network, you will recall that you can apply the membership of an OU to a network object's ACL.  Thus, giving access to an object based on the users in an OU.  Active Directory does not allow you to add OUs to ACLs.  Thus, if we wanted to replicate this behavior in AD, we need shadow groups.  With shadow groups you now have all members of each department in a group.  All departmental computers in their own groups.  All laptops in their own groups.  All Tablets in their own groups...
 
+What else can you do with Shadow Groups?
+
+* Apply GPO security filtering to shadow groups rather than **Authenticated Users**.  Now you can apply the GPO to a higher level OU, and have it apply to only certain child OUs without the need for complicated WMI filters.
+* More effectively manage NPS 802.1x policies.  
+* Quicker reporting for auditors.  All employees are in thier own group, filtering out things like service accounts, contacts, and contractors which are members of the **Domain Users** group.  Same for computers and the **Domain Computers** group.
+* Rule the world
+
+How are Shadow Groups managed?
+
+A scheduled task runs on a regular interval and creates groups based on your Active Directory OU hierarchy.  It then takes the members of the OU and adds them as members of the group.  Lastly, it removes group members that may have moved to a different OU, keeping your group membership accurate.
+
+## Recommended Active Directory Hierarchy
 ```
 DOMAIN.COM
 └── Company
@@ -26,7 +39,7 @@ DOMAIN.COM
     │       ├── Shadowgroups-Servers - - - - Server object's shadowgroups
     │       └── Shadowgroups-Users - - - - - User's object's shadowgroups
     └── Users
-        ├── Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own heirarchy.  For this example, we use <Locale>\<Department>
+        ├── Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
         │   ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
         │   └── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
         ├── Disabled-Users   - - - - Will hold all disabled user accounts
@@ -36,9 +49,7 @@ DOMAIN.COM
             ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
             └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
 ```
-
 ## Users
-
 Each Domain Admin will have the following accounts:
 
 * **Tier 0 account**: Member of domain admins, but also only a local user on the Tier 0 PAW.  Does not have admin rights on PAW itself.
@@ -63,7 +74,6 @@ Each Helpdesk user will have:
 * **Access to all workstation LAPS accounts**.  They can use this if RDP with RA is too restrictive.  
 
 ## Groups
-
 The following groups must be created in Company > Groups > SecurityGroups > RBAC-PAW.  The sub-bullet point are the members of the specified group.
 
 * **PAW-AllPAWComputers** - Members of this group include all PAW Tier groups.  It is a collection of all PAW machines.
