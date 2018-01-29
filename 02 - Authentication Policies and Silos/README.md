@@ -37,10 +37,10 @@ Create a GPO and apply it to the DOMAIN.COM\Company\Computers OU called **Securi
 3. Put a bullet in Enforce silo policies
 4. Description: All members of Tier 0 users and computers.
 5. permitted Accounts > Add the following Computer and user accounts (cannot add groups)
-  * All Domain Controllers
-  * All PAW Tier 0 Computer accounts
-  * All Tier 0 User accounts
-  * Any other Tier 0 server accounts
+  1. All Domain Controllers
+  2. All PAW Tier 0 Computer accounts
+  3. All Tier 0 User accounts
+  4. Any other Tier 0 server accounts
 6. Authentication Policy > Use a single policy... Select the policy you created above
 
 Update the Policy to include the new Silo
