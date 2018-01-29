@@ -54,92 +54,92 @@ DOMAIN.COM
 ## Active Directory Permissions
 Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
 **COMPANY.COM\Company\Computers**
-  * ACL 1
-    * Principal: AD-Company-Computers--DeleteComputerObjects
-    * Type: Allow
-    * Applies to: Descendant Computer Objects
-    * Properties: Write Name, and Write name (capitol and lower case N & n)
-  * ACL 2
-    * Principal: AD-Company-Computers--DeleteComputerObjects
-    * Type: Allow
-    * Applies to: This object and all descendant Objects
-    * Permissions: Delete Computer objects
-  * ACL 3
-    * Principal: AD-Company-Computers--DeleteComputerObjects
-    * Type: Allow
-    * Applies to: Descendant Computer Objects
-    * Permissions: Read all properties
-* **COMPANY.COM\Company\Users\Employees**
-  * ACL 1
-    * Principal: AD-Company-Users--DeleteUserObjects
-    * Type: Allow
-    * Applies to: Descendant User Objects
-    * Properties: Write Name, and Write name (capitol and lower case N & n)
-  * ACL 2
-    * Principal: AD-Company-Users--DeleteUserObjects
-    * Type: Allow
-    * Applies to: This object and all descendant objects
-    * Permissions: Delete user objects
-  * ACL 3
-    * Principal: AD-Company-Users--DeleteUserObjects
-    * Type: Allow
-    * Applies to: Descendant User Objects
-    * Properties: Read all properties
-* **COMPANY.COM\Company\Computers\Disabled-Computers**
-  * ACL 1
-    * Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
-    * Type: Allow
-    * Applies to: This object and all descendandt objects
-    * Permissions: Create Computer objects
-  * ACL 2
-    * Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
-    * Type: Allow
-    * Applies to: This object and all descendandt objects
-    * Permissions: List contents, Read all properties, write all properties, read permissions
-* **COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Computers**
-  * ACL 1
-    * Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
-    * Type: Allow
-    * Applies to: This object and all descendandt objects
-    * Permissions: Create Group objects, Delete Group objects
-  * ACL 2
-    * Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
-    * Type: Allow
-    * Applies to: Descendant Group objects
-    * Permissions: Full control
-* **COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Servers**
-  * ACL 1
-    * Principal: AD-Company-Groups-ShadowGroupsServers--Modify
-    * Type: Allow
-    * Applies to: This object and all descendandt objects
-    * Permissions: Create Group objects, Delete Group objects
-  * ACL 2
-    * Principal: AD-Company-Groups-ShadowGroupsServers--Modify
-    * Type: Allow
-    * Applies to: Descendant Group objects
-    * Permissions: Full control
-* **COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Users**
-  * ACL 1
-    * Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
-    * Type: Allow
-    * Applies to: This object and all descendandt objects
-    * Permissions: Create Group objects, Delete Group objects
-  * ACL 2
-    * Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
-    * Type: Allow
-    * Applies to: Descendant Group objects
-    *  Permissions: Full control   
-* **COMPANY.COM\CompanyUsers\Disabled-Users**
-  * ACL 1
-    * Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
-    * Type: Allow
-    * Applies to: This object only
-    * Permissions: Create User objects
-  * ACL 2
-    * Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
-    * Type: Allow
-    * Applies to: This object and all descendant objects
-    * Permissions: Full control
+* ACL 1
+  * Principal: AD-Company-Computers--DeleteComputerObjects
+  * Type: Allow
+  * Applies to: Descendant Computer Objects
+  * Properties: Write Name, and Write name (capitol and lower case N & n)
+* ACL 2
+  * Principal: AD-Company-Computers--DeleteComputerObjects
+  * Type: Allow
+  * Applies to: This object and all descendant Objects
+  * Permissions: Delete Computer objects
+* ACL 3
+  * Principal: AD-Company-Computers--DeleteComputerObjects
+  * Type: Allow
+  * Applies to: Descendant Computer Objects
+  * Permissions: Read all properties
+**COMPANY.COM\Company\Users\Employees**
+* ACL 1
+  * Principal: AD-Company-Users--DeleteUserObjects
+  * Type: Allow
+  * Applies to: Descendant User Objects
+  * Properties: Write Name, and Write name (capitol and lower case N & n)
+* ACL 2
+  * Principal: AD-Company-Users--DeleteUserObjects
+  * Type: Allow
+  * Applies to: This object and all descendant objects
+  * Permissions: Delete user objects
+* ACL 3
+  * Principal: AD-Company-Users--DeleteUserObjects
+  * Type: Allow
+  * Applies to: Descendant User Objects
+  * Properties: Read all properties
+**COMPANY.COM\Company\Computers\Disabled-Computers**
+* ACL 1
+  * Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
+  * Type: Allow
+  * Applies to: This object and all descendandt objects
+  * Permissions: Create Computer objects
+* ACL 2
+  * Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
+  * Type: Allow
+  * Applies to: This object and all descendandt objects
+  * Permissions: List contents, Read all properties, write all properties, read permissions
+**COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Computers**
+* ACL 1
+  * Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
+  * Type: Allow
+  * Applies to: This object and all descendandt objects
+  * Permissions: Create Group objects, Delete Group objects
+* ACL 2
+  * Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
+  * Type: Allow
+  * Applies to: Descendant Group objects
+  * Permissions: Full control
+**COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Servers**
+* ACL 1
+  * Principal: AD-Company-Groups-ShadowGroupsServers--Modify
+  * Type: Allow
+  * Applies to: This object and all descendandt objects
+  * Permissions: Create Group objects, Delete Group objects
+* ACL 2
+  * Principal: AD-Company-Groups-ShadowGroupsServers--Modify
+  * Type: Allow
+  * Applies to: Descendant Group objects
+  * Permissions: Full control
+**COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Users**
+* ACL 1
+  * Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
+  * Type: Allow
+  * Applies to: This object and all descendandt objects
+  * Permissions: Create Group objects, Delete Group objects
+* ACL 2
+  * Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
+  * Type: Allow
+  * Applies to: Descendant Group objects
+  *  Permissions: Full control   
+**COMPANY.COM\CompanyUsers\Disabled-Users**
+* ACL 1
+  * Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
+  * Type: Allow
+  * Applies to: This object only
+  * Permissions: Create User objects
+* ACL 2
+  * Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
+  * Type: Allow
+  * Applies to: This object and all descendant objects
+  * Permissions: Full control
 ## Users
 Each Domain Admin will have the following accounts:
 
@@ -168,35 +168,35 @@ Each Helpdesk user will have:
 The following groups must be created in Company > Groups > SecurityGroups > RBAC-PAW.  The sub-bullet point are the members of the specified group.
 
 * **PAW-AllPAWComputers** - Members of this group include all PAW Tier groups.  It is a collection of all PAW machines.
-  * PAW-Tier0Computers
-  * PAW-Tier1Computers
-  * PAW-Tier2Computers
+* PAW-Tier0Computers
+* PAW-Tier1Computers
+* PAW-Tier2Computers
 * **PAW-BlockPowershell** - Members of this group are blocked from using PowerShell via GPO.
-  * PAW-Users
+* PAW-Users
 * **PAW-AzureAdmins** - Members of this group are permitted to connect to pre-identified cloud services via Privileged Access Workstations
-  * not sure yet.
+* not sure yet.
 * **PAW-Tier0Admins** - Members of this group are Tier 0 admins.  They can administrate Tier 0 PAWs.
-  * All Tier 0 Maintenance user accounts
+* All Tier 0 Maintenance user accounts
 * **PAW-Tier0Computers** - Members of this group are Tier 0 Computers.  Used mainly for GPO filtering.
-  * All Tier 0 PAWs
+* All Tier 0 PAWs
 * **PAW-Tier0Users** - Members of this group are tier 0 users.  They can log into Tier 0 PAWs and servers.
-  * All Tier 0 user accounts (Domain Controller and AD admins)
+* All Tier 0 user accounts (Domain Controller and AD admins)
 * **PAW-Tier1Admins** - Members of this group are Tier 1 Admins.  They can administrate Tier 1 PAWs.
-  * All Tier 1 Maintenance user accounts
+* All Tier 1 Maintenance user accounts
 * **PAW-Tier1Computers** - Members of this group are Tier 1 Computers.  Used mainly for GPO filtering.
-  * All Tier 1 PAWs  
+* All Tier 1 PAWs  
 * **PAW-Tier1Users** - Members of this group are Tier 1 users.  They can log into Tier 1 PAWs and member servers.
-  * All Tier 1 user accounts (Domain Controller and AD admins)
+* All Tier 1 user accounts (Domain Controller and AD admins)
 * **PAW-Tier2Admins** - Members of this group are Tier 2 Administrators.  They can administrate Tier 2 PAWs.
-  * All Tier 2 Maintenance user accounts
+* All Tier 2 Maintenance user accounts
 * **PAW-Tier2Computers** - Members of this group are Tier 0 Computers.  Used mainly for GPO filtering.
-  * All Tier 2 PAWs
+* All Tier 2 PAWs
 * **PAW-Tier2Users** - Members of this group are Tier 2 Users.  They can log into Tier 2 PAWs.
-  * All Tier 2 user accounts (Domain Controller and AD admins)
+* All Tier 2 user accounts (Domain Controller and AD admins)
 * **PAW-Users** - Members of this groups include all the Tier 0, 1, and 2 Users
-  * PAW-Tier0Users
-  * PAW-Tier1Users
-  * PAW-Tier2Users
+* PAW-Tier0Users
+* PAW-Tier1Users
+* PAW-Tier2Users
 
 ## Additional Resources
 For more information on what accounts count as Tier 0, see [Microsoft's recommendations here](https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#T0E_BM).
