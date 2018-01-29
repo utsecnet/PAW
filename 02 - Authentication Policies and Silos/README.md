@@ -5,7 +5,7 @@ Authentication Policies and Silos allow us to restrict user accounts from access
 Create a GPO and apply it to the Domain Controller's OU called **Security - Allow Dynamic Access Control - DCs** with the following settings:
 
 *Computer Configuration > Policies > Admin Templates > System > KDC*
-• KDC support for claims, compound authentication and Kerberos armoring: **Enabled, Always provide claims**
+* KDC support for claims, compound authentication and Kerberos armoring: **Enabled, Always provide claims**
 
 On the scope tab:
 * Ensure the Link is Enabled.  
@@ -19,7 +19,7 @@ On the Details tab:
 Create a GPO and apply it to the DOMAIN.COM\Company\Computers OU called **Security - Allow Dynamic Access Control - PAW** with the following settings:
 
 *Computer Configuration > Policies > Admin Templates > System > Kerberos*
-• Kerberos client support for claims, compound authentication and Kerberos armoring: **Enabled**
+* Kerberos client support for claims, compound authentication and Kerberos armoring: **Enabled**
 
 ## Configure the Authentication Policy and Silo
 1. Create the policy by opening Active Directory Administrative Center and navigate to **Authentication > Policies > right click and create new policy**.
