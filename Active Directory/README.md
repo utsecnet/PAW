@@ -26,7 +26,11 @@ DOMAIN.COM
     │       ├── Shadowgroups-Servers - - - - Server object's shadowgroups
     │       └── Shadowgroups-Users - - - - - User's object's shadowgroups
     └── Users
+        ├── Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own heirarchy.  For this example, we use <Locale>\<Department>
+        │   ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+        │   └── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
         ├── Disabled-Users   - - - - Will hold all disabled user accounts
+        ├── ServiceAccounts  - - - - Will hold all service accounts, and special use accounts (like accounts that run scheduled tasks)
         └── PAW Accounts
             ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
             ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
