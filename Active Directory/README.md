@@ -4,26 +4,26 @@ If you want to use Shadow Groups to aide in managing your devices, you will need
 
 ```
 DOMAIN.COM
-+-- Company
-    +-- Computers
-        +-- Location A
-            +-- PAW
-                +-- Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
-                +-- Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
-                +-- Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
-            +-- Servers
-                +-- Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
-                +-- Tier 1   - - - - Will hold Tier 1 servers (most member servers)
-            +-- Workstations - - - - Put all workstation objects here, in you own hierarchy
-            +-- VMs          - - - - All VMs, including your PAWs day-to-day VM
-    +-- Groups
-        +-- Security Groups
-            +-- PAW          - - - - All groups related to PAW management
-    +-- Users
-        +-- PAW Accounts
-            +-- Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
-            +-- Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
-            +-- Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
+└── Company
+    ├── Computers
+    │   └── Location A
+    │       ├── PAW
+    │       │   ├── Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
+    │       │   ├── Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
+    │       │   └── Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
+    │       ├── Servers
+    │       │   ├── Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
+    │       │   └── Tier 1   - - - - Will hold Tier 1 servers (most member servers)
+    │       ├── Workstations - - - - Put all workstation objects here, in you own hierarchy
+    │       └── VMs          - - - - All VMs, including your PAWs day-to-day VM
+    ├── Groups
+    │   └── Security Groups
+    │       └── PAW          - - - - All groups related to PAW management
+    └── Users
+        └── PAW Accounts
+            ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+            ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
+            └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
 ```
 
 ## Users
@@ -85,3 +85,6 @@ The following groups must be created in Company > Groups > SecurityGroups > RBAC
   * PAW-Tier0Users
   * PAW-Tier1Users
   * PAW-Tier2Users
+
+## Additional Resources
+For more information on what accounts count as Tier 0, [Microsoft's recommendations here](https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#T0E_BM).
