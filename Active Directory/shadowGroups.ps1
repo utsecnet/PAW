@@ -661,7 +661,7 @@ function Users {
 
         # Define attributes about the user to be used for building the group names
         #                  0  1        2  3  4  5    6  7         8  9     10 11      12 13      14 15
-        # example of a DN: CN=Bob Hope,OU=IT,OU=Utah,OU=Corporate,OU=Users,OU=Company,DC=Company,DC=COM 
+        # example of a DN: CN=Bob Hope,OU=IT,OU=Utah,OU=Employees,OU=Users,OU=Company,DC=Company,DC=COM
         $username = $user.name
         $dn = $user.distinguishedname
         $department = ($dn -split '[,\=]')[3]
