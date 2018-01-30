@@ -9,29 +9,10 @@
         2018-01-08 - Initial Creation
         
 .SYNOPSIS
-    This script manages shadowgroup membership and creation in Active Directory.
-    This script is called via a scheduled task with the following details:
-        General Tab
-            - runas: taskrunner-shadowgroup (does not require 'run as highest privileges')
-            - Run whether user is logged in or not
-            - Keep the other defaults
-        Triggers Tab
-            - Begin the task: On a schedule
-            - One Time
-            - Advanced settings
-                - Repeat the task: every 15 minutes (You decide)
-                - for a duration of: Indefinitely
-                - Stop task if it runs longer than: 30 minutes
-                - Enabled
-            - Keep the other defaults
-        Actions Tab
-            - Program/script: powershell.exe
-            - Arguments: -executionpolicy bypass -command \\server\share\shadowgroups.ps1
-        Settings Tab
-            - Allow task to be run on demand
-            - Keep the other defaults
+    This script manages shadowgroup creation and membership in Active Directory.
 
 .DESCRIPTION
+    What does this sript do?
     - This script would run as a scheduled task on a domain controller.
     - Creates shadow groups for computer objects in Active Directory. OU structure is very important.
     - Adds computers to the appropriate groups. Also nests groups.
@@ -44,8 +25,8 @@
     - Removes all disabled users from the GAL
     - All actions are logged to C:\ProgramData\shadogroups.txt.  Use this log file to troubleshoot problems.
 
-.REQUIREMENTS
-    - Search this script for <changeme> and replace it with the required data.  Comments should be verbose enough to understand what is being asked.
+    What do I need to do?
+    - Search this script for <changeme> and replace it with the required data.
     - This script heavily relies on an accurate and well organized Active Directory heiarchy.  For this example, we will use the following tree structure:
 
     DOMAIN.COM
@@ -71,8 +52,8 @@
         │       └── Shadowgroups-Users - - - - - User's object's shadowgroups
         └── Users
             └── Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own heirarchy.  For this example, we use <Locale>\<Department>
-                └── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
-                └── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
+            │   └── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+            │   └── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
             ├── Disabled-Users   - - - - Will hold all disabled user accounts
             ├── ServiceAccounts  - - - - Will hold all service accounts, and special use accounts (like accounts that run scheduled tasks)
             └── PAW Accounts
@@ -92,97 +73,29 @@
             - AD-Company-Users--DeleteUserObjects
             - AD-Company-Users-DisabledUsers--CreateUserObjects
             - Add the taskrunner-shadowgroup user to all the above groups
-    - Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
-        - COMPANY.COM\Company\Computers
-            - ACL 1
-                - Principal: AD-Company-Computers--DeleteComputerObjects
-                - Type: Allow
-                - Applies to: Descendant Computer Objects
-                - Properties: Write Name, and Write name (capitol and lower case N & n)
-            - ACL 2
-                - Principal: AD-Company-Computers--DeleteComputerObjects
-                - Type: Allow
-                - Applies to: This object and all descendant Objects
-                - Permissions: Delete Computer objects
-            - ACL 3
-                - Principal: AD-Company-Computers--DeleteComputerObjects
-                - Type: Allow
-                - Applies to: Descendant Computer Objects
-                - Permissions: Read all properties
-        - COMPANY.COM\Company\Users\Employees
-            - ACL 1
-                - Principal: AD-Company-Users--DeleteUserObjects
-                - Type: Allow
-                - Applies to: Descendant User Objects
-                - Properties: Write Name, and Write name (capitol and lower case N & n)
-            - ACL 2
-                - Principal: AD-Company-Users--DeleteUserObjects
-                - Type: Allow
-                - Applies to: This object and all descendant objects
-                - Permissions: Delete user objects
-            - ACL 3
-                - Principal: AD-Company-Users--DeleteUserObjects
-                - Type: Allow
-                - Applies to: Descendant User Objects
-                - Properties: Read all properties
-        - COMPANY.COM\Company\Computers\Disabled-Computers
-            - ACL 1
-                - Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
-                - Type: Allow
-                - Applies to: This object and all descendandt objects
-                - Permissions: Create Computer objects
-            - ACL 2
-                - Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
-                - Type: Allow
-                - Applies to: This object and all descendandt objects
-                - Permissions: List contents, Read all properties, write all properties, read permissions
-        - COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Computers
-            - ACL 1
-                - Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
-                - Type: Allow
-                - Applies to: This object and all descendandt objects
-                - Permissions: Create Group objects, Delete Group objects
-            - ACL 2
-                - Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
-                - Type: Allow
-                - Applies to: Descendant Group objects
-                - Permissions: Full control
-         - COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Servers
-            - ACL 1
-                - Principal: AD-Company-Groups-ShadowGroupsServers--Modify
-                - Type: Allow
-                - Applies to: This object and all descendandt objects
-                - Permissions: Create Group objects, Delete Group objects
-            - ACL 2
-                - Principal: AD-Company-Groups-ShadowGroupsServers--Modify
-                - Type: Allow
-                - Applies to: Descendant Group objects
-                - Permissions: Full control
-         - COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Users
-            - ACL 1
-                - Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
-                - Type: Allow
-                - Applies to: This object and all descendandt objects
-                - Permissions: Create Group objects, Delete Group objects
-            - ACL 2
-                - Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
-                - Type: Allow
-                - Applies to: Descendant Group objects
-                - Permissions: Full control   
-        - COMPANY.COM\CompanyUsers\Disabled-Users
-            - ACL 1
-                - Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
-                - Type: Allow
-                - Applies to: This object only
-                - Permissions: Create User objects
-            - ACL 2
-                - Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
-                - Type: Allow
-                - Applies to: This object and all descendant objects
-                - Permissions: Full control
 
-.TODO
-
+.EXAMPLE
+    - This script requires no parameters.
+    - This script is called via a scheduled task with the following details:
+        General Tab
+            - runas: taskrunner-shadowgroup (does not require 'run as highest privileges')
+            - Run whether user is logged in or not
+            - Keep the other defaults
+        Triggers Tab
+            - Begin the task: On a schedule
+            - One Time
+            - Advanced settings
+                - Repeat the task: every 15 minutes (You decide)
+                - for a duration of: Indefinitely
+                - Stop task if it runs longer than: 30 minutes
+                - Enabled
+            - Keep the other defaults
+        Actions Tab
+            - Program/script: powershell.exe
+            - Arguments: -executionpolicy bypass -command \\server\share\shadowgroups.ps1
+        Settings Tab
+            - Allow task to be run on demand
+            - Keep the other defaults
 #>
 
 # Location where this script will log to
