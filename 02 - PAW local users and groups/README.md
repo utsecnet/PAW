@@ -99,20 +99,4 @@ Create the following new groups
   * Item-level targeting
       * the computer is a member of the security group DOMAIN\PAW-Tier-0Computers
 
-* Hyper-V Administrators
-  * Order: 10
-  * Action: Update
-  * Description: PAW Tier 1 Hyper-V Admins
-  * Delete all member user and groups: Checked
-  * Members: DOMAIN\PAW-Tier1Users
-  * Item-level targeting
-    * the computer is a member of the security group DOMAIN\PAW-Tier-1Computers
-
-* Hyper-V Administrators
-  * Order: 11
-  * Action: Update
-  * Description: PAW Tier 2 Hyper-V Admins
-  * Delete all member user and groups: Checked
-  * Members: DOMAIN\PAW-Tier2Users
-  * Item-level targeting
-    * the computer is a member of the security group DOMAIN\PAW-Tier-2Computers
+* Repeat this step for Tier1 and Tier2 PAWs.
