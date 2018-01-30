@@ -3,6 +3,6 @@ PAWs often requires software that the standard workstation does not.  Among thes
 
 Device | Groups
 ----|----
-Servers | **All-Servers**, **Domain Controllers**
-PAWs | **PAW-AllPAWComputers**
-workstations | **All-Workstations**
+Servers | All-Servers, Domain Controllers
+PAWs | PAW-AllPAWComputers
+workstations | All-Workstations
