@@ -21,23 +21,23 @@ Configure the following software deployments according to the settings under **G
 * Name of software: Hyper-V
 * Name of script: installHyperv.ps1
 
-### MBAM Client
+#### MBAM Client
 * Name of software: MBAM Client
 * Name of script: installMBAM.ps1
 
-### Nmap
+#### Nmap
 * Name of software: Nmap
 * Name of script: installNmap.ps1
 
-### RSAT
+#### RSAT
 * Name of Software: RSAT
 * Name of script: installRSAT.ps1
 
-### Sysinternals Suite
+#### Sysinternals Suite
 * Name of Software: Sysinternals Suite
 * Name of script: installSysinternals.ps1
 
-### LAPS
+#### LAPS
 * Name of Software: LAPS
 * Name of script: installLAPS.ps1
 
@@ -60,9 +60,9 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Scheduled Task 
 
 Configure the following software deployments according to the settings under **GPO Settings** (Bottom of page)
 
-### LAPS
-Name of Software: LAPS
-Name of script: installLAPS.ps1
+#### LAPS
+* Name of Software: LAPS
+* Name of script: installLAPS.ps1
 
 Close the policy window.
 
