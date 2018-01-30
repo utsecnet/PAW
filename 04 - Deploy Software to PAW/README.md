@@ -7,7 +7,7 @@ This table indicates the GPOs and on which groups they filter:
 
 GPO | Security Filtering
 ----|----
-Scheduled Task - Install Software - Servers | All-Servers, Domain Controllers
+Scheduled Task - Install Software - Servers | All-Servers
 Scheduled Task - Install Software - PAW | PAW-AllPAWComputers
 Scheduled Task - Install Software - workstations | All-Workstations
 
@@ -17,7 +17,7 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Scheduled Task 
 
 Configure the following software deployments according to the settings under **GPO Settings** (Bottom of page)
 
-### Hyper-V
+#### Hyper-V
 Name of software: Hyper-V
 Name of script: installHyperv.ps1
 
@@ -37,7 +37,7 @@ Name of script: installRSAT.ps1
 Name of Software: Sysinternals Suite
 Name of script: installSysinternals.ps1
 
-### Sysinternals LAPS
+### LAPS
 Name of Software: LAPS
 Name of script: installLAPS.ps1
 
@@ -60,15 +60,15 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Scheduled Task 
 
 Configure the following software deployments according to the settings under **GPO Settings** (Bottom of page)
 
-### MBAM Client
-Name of software: MBAM Client
-Name of script: installMBAM.ps1
+### LAPS
+Name of Software: LAPS
+Name of script: installLAPS.ps1
 
 Close the policy window.
 
 On the scope tab:
 * Ensure the Link to the Computers OU is Enabled.  
-* Remove **Authenticated Users** from the **Security Filtering** section and add **PAW-AllPAWComputers**.
+* Remove **Authenticated Users** from the **Security Filtering** section and add **All-Servers**.
 * Ensure there is no WMI filter applied
 
 On the Details tab:
