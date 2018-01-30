@@ -7,7 +7,7 @@ These accounts will only be used if domain trust issues happen and a user cannot
 
 ## Group Policy
 
-Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Local Groups - PAW** with the following setings:
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Local Groups - PAW** with the following settings:
 
 *Computer Configuration > Preferences > Control Panel Settings > Local Users and Groups*
 
@@ -100,3 +100,13 @@ Create the following new groups
       * the computer is a member of the security group DOMAIN\PAW-Tier-0Computers
 
 * Repeat this step for Tier1 and Tier2 PAWs.
+
+Close the policy window.
+
+On the scope tab:
+* Ensure the Link to the Computers OU is Enabled.  
+* Ensure **Authenticated Users** is selected under **Security Filtering**.
+* Ensure there is no WMI filter applied.
+
+On the Details tab:
+* Set GPO status to: **User configuration settings disabled**.
