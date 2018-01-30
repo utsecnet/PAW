@@ -14,14 +14,14 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Loca
 Create the following new groups
 
 * Administrators (built-in)
-    * Order 1
-    * Action: Update
-    * Description: All Tier 0 PAW Admins
-    * Delete all member users: checked
-    * Delete al member groups: checked
-    * Members > Add > ... button > PAW-Tier0Admins
-    * Item-level targeting
-        * The computer is a member of the security group DOMAIN\PAW-Tier0Computers
+  * Order 1
+  * Action: Update
+  * Description: All Tier 0 PAW Admins
+  * Delete all member users: checked
+  * Delete al member groups: checked
+  * Members > Add > ... button > PAW-Tier0Admins
+  * Item-level targeting
+    * The computer is a member of the security group DOMAIN\PAW-Tier0Computers
 
 * Administrators (built-in)  - You will add a new one of these for every PAW user that needs local admin on their PAW
     * Order: 2
