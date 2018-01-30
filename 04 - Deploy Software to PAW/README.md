@@ -76,6 +76,34 @@ On the Details tab:
 
 On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
+
+## Deploy software to Workstations
+
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Scheduled Task - Install Software - Workstations**.
+
+Configure the following software deployments according to the settings under **GPO Settings** (Bottom of page)
+
+#### LAPS
+* Name of Software: LAPS
+* Name of script: installLAPS.ps1
+
+#### MBAM Client
+* Name of software: MBAM Client
+* Name of script: installMBAM.ps1
+
+Close the policy window.
+
+On the scope tab:
+* Ensure the Link to the Computers OU is Enabled.  
+* Remove **Authenticated Users** from the **Security Filtering** section and add **All-Workstations**.
+* Ensure there is no WMI filter applied
+
+On the Details tab:
+* Set GPO status to: **User configuration settings disabled**
+
+On the Delegation tab:
+* Add **Authenticated Users** and give it READ permissions.
+
 ## GPO Settings
 
 *Computer Configuration > Preferences > Windows Settings > Control Panel Settings > Scheduled Tasks*
