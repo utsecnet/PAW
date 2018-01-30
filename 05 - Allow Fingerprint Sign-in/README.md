@@ -8,7 +8,7 @@ Moving to the PAW paradigm opens up a slew of changes regarding how you will adm
 * Tier 2 admin user
 * standard user account
 
-Fingerprints help alleviate some of the frustration with having to remember so many account passwords (SEE DISCLAIMER AT THE BOTTOM).
+Fingerprints help alleviate some of the frustration with having to remember so many account passwords.
 
 ## Allowing biometrics for local users and domain users
 
