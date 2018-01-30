@@ -24,91 +24,91 @@ Create the following new groups
     * The computer is a member of the security group DOMAIN\PAW-Tier0Computers
 
 * Administrators (built-in)  - You will add a new one of these for every PAW user that needs local admin on their PAW
-    * Order: 2
-    * Action: Update
-    * Description: Rich's PAW Local Admins
-    * Delete all users and groups: Unchecked
-    * Members: <username>.admin (the account you created in the Local Users section above)
-    * Item-level targeting
-        * The NetBIOS computer name is <Select the specific User's PAW computer object>
+  * Order: 2
+  * Action: Update
+  * Description: Rich's PAW Local Admins
+  * Delete all users and groups: Unchecked
+  * Members: <username>.admin (the account you created in the Local Users section above)
+  * Item-level targeting
+    * The NetBIOS computer name is <Select the specific User's PAW computer object>
 
 * Backup Operators (built-in)
-    * Order: 3
-    * Action: Update
-    * Description: All PAW Backup Operators
-    * Delete all member user and groups: Checked
-    * Members: None
-    * Item-level targeting
-        * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
+  * Order: 3
+  * Action: Update
+  * Description: All PAW Backup Operators
+  * Delete all member user and groups: Checked
+  * Members: None
+  * Item-level targeting
+    * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
 
 * Cryptographic Operators (built-in)
-    * Order: 4
-    * Action: Update
-    * Description: All PAW Cryptographic Operators
-    * Delete all member user and groups: Checked
-    * Members: None
-    * Item-level targeting
-        * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
+  * Order: 4
+  * Action: Update
+  * Description: All PAW Cryptographic Operators
+  * Delete all member user and groups: Checked
+  * Members: None
+  * Item-level targeting
+    * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
 
 * Network Configuration Operators (built-in)
-    * Order: 5
-    * Action: Update
-    * Description: All PAW Network Configuration Operators
-    * Delete all member user and groups: Checked
-    * Members: None
-    * Item-level targeting
-        * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
+  * Order: 5
+  * Action: Update
+  * Description: All PAW Network Configuration Operators
+  * Delete all member user and groups: Checked
+  * Members: None
+  * Item-level targeting
+    * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
 
 * Power Users (built-in)
-    * Order: 6
-    * Action: Update
-    * Description: All PAW Power Users
-    * Delete all member user and groups: Checked
-    * Members: None
-    * Item-level targeting
-        * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
+  * Order: 6
+  * Action: Update
+  * Description: All PAW Power Users
+  * Delete all member user and groups: Checked
+  * Members: None
+  * Item-level targeting
+    * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
 
 * Remote Desktop Users (built-in)
-    * Order: 7
-    * Action: Update
-    * Description: All PAW Demote Desktop Users
-    * Delete all member user and groups: Checked
-    * Members: None
-    * Item-level targeting
-        * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
+  * Order: 7
+  * Action: Update
+  * Description: All PAW Demote Desktop Users
+  * Delete all member user and groups: Checked
+  * Members: None
+  * Item-level targeting
+    * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
 
 * Replicators (built-in)
-    * Order: 8
-    * Action: Update
-    * Description: All PAW Replicators
-    * Delete all member user and groups: Checked
-    * Members: None
-    * Item-level targeting
-        * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
+  * Order: 8
+  * Action: Update
+  * Description: All PAW Replicators
+  * Delete all member user and groups: Checked
+  * Members: None
+  * Item-level targeting
+    * the computer is a member of the security group DOMAIN\PAW-AllPAWComputers
 
 * Hyper-V Administrators
-    * Order: 9
-    * Action: Update
-    * Description: PAW Tier 0 Hyper-V Admins
-    * Delete all member user and groups: Checked
-    * Members: DOMAIN\PAW-Tier0Users
-    * Item-level targeting
-          * the computer is a member of the security group DOMAIN\PAW-Tier-0Computers
+  * Order: 9
+  * Action: Update
+  * Description: PAW Tier 0 Hyper-V Admins
+  * Delete all member user and groups: Checked
+  * Members: DOMAIN\PAW-Tier0Users
+  * Item-level targeting
+      * the computer is a member of the security group DOMAIN\PAW-Tier-0Computers
 
 * Hyper-V Administrators
-    * Order: 10
-    * Action: Update
-    * Description: PAW Tier 1 Hyper-V Admins
-    * Delete all member user and groups: Checked
-    * Members: DOMAIN\PAW-Tier1Users
-    * Item-level targeting
-        * the computer is a member of the security group DOMAIN\PAW-Tier-1Computers
+  * Order: 10
+  * Action: Update
+  * Description: PAW Tier 1 Hyper-V Admins
+  * Delete all member user and groups: Checked
+  * Members: DOMAIN\PAW-Tier1Users
+  * Item-level targeting
+    * the computer is a member of the security group DOMAIN\PAW-Tier-1Computers
 
 * Hyper-V Administrators
-    * Order: 11
-    * Action: Update
-    * Description: PAW Tier 2 Hyper-V Admins
-    * Delete all member user and groups: Checked
-    * Members: DOMAIN\PAW-Tier2Users
-    * Item-level targeting
-        * the computer is a member of the security group DOMAIN\PAW-Tier-2Computers
+  * Order: 11
+  * Action: Update
+  * Description: PAW Tier 2 Hyper-V Admins
+  * Delete all member user and groups: Checked
+  * Members: DOMAIN\PAW-Tier2Users
+  * Item-level targeting
+    * the computer is a member of the security group DOMAIN\PAW-Tier-2Computers
