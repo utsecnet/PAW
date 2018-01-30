@@ -23,6 +23,8 @@ Create the following new groups
   * Item-level targeting
     * The computer is a member of the security group DOMAIN\PAW-Tier0Computers
 
+* Repeat this step for Tier1 and Tier 2 PAWs
+
 * Administrators (built-in)  - You will add a new one of these for every PAW user that needs local admin on their PAW
   * Order: 2
   * Action: Update
@@ -31,6 +33,8 @@ Create the following new groups
   * Members: <username>.admin (the account you created in the Local Users section above)
   * Item-level targeting
     * The NetBIOS computer name is <Select the specific User's PAW computer object>
+
+* Repeat this step for **every** individual PAW, adding the correct local user to each.
 
 * Backup Operators (built-in)
   * Order: 3
