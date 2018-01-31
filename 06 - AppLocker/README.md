@@ -2,12 +2,12 @@
 First things first.  A ***HUGE*** thanks to [Sami Laiho](http://blog.win-fu.com/), Chief Sr. Principal Technical Fellow.  Without his help this section would not exist since I would not have wanted to go down the long dark path of configuring these policies myself.  
 
 ## What is this?
-AppLocker is a Microsoft product, built into Windows, that allows administrators to whitelist or blacklist applications.  In the world of PAWs we want the most security, and so opt for a whitelist.  A note about AppLocker policy administration - AppLocker management requires a Windows 10 Enterprise license to manage the policies, though you can deploy the policies to Pro or Education editions of Windows 10. [Source](https://docs.microsoft.com/en-us/windows/device-security/applocker/requirements-to-use-applocker)
+AppLocker is a Microsoft product, built into Windows, that allows administrators to whitelist or blacklist applications.  In the world of PAWs we want the most security, and so opt for a whitelist.  
+
+A note about AppLocker policy administration - AppLocker management requires a Windows 10 Enterprise license to manage the policies, though you can deploy the policies to Pro or Education editions of Windows 10. [Source](https://docs.microsoft.com/en-us/windows/device-security/applocker/requirements-to-use-applocker)
 
 ## AppLocker Warning
 Applocker is not a perfect product, and can be bypassed.  GitHub user [pi0cradle](https://github.com/api0cradle/UltimateAppLockerByPassList/commits?author=api0cradle) has compiled his [Ultimate AppLocker ByPass List](https://github.com/api0cradle/UltimateAppLockerByPassList).  You should be aware.
-
-## Best Practices
 
 ### Configure policies on the container, not the item
 If you find yourself configuring policies for individual bypasses (single executable files or scripts), you are probably making AppLocker administration more difficult than it needs to be. Instead, focus more on the publisher and in very rare cases (with additional security controls) a path.  Going by hash focuses on the individual item and requires you to update the hash with each product update.
@@ -38,6 +38,7 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - AppL
 * Application Identity: Enabled (Automatic) - This service is used by AppLocker to determine what action to take on user-launched applications.
 
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Application Control Policies***
+
 Import the applocker.xml policy by right clicking on AppLocker (under Application Control Policies) and selecting *Import Policy...*.
 
 You must update the following policies:
