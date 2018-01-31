@@ -9,6 +9,8 @@ A note about AppLocker policy administration - AppLocker management requires a W
 ## AppLocker Warning
 Applocker is not a perfect product, and can be bypassed.  GitHub user [pi0cradle](https://github.com/api0cradle/UltimateAppLockerByPassList/commits?author=api0cradle) has compiled his [Ultimate AppLocker ByPass List](https://github.com/api0cradle/UltimateAppLockerByPassList).  You should be aware.
 
+## Best Practices
+
 ### Configure policies on the container, not the item
 If you find yourself configuring policies for individual bypasses (single executable files or scripts), you are probably making AppLocker administration more difficult than it needs to be. Instead, focus more on the publisher and in very rare cases (with additional security controls) a path.  Going by hash focuses on the individual item and requires you to update the hash with each product update.
 
