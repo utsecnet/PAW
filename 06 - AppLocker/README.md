@@ -2,7 +2,7 @@
 First things first.  A ***HUGE*** thanks to [Sami Laiho](http://blog.win-fu.com/), Chief Sr. Principal Technical Fellow.  Without his help this section would not exist since I would not have wanted to go down the long dark path of configuring these policies myself.  
 
 ## What is this?
-AppLocker is a Microsoft product, built into Windows, that allows administrators to whitelist or blacklist applications.  In the world of PAWs we want the most security, and so opt for a whitelist.
+AppLocker is a Microsoft product, built into Windows, that allows administrators to whitelist or blacklist applications.  In the world of PAWs we want the most security, and so opt for a whitelist.  A note about AppLocker policy administration - AppLocker management requires a Windows 10 Enterprise license to manage the policies, though you can deploy the policies to Pro or Education editions of Windows 10. [Source](https://docs.microsoft.com/en-us/windows/device-security/applocker/requirements-to-use-applocker)
 
 ## AppLocker Warning
 Applocker is not a perfect product, and can be bypassed.  GitHub user [pi0cradle](https://github.com/api0cradle/UltimateAppLockerByPassList/commits?author=api0cradle) has compiled his [Ultimate AppLocker ByPass List](https://github.com/api0cradle/UltimateAppLockerByPassList).  You should be aware.
@@ -15,12 +15,12 @@ If you find yourself configuring policies for individual bypasses (single execut
 ### Confirm directory whitelisting with accesschk
 When you create the default rule set, AppLocker creates a set of policies that whitelist the *Program Files* and *Windows* directories.  When you whitelist a directory it is important that the user not be able to modify the contents of that directory, else they could run any program they want.  I bet you thought the Windows directory was *read only* to standard users, eh?  Download systenternals and run the following command:
 
-```batch
+```
 C:\Tools> accesschk -w users c:\windows
 ```
  Default results look like this:
 
-```batch
+```
 RW C:\windows\Tasks
 RW C:\windows\Temp
 RW C:\windows\tracing
