@@ -14,15 +14,15 @@ Fingerprints help alleviate some of the frustration with having to remember so m
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Allow Fingerprint Sign in** with the following settings:
 
-*Computer Configuration > Policies > Administrative Templates > System > Logon*
+***Computer Configuration > Policies > Administrative Templates > System > Logon***
 * Turn on convenience PIN sign-in: **Enabled**
 
-*Computer Configuration > Policies > Administrative Templates > Windows Components > Biometrics*
+***Computer Configuration > Policies > Administrative Templates > Windows Components > Biometrics***
 * Allow domain users to log on using biometrics: **Enabled**
 * Allow the use of biometrics: **Enabled**
 * Allow users to log on using biometrics: **Enabled**
 
-*Computer Configuration > Policies > Administrative Templates > Windows Components > Biometrics > Facial Features*
+***Computer Configuration > Policies > Administrative Templates > Windows Components > Biometrics > Facial Features***
 * Configure enhanced anti-spoofing: **Enabled**
 
 Close the policy window.
