@@ -106,7 +106,7 @@ On the Delegation tab:
 
 ## GPO Settings
 
-*Computer Configuration > Preferences > Windows Settings > Control Panel Settings > Scheduled Tasks*
+***Computer Configuration > Preferences > Windows Settings > Control Panel Settings > Scheduled Tasks***
 
 Right Click > New > Scheduled Task (At least Windows 7)
 

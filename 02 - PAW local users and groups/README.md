@@ -9,7 +9,7 @@ These accounts will only be used if domain trust issues happen and a user cannot
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Local Groups - PAW** with the following settings:
 
-*Computer Configuration > Preferences > Control Panel Settings > Local Users and Groups*
+***Computer Configuration > Preferences > Control Panel Settings > Local Users and Groups***
 
 Create the following new groups
 

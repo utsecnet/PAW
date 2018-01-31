@@ -9,7 +9,7 @@ Here, we will be enforcing logon restrictions to all the domain joined devices. 
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - Tier 0 PAW** with the following settings:
 
-*Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment*
+***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
   * BUILTIN\Administrators
@@ -36,7 +36,7 @@ On the Delegation tab:
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - Tier 0 Servers** with the following settings:
 
-*Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment*
+***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
   * BUILTIN\Administrators
@@ -68,7 +68,7 @@ On the Delegation tab:
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - Tier 1 PAW** with the following settings:
 
-*Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment*
+***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
   * BUILTIN\Administrators
@@ -100,7 +100,7 @@ On the Delegation tab:
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - Tier 1 Servers** with the following settings:
 
-*Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment*
+***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
   * BUILTIN\Administrators
@@ -139,7 +139,7 @@ On the Delegation tab:
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - Tier 2 PAW** with the following settings:
 
-*Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment*
+***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
   * BUILTIN\Administrators
@@ -171,7 +171,7 @@ On the Delegation tab:
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - Tier 2 Workstations** with the following settings:
 
-*Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment*
+***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
   * BUILTIN\Administrators

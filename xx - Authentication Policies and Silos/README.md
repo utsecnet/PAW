@@ -4,7 +4,7 @@ Authentication Policies and Silos allow us to restrict user accounts from access
 ## Enable Dynamic Access Control (DAC) on Domain Controllers
 Create a GPO and apply it to the Domain Controller's OU called **Security - Allow Dynamic Access Control - DCs** with the following settings:
 
-*Computer Configuration > Policies > Admin Templates > System > KDC*
+***Computer Configuration > Policies > Admin Templates > System > KDC***
 * KDC support for claims, compound authentication and Kerberos armoring: **Enabled, Always provide claims**
 
 On the scope tab:
@@ -18,7 +18,7 @@ On the Details tab:
 ## Enable DAC on PAWs
 Create a GPO and apply it to the DOMAIN.COM\Company\Computers OU called **Security - Allow Dynamic Access Control - PAW** with the following settings:
 
-*Computer Configuration > Policies > Admin Templates > System > Kerberos*
+***Computer Configuration > Policies > Admin Templates > System > Kerberos***
 * Kerberos client support for claims, compound authentication and Kerberos armoring: **Enabled**
 
 On the scope tab:
