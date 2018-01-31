@@ -1,3 +1,9 @@
+## How do I use this repo?
+
+I have listed each security control in an order that should be followed when starting out.  Each directory is labeled **## - Title**.  Each directory contains its own README file that details what's going on and any dependencies before starting that specific control.
+
+Where a script is concerned, specific instruction and requirements to run the script can be found within the script's comment header.  
+
 ## Privileged Access Workstation (PAW)
 
 **What is a PAW?**
@@ -23,9 +29,3 @@ If a single workstation that handles the load of two is not optimal for your env
 **Is it difficult to configure PAWs?**
 
 The main purpose of this repo is provide baseline configuration templates and walkthroughs to make the configuration simpler.  Initially, it is quite complex.  As I look at my GPOs that are designed to address only PAWs, I count 36 and growing.  The biggest complexity, however, is changing your IT team's paradigm of remote administration.  You will be doing things very different than you are used to.  As the saying goes, it is fundamentally impossible to improve something without making changes.
-
-## How do I use this repo?
-
-I have listed each security control in an order that should be followed when starting out.  Each directory is labeled **## - Title**.  Each directory contains its own README file that details what's going on and any dependencies before starting that specific control.
-
-Where a script is concerned, specific instruction and requirements to run the script can be found within the script's comment header.  
