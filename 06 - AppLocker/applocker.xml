@@ -1,0 +1,202 @@
+<AppLockerPolicy Version="1">
+  <RuleCollection Type="Appx" EnforcementMode="Enabled">
+    <FilePublisherRule Id="a9e18c21-ff8f-43cf-b9fc-db40eed693ba" Name="(Default Rule) All signed packaged apps" Description="Allows members of the Everyone group to run packaged apps that are signed." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="*" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="0.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+  </RuleCollection>
+  <RuleCollection Type="Dll" EnforcementMode="Enabled">
+    <FilePublisherRule Id="437c190a-7181-46c8-b2e3-f32488047b69" Name="Signed by O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePublisherRule Id="7aa3e512-43eb-442a-ab77-e7e1c57116ea" Name="SYSTEM.MANAGEMENT.AUTOMATION.DLL, in MICROSOFT (R) WINDOWS (R) OPERATING SYSTEM, from O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" Description="Blocks Powershell for users of the group below." UserOrGroupSid="S-1-5-21-2373959184-1017718198-3349084539-1606" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT (R) WINDOWS (R) OPERATING SYSTEM" BinaryName="SYSTEM.MANAGEMENT.AUTOMATION.DLL">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePathRule Id="4d49228c-723c-4219-8001-9fb6679a5e88" Name="Microsoft Windows DLLs" Description="Allows members of the Everyone group to load DLLs located in the Windows folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\*" />
+      </Conditions>
+      <Exceptions>
+        <FilePathCondition Path="%SYSTEM32%\WindowsPowerShell\*" />
+        <FilePathCondition Path="%WINDIR%\tracing\*" />
+        <FilePathCondition Path="c:\Windows\Registration\CRMLog\*" />
+        <FilePathCondition Path="c:\Windows\ServiceProfiles\LocalService\AppData\Local\Microsoft\Dlna\DeviceIcons\*" />
+        <FilePathCondition Path="c:\Windows\servicing\Packages\*" />
+        <FilePathCondition Path="c:\Windows\System32\Com\dmp\*" />
+        <FilePathCondition Path="c:\Windows\System32\FxsTmp\*" />
+        <FilePathCondition Path="c:\Windows\System32\Microsoft\Crypto\RSA\MachineKeys\*" />
+        <FilePathCondition Path="c:\Windows\System32\spool\*" />
+        <FilePathCondition Path="c:\Windows\System32\Tasks\*" />
+        <FilePathCondition Path="c:\Windows\SysWOW64\Com\dmp\*" />
+        <FilePathCondition Path="c:\Windows\SysWOW64\config\systemprofile\AppData\LocalLow\Apple Computer\QuickTime\*" />
+        <FilePathCondition Path="c:\Windows\SysWOW64\FxsTmp\*" />
+        <FilePathCondition Path="c:\Windows\SysWOW64\Tasks\Microsoft\Windows\SyncCenter\*" />
+        <FilePathCondition Path="c:\windows\temp\*" />
+      </Exceptions>
+    </FilePathRule>
+    <FilePathRule Id="66d4e362-6dae-4a85-b117-b283c591d28a" Name="All DLLs located in the Program Files folder" Description="Allows members of the Everyone group to load DLLs that are located in the Program Files folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%PROGRAMFILES%\*" />
+      </Conditions>
+      <Exceptions>
+        <FilePathCondition Path="%PROGRAMFILES%\Mobile Partner\*" />
+      </Exceptions>
+    </FilePathRule>
+    <FilePathRule Id="e7f67bfb-fe7d-4674-b38b-18b61af8bb75" Name="Allow everyone cmder" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%OSDRIVE%\Tools\cmder\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="fe64f59f-6fca-45e5-a731-0f6715327c38" Name="(Default Rule) All DLLs" Description="Allows members of the local Administrators group to load all DLLs." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+  </RuleCollection>
+  <RuleCollection Type="Exe" EnforcementMode="Enabled">
+    <FilePublisherRule Id="33e5314d-4c33-4568-84e8-5f465efe62b8" Name="Deny paw-blockpowershell powershell.exe" Description="Why?  non-privileged users do not need access to powershell.  Modern ransomware uses powershell running in the user's context to call out to the internet to download malware.  If you need powershell, elevate!" UserOrGroupSid="S-1-5-21-2373959184-1017718198-3349084539-1606" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT® WINDOWS® OPERATING SYSTEM" BinaryName="POWERSHELL.EXE">
+          <BinaryVersionRange LowSection="10.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePublisherRule Id="5ee49b31-280b-40c7-8990-da3adee0797c" Name="Allow everyone signed by Microsoft" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePublisherRule Id="7420c333-49fe-4d99-8870-5e1d7e1551bb" Name="Allow everyone signed by SYSINTERNALS" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=SYSINTERNALS, L=REDMOND, S=WASHINGTON, C=US" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePublisherRule Id="83c1adf2-f319-4c34-9b3b-bb73738d60ab" Name="Deny local admins TASKMGR.EXE" Description="Give your local users the ability to elevate to admin when needed, but if they try to logon as that local admin this rule will block them from being able to do anything.  Users should never login as an admin account!" UserOrGroupSid="S-1-5-114" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT® WINDOWS® OPERATING SYSTEM" BinaryName="TASKMGR.EXE">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePublisherRule Id="c2c9a576-fcb1-4013-a89f-f6c4012d7be2" Name="Deny paw-blockpowershell powershell_ise.exe" Description="Why?  non-privileged users do not need access to powershell.  Modern ransomware uses powershell running in the user's context to call out to the internet to download malware.  If you need powershell, elevate!" UserOrGroupSid="S-1-5-21-2373959184-1017718198-3349084539-1606" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="MICROSOFT® WINDOWS® OPERATING SYSTEM" BinaryName="POWERSHELL_ISE.EXE">
+          <BinaryVersionRange LowSection="10.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePathRule Id="22dc8e8c-e1c4-4a41-80e2-5d74a356929e" Name="Deny local admins explorer.exe" Description="Give your local users the ability to elevate to admin when needed, but if they try to logon as that local admin this rule will block them from being able to do anything.  Users should never login as an admin account!" UserOrGroupSid="S-1-5-114" Action="Deny">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\explorer.exe" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="8fc27fd3-1f04-44e0-9bed-e3e5faaf4395" Name="Allow everyone all files located in the Program Files folder" Description="Allows members of the Everyone group to run applications that are located in the Program Files folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%PROGRAMFILES%\*" />
+      </Conditions>
+      <Exceptions>
+        <FilePathCondition Path="%PROGRAMFILES%\Mobile Partner\*" />
+      </Exceptions>
+    </FilePathRule>
+    <FilePathRule Id="9618e89e-90c1-48b1-91bf-965a4b50b412" Name="Allow Everyone cmder" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%OSDRIVE%\Tools\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="c4899de9-a86a-4315-84a9-4b8e100852de" Name="Allow Admins all files" Description="Allows members of the local Administrators group to run all applications.  Of course, you must elivate to do so as you cannot login as an admin." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="d9cdc435-5a2e-44b4-b23b-288282bf11c7" Name="Allow everyone all files located in the Windows folder" Description="Allows members of the Everyone group to run applications that are located in the Windows folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\*" />
+      </Conditions>
+      <Exceptions>
+        <FilePathCondition Path="%SYSTEM32%\WindowsPowerShell\*" />
+        <FilePathCondition Path="%WINDIR%\tracing\*" />
+        <FilePathCondition Path="c:\Windows\Registration\CRMLog\*" />
+        <FilePathCondition Path="c:\Windows\ServiceProfiles\LocalService\AppData\Local\Microsoft\Dlna\DeviceIcons\*" />
+        <FilePathCondition Path="c:\Windows\servicing\Packages\*" />
+        <FilePathCondition Path="c:\Windows\System32\Com\dmp\*" />
+        <FilePathCondition Path="c:\Windows\System32\FxsTmp\*" />
+        <FilePathCondition Path="c:\Windows\System32\Microsoft\Crypto\RSA\MachineKeys\*" />
+        <FilePathCondition Path="c:\Windows\System32\spool\*" />
+        <FilePathCondition Path="c:\Windows\System32\Tasks\*" />
+        <FilePathCondition Path="c:\Windows\SysWOW64\Com\dmp\*" />
+        <FilePathCondition Path="c:\Windows\SysWOW64\config\systemprofile\AppData\LocalLow\Apple Computer\QuickTime\*" />
+        <FilePathCondition Path="c:\Windows\SysWOW64\FxsTmp\*" />
+        <FilePathCondition Path="c:\Windows\SysWOW64\Tasks\Microsoft\Windows\SyncCenter\*" />
+        <FilePathCondition Path="c:\windows\temp\*" />
+      </Exceptions>
+    </FilePathRule>
+  </RuleCollection>
+  <RuleCollection Type="Msi" EnforcementMode="Enabled">
+    <FilePublisherRule Id="b7af7102-efde-4369-8a89-7a6a392d1473" Name="(Default Rule) All digitally signed Windows Installer files" Description="Allows members of the Everyone group to run digitally signed Windows Installer files." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="*" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="0.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePathRule Id="5b290184-345a-4453-b184-45305f6d9a54" Name="(Default Rule) All Windows Installer files in %systemdrive%\Windows\Installer" Description="Allows members of the Everyone group to run all Windows Installer files located in %systemdrive%\Windows\Installer." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\Installer\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="64ad46ff-0d71-4fa0-a30b-3f3d30c5433d" Name="(Default Rule) All Windows Installer files" Description="Allows members of the local Administrators group to run all Windows Installer files." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*.*" />
+      </Conditions>
+    </FilePathRule>
+  </RuleCollection>
+  <RuleCollection Type="Script" EnforcementMode="Enabled">
+    <FilePathRule Id="1c45a3f8-93ba-4ee7-bacd-3ede8fef013b" Name="Allow everyone cmder" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%OSDRIVE%\Tools\cmder\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="369280df-2ecd-4126-9f18-2ea9bc7aa765" Name="All scripts located in the Windows folder" Description="Allows members of the Everyone group to run scripts that are located in the Windows folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\*" />
+      </Conditions>
+      <Exceptions>
+        <FilePathCondition Path="%WINDIR%\temp\*" />
+        <FilePathCondition Path="%WINDIR%\tracing\*" />
+      </Exceptions>
+    </FilePathRule>
+    <FilePathRule Id="7705267d-b85e-4f5c-be2c-74a2f1499cec" Name="All scripts" Description="Allows members of the local Administrators group to run all scripts." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="8881d94c-8f27-4a0e-9ada-bc64f10a7871" Name="All scripts located in the Program Files folder" Description="Allows members of the Everyone group to run scripts that are located in the Program Files folder." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%PROGRAMFILES%\*" />
+      </Conditions>
+      <Exceptions>
+        <FilePathCondition Path="%PROGRAMFILES%\Mobile Partner\*" />
+      </Exceptions>
+    </FilePathRule>
+    <FilePathRule Id="bb6a8a8c-015d-45a6-a337-bc3f7f89f68a" Name="\\DOMAIN.com\SYSVOL\*" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="\\DOMAIN.coml\SYSVOL\*" />
+      </Conditions>
+    </FilePathRule>
+  </RuleCollection>
+</AppLockerPolicy>

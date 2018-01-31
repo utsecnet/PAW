@@ -34,5 +34,17 @@ I would recommend using the *accesschk* tool any time you whitelist a directory 
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - AppLocker - PAW** with the following settings:
 
-***Computer Configuration > Policies > Administrative Templates > System > Logon***
-* Turn on convenience PIN sign-in: **Enabled**
+***Computer Configuration > Policies > Windows Settings > Security Settings > System Services***
+* Application Identity: Enabled (Automatic) - This service is used by AppLocker to determine what action to take on user-launched applications.
+
+***Computer Configuration > Policies > Windows Settings > Security Settings > Application Control Policies***
+Import the applocker.xml policy by right clicking on AppLocker (under Application Control Policies) and selecting *Import Policy...*.
+
+You must update the following policies:
+* **Executable Rules**
+	* *Deny paw-blockpowershell powershell.exe* - Add the **DOMAIN\PAW-BlockPowershell** group to the User or Group field
+	* *Deny paw-blockpowershell powershell_ise.exe* - Add the **DOMAIN\PAW-BlockPowershell** group to the User or Group field
+* **DLL Rules**
+	* *The Deny rule that shows an SID under the *User* column* - Add the **DOMAIN\PAW-BlockPowershell** group to the User or Group field
+* **Script Rules**
+	* Update the \\DOMAIN.com\SYSVOL\* rule to point to your domain's SYSVOL.
