@@ -1,30 +1,69 @@
-## How do I use this repo?
+## What is this?
+To maintain the Clean Source Principal, you must deny PAW users full internet access, and ensure that whereever they are, they only have limited access to the domains they need in order to do thier job from the PAW machine.  We can do that by enforcing all domains not specified in a whitelist to point to a proxy server that doesnt exist on the PAW.
 
-I have listed each security control in an order that should be followed when starting out.  Each directory is labeled **## - Title**.  Each directory contains its own README file that details what's going on and any dependencies before starting that specific control.
+Note: This process does not affect the VM on which the PAW resides.  It will still have full access to the internet.
 
-Where a script is concerned, specific instruction and requirements to run the script can be found within the script's comment header.  
+## Procy.pac
+Download the proxy.pac file above and make any changes or additions that will suite your needs.  Store it on a webserver that is accessible to the whole internet.  Your PAWs will need to be able to access this if they leave the office.
 
-## Privileged Access Workstation (PAW)
+I recommend hosting the file on a local file server, then syncing it up to your web server.
 
-**What is a PAW?**
+# Configure Proxy settings
 
-In short, a PAW is one solution to the problem of credential theft, replay and pivoting attacks, and privilege escalation.  PAW is a method of administrating network devices in a more secure and more hardened environment than what most admins are used to.  A successful PAW deployment will contain many security controls aimed to enable a more [Defense in Depth](https://en.wikipedia.org/wiki/Defense_in_depth_(computing)) security strategy.solution
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Allow Fingerprint Sign in** with the following settings:
 
-**Okay, but what is a PAW?**
+***User Configuration > Policies > Administrative Templates > Windows Components > Internet Explorer***
+* Disable changing Automatic Configuration settings: **Enabled**
+* Prevent changing proxy settings: **Enabled**
 
-A PAW is the workstation the admin uses to access and administrate the network using privileged credentials.  It provides the admin a secure method to perform day-to-day administrative tasks on network devices such as Domain Controllers, member servers, user workstations, networking equipment, and cloud admin portals (like Azure and AWS).  Because the PAW adheres to the [Clean Source Security Principal](https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#CSP_BM) it prevents the logged on user from freely surfing the internet, checking email, running applications outside of the AppLocker whitelist, or insecurely accessing network devices that could expose risk to credential theft.  It provides the admin everything they need to do their job and nothing more [Lease Privilege Security](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
+***User Configuration > Preferences > Windows Settings > Registry***
 
-**How is a PAW physically different than a normal workstation where I administrate my servers with RDP and MMC?**
+### ProxyEnable
+Right click > New
+* Hive: HKEY_CURRENT_USER
+* KeyPath: Software\Microsoft\Windows\CurrentVersion\Internet Settings
+* Default: unchecked
+* Value name: ProxyEnable
+* Value type: REG_DWORD
+* Value Data: 00000001
+* Base: Hexadecimal
 
-The PAW is a physical workstation, preferably a laptop, that runs Windows 10 Enterprise Edition (1709+) as the primary host OS.  This device is used to administrate the network and all the systems on it.  It has the Hyper-V role installed that, in addition to several additional security features like Credential Guard, hosts a VM that provides the admin day-to-day internet access and email.  PAWs have several hardware requirements to make for the most secure deployment:
+Common tab
+* Remove this item when it is no longer applied: checked
+* Item-level targeting
+	* Click *Add Collection*
+	* Click *New item > Security Group* 
+	* Select the *DOMAIN\PAW-AzureAdmins* group
+	* Highlight the group and click *Item Options > Is Not*
+	* Click *New item > Security Group* 
+	* Select the *DOMAIN\PAW-Users* group
+	* Move both of these items under *this collection is true*
+	* Click *OK* twice
 
-- TPM 2.0
-- Enough hard drive, CPU, and RAM resources to have a pleasant experience in your day-to-day VM
+	It should look like this:
+	```
+	This collection is true
+		the user is not a member of the security group DOMAIN\PAW-AzureAdmins
+		AND the ser is a member of the security group DOMAIN\PAW-Users
+	```
 
-Additionally, you should be aware of DMA attacks and consider purchasing hardware that does not come with DMA ports (Thunderbolt, PCI-E, Firewire, ExpressCard).  See [Sami Laiho's Win-Fu Blog](http://blog.win-fu.com/2017/02/the-true-story-of-windows-10-and-dma.html) for more details about DMA attacks and mitigation.
+### ProxyServer
+Right click > New
+* Hive: HKEY_CURRENT_USER
+* KeyPath: Software\Microsoft\Windows\CurrentVersion\Internet Settings
+* Default: unchecked
+* Value name: ProxyServer
+* Value type: REG_SZ
+* Value Data: 127.0.0.1:80
 
-If a single workstation that handles the load of two is not optimal for your environment, you can split the roles onto separate laptops.  One workstation for secure administration, and one for internet and email.  
-
-**Is it difficult to configure PAWs?**
-
-The main purpose of this repo is provide baseline configuration templates and walkthroughs to make the configuration simpler.  Initially, it is quite complex.  As I look at my GPOs that are designed to address only PAWs, I count 36 and growing.  The biggest complexity, however, is changing your IT team's paradigm of remote administration.  You will be doing things very different than you are used to.  As the saying goes, it is fundamentally impossible to improve something without making changes.
+Common tab
+* Remove this item when it is no longer applied: checked
+* Item-level targeting
+	* Click *Add Collection*
+	* Click *New item > Security Group* 
+	* Select the *DOMAIN\PAW-AzureAdmins* group
+	* Highlight the group and click *Item Options > Is Not*
+	* Click *New item > Security Group* 
+	* Select the *DOMAIN\PAW-Users* group
+	* Move both of these items under *this collection is true*
+	* Click *OK* twice

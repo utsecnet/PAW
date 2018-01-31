@@ -8,7 +8,7 @@ Where a script is concerned, specific instruction and requirements to run the sc
 
 **What is a PAW?**
 
-In short, a PAW is one solution to the problem of credential theft, replay and pivoting attacks, and privilege escalation.  PAW is a method of administrating network devices in a more secure and more hardened environment than what most admins are used to.  A successful PAW deployment will contain many security controls aimed to enable a more [Defense in Depth](https://en.wikipedia.org/wiki/Defense_in_depth_(computing)) security strategy.solution
+In short, a PAW is one solution to the problem of credential theft, replay and pivoting attacks, and privilege escalation.  PAW is a method of administrating network devices in a more secure and more hardened environment than what most admins are used to.  A successful PAW deployment will contain many security controls aimed to enable a more [Defense in Depth](https://en.wikipedia.org/wiki/Defense_in_depth_(computing)) security strategy.
 
 **Okay, but what is a PAW?**
 
