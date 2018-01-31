@@ -1,16 +1,16 @@
 ## What is this?
-To maintain the Clean Source Principal, you must deny PAW users full internet access, and ensure that whereever they are, they only have limited access to the domains they need in order to do thier job from the PAW machine.  We can do that by enforcing all domains not specified in a whitelist to point to a proxy server that doesnt exist on the PAW.
+To maintain the Clean Source Principal, you must deny PAW users full Internet access, and ensure that wherever they are, they only have limited access to the domains they need in order to do their job from the PAW machine.  We can do that by enforcing all domains not specified in a whitelist to point to a proxy server that doesn't exist on the PAW.
 
-Note: This process does not affect the VM on which the PAW resides.  It will still have full access to the internet.
+Note: This process does not affect the VM on which the PAW resides.  It will still have full access to the Internet.
 
 ## Procy.pac
-Download the proxy.pac file above and make any changes or additions that will suite your needs.  Store it on a webserver that is accessible to the whole internet.  Your PAWs will need to be able to access this if they leave the office.
+Download the proxy.pac file above and make any changes or additions that will suite your needs.  Store it on a web server that is accessible to the whole Internet.  Your PAWs will need to be able to access this if they leave the office.
 
 I recommend hosting the file on a local file server, then syncing it up to your web server.
 
-# Configure Proxy settings
+## Configure Proxy settings via GPO
 
-Create a new GPO on the DOMAIN.COM\Company\Users\PAW Accounts OU called **Security -Proxy - PAW Users** with the following settings:
+Create a new GPO on the DOMAIN.COM\Company\Users\PAW Accounts OU called **Security - Proxy - PAW Users** with the following settings:
 
 ***User Configuration > Policies > Administrative Templates > Windows Components > Internet Explorer***
 * Disable changing Automatic Configuration settings: **Enabled**
@@ -40,12 +40,12 @@ Common tab
 	* Move both of these items under *this collection is true*
 	* Click *OK* twice
 
-	It should look like this:
-	```
-	This collection is true
-		the user is not a member of the security group DOMAIN\PAW-AzureAdmins
-		AND the ser is a member of the security group DOMAIN\PAW-Users
-	```
+It should look like this:
+```
+This collection is true
+	the user is not a member of the security group DOMAIN\PAW-AzureAdmins
+	AND the user is a member of the security group DOMAIN\PAW-Users
+```
 
 ### ProxyServer
 Right click > New
@@ -68,16 +68,16 @@ Common tab
 	* Move both of these items under *this collection is true*
 	* Click *OK* twice
 
-	It should look like this:
-	```
-	This collection is true
-		the user is not a member of the security group DOMAIN\PAW-AzureAdmins
-		AND the ser is a member of the security group DOMAIN\PAW-Users
-	```
+It should look like this:
+```
+This collection is true
+	the user is not a member of the security group DOMAIN\PAW-AzureAdmins
+	AND the user is a member of the security group DOMAIN\PAW-Users
+```
 
 ***User Configuration > Preferences > Control Panel Settings > Internet Settings > New > Internet Explorer 10***
 Right click > New > Internet Explorer 10 > Connection Tab > LAN Settings
-* Automaticallly detect settings: Checked
+* Automatically detect settings: Checked
 * Address: http://<your url>/proxy.pac
 * Use a proxy server for your LAN: checked
 * Address: 127.0.0.1
