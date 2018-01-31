@@ -37,5 +37,3 @@ On the Details tab:
 
 On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
-
-asd

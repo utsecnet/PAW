@@ -29,5 +29,3 @@ The main purpose of this repo is provide baseline configuration templates and wa
 I have listed each security control in an order that should be followed when starting out.  Each directory is labeled **## - Title**.  Each directory contains its own README file that details what's going on and any dependencies before starting that specific control.
 
 Where a script is concerned, specific instruction and requirements to run the script can be found within the script's comment header.  
-
-test
