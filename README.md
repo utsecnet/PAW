@@ -20,7 +20,6 @@ The PAW is a physical workstation, preferably a laptop, that runs Windows 10 Ent
 
 - TPM 2.0
 - Enough hard drive, CPU, and RAM resources to have a pleasant experience in your day-to-day VM
-- A GPU compatible with RemoteFX, preferably with at least 2GB dedicated VRAM
 
 Additionally, you should be aware of DMA attacks and consider purchasing hardware that does not come with DMA ports (Thunderbolt, PCI-E, Firewire, ExpressCard).  See [Sami Laiho's Win-Fu Blog](http://blog.win-fu.com/2017/02/the-true-story-of-windows-10-and-dma.html) for more details about DMA attacks and mitigation.
 
