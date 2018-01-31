@@ -74,3 +74,16 @@ Create a new GPO on the DOMAIN.COM\Company\Users\PAW Accounts OU called **Securi
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Family Options***
 * Hide the family options area: Enabled
+
+Close the policy window.
+
+On the scope tab:
+* Ensure the Link to the Computers OU is Enabled.  
+* Remove **Authenticated Users** from the **Security Filtering** section and add **PAW-AllPAWComputers**.
+* Ensure there is no WMI filter applied
+
+On the Details tab:
+* Set GPO status to: **User configuration settings disabled**
+
+On the Delegation tab:
+* Add **Authenticated Users** and give it READ permissions.
