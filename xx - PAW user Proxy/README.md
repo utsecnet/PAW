@@ -20,25 +20,25 @@ Create a new GPO on the DOMAIN.COM\Company\Users\PAW Accounts OU called **Securi
 
 ### ProxyEnable
 Right click > New
-* Hive: HKEY_CURRENT_USER
-* KeyPath: Software\Microsoft\Windows\CurrentVersion\Internet Settings
-* Default: unchecked
-* Value name: ProxyEnable
-* Value type: REG_DWORD
-* Value Data: 00000001
-* Base: Hexadecimal
+* Hive: **HKEY_CURRENT_USER**
+* KeyPath: **Software\Microsoft\Windows\CurrentVersion\Internet Settings**
+* Default: **unchecked**
+* Value name: **ProxyEnable**
+* Value type: **REG_DWORD**
+* Value Data: **00000001**
+* Base: **Hexadecimal**
 
 Common tab
-* Remove this item when it is no longer applied: checked
+* Remove this item when it is no longer applied: **checked**
 * Item-level targeting
-	* Click *Add Collection*
-	* Click *New item > Security Group* 
-	* Select the *DOMAIN\PAW-AzureAdmins* group
-	* Highlight the group and click *Item Options > Is Not*
-	* Click *New item > Security Group* 
-	* Select the *DOMAIN\PAW-Users* group
-	* Move both of these items under *this collection is true*
-	* Click *OK* twice
+	* Click **Add Collection**
+	* Click **New item > Security Group**
+	* Select the **DOMAIN\PAW-AzureAdmins** group
+	* Highlight the group and click **Item Options > Is Not**
+	* Click **New item > Security Group**
+	* Select the **DOMAIN\PAW-Users** group
+	* Move both of these items under **this collection is true**
+	* Click OK twice
 
 It should look like this:
 ```
@@ -49,24 +49,24 @@ This collection is true
 
 ### ProxyServer
 Right click > New
-* Hive: HKEY_CURRENT_USER
-* KeyPath: Software\Microsoft\Windows\CurrentVersion\Internet Settings
-* Default: unchecked
-* Value name: ProxyServer
-* Value type: REG_SZ
-* Value Data: 127.0.0.1:80
+* Hive: **HKEY_CURRENT_USER**
+* KeyPath: **Software\Microsoft\Windows\CurrentVersion\Internet Settings**
+* Default: **unchecked**
+* Value name: **ProxyServer**
+* Value type: **REG_SZ**
+* Value Data: **127.0.0.1:80**
 
 Common tab
 * Remove this item when it is no longer applied: checked
 * Item-level targeting
-	* Click *Add Collection*
-	* Click *New item > Security Group* 
-	* Select the *DOMAIN\PAW-AzureAdmins* group
-	* Highlight the group and click *Item Options > Is Not*
-	* Click *New item > Security Group* 
-	* Select the *DOMAIN\PAW-Users* group
-	* Move both of these items under *this collection is true*
-	* Click *OK* twice
+	* Click **Add Collection**
+	* Click **New item > Security Group** 
+	* Select the **DOMAIN\PAW-AzureAdmins** group
+	* Highlight the group and click **Item Options > Is Not**
+	* Click **New item > Security Group**
+	* Select the **DOMAIN\PAW-Users** group
+	* Move both of these items under **this collection is true**
+	* Click OK twice
 
 It should look like this:
 ```
@@ -77,16 +77,16 @@ This collection is true
 
 ***User Configuration > Preferences > Control Panel Settings > Internet Settings > New > Internet Explorer 10***
 Right click > New > Internet Explorer 10 > Connection Tab > LAN Settings
-* Automatically detect settings: Checked
-* Address: http://<your url>/proxy.pac
-* Use a proxy server for your LAN: checked
-* Address: 127.0.0.1
-* Port: 80
+* Automatically detect settings: **Checked**
+* Address: **http://<your url>/proxy.pac**
+* Use a proxy server for your LAN: **checked**
+* Address: **127.0.0.1**
+* Port: **80**
 
 Click *Advanced...*
-* HTTP: 127.0.0.1 : 80
+* HTTP: **127.0.0.1 : 80**
 * Exceptions
-* Use the same proxy for all protocols: Checked
+* Use the same proxy for all protocols: **Checked**
 
 You need to put all the same URLs from your proxy.pac into this box, seperated by a ***;***
 
