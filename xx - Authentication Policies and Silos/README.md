@@ -35,32 +35,31 @@ On the Delegation tab:
 
 ## Configure the Authentication Policy and Silo
 1. Create a new policy by opening Active Directory Administrative Center and navigate to **Authentication > Policies > right click and create new policy**.
-2. Name it: Allow Tier0 users access to Tier0 servers from Tier0 PAW
-3. Description: This Policy allows Tier 0 users to access Tier 0 servers from Tier 0 PAWs only.
-4. Assigned Silos: (Will come back to this after you create the silo)
-5. User sign on > Specify a TGT lifetime for user accounts: 240
+2. Name: **Allow Tier0 users access to Tier0 servers from Tier0 PAW**
+3. Description: **This Policy allows Tier 0 users to access Tier 0 servers from Tier 0 PAWs only.**
+4. Assigned Silos: **(Will come back to this after you create the silo)**
+5. User sign on > Specify a TGT lifetime for user accounts: **240**
 6. Computer > Edit > Add a condition
-      1- User > AuthenticationSilo > Equals > Value > Tier0
+	1. **User > AuthenticationSilo > Equals > Value > Tier0**
 7. Click OK
 
 ## Configure the Silo
 1. In Active Directory Administrative Center, navigate to **Authentication > Policy Silos > right click and create a new silo**
-2. Name: Tier 0
-3. Put a bullet in Enforce silo policies
-4. Description: All members of Tier 0 users and computers.
+2. Name: **Tier 0**
+3. Put a bullet in **Enforce silo policies**
+4. Description: **All members of Tier 0 users and computers.**
 5. permitted Accounts > Add the following Computer and user accounts (cannot add groups)
     1. All Domain Controllers
     2. All PAW Tier 0 Computer accounts
     3. All Tier 0 User accounts
     4. Any other Tier 0 server accounts
-6. Authentication Policy > Use a single policy... Select the policy you created above
+6. Authentication Policy > Use a single policy... **Select the policy you created above**
 
 Update the Policy to include the new Silo
 1. Edit the policy
 2. Assign the silo you created above under Assigned Silos
 
 ## Test your settings
-
 Make sure to gpupdate on your servers and your PAWs.
 
 Authentication | Result

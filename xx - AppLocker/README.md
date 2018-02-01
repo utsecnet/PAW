@@ -37,7 +37,7 @@ I would recommend using the *accesschk* tool any time you whitelist a directory 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - AppLocker - PAW** with the following settings:
 
 ***Computer Configuration > Policies > Windows Settings > Security Settings > System Services***
-* Application Identity: Enabled (Automatic) - This service is used by AppLocker to determine what action to take on user-launched applications.
+* Application Identity: **Enabled (Automatic)** - This service is used by AppLocker to determine what action to take on user-launched applications.
 
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Application Control Policies***
 
