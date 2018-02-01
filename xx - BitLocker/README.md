@@ -71,7 +71,9 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - AppL
 * Enforce drive encryption type on removable data drives: **Enabled**
 	* Select the encryption type: Full encryption
 
+### If you do not see the following GPO Paths, it is because you did not import the MBAM policy templates into your central store and refresh GPMC.
 
+***Computer Configuration > Policies > Admin Templates > Windows Components > BitLocker Drive Encryption > Fixed Data Drives***
 
 
 
