@@ -18,28 +18,28 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Scheduled Task 
 Configure the following software deployments according to the settings under **GPO Settings** (Bottom of page)
 
 #### Hyper-V
-* Name of software: Hyper-V
-* Name of script: installHyperv.ps1
+* Name of software: **Hyper-V**
+* Name of script: **installHyperv.ps1**
 
 #### MBAM Client
-* Name of software: MBAM Client
-* Name of script: installMBAM.ps1
+* Name of software: **MBAM Client**
+* Name of script: **installMBAM.ps1**
 
 #### Nmap
-* Name of software: Nmap
-* Name of script: installNmap.ps1
+* Name of software: **Nmap**
+* Name of script: **installNmap.ps1**
 
 #### RSAT
-* Name of Software: RSAT
-* Name of script: installRSAT.ps1
+* Name of Software: **RSAT**
+* Name of script: **installRSAT.ps1**
 
 #### Sysinternals Suite
-* Name of Software: Sysinternals Suite
-* Name of script: installSysinternals.ps1
+* Name of Software: **Sysinternals Suite**
+* Name of script: **installSysinternals.ps1**
 
 #### LAPS
-* Name of Software: LAPS
-* Name of script: installLAPS.ps1
+* Name of Software: **LAPS**
+* Name of script: **installLAPS.ps1**
 
 Close the policy window.
 
@@ -61,8 +61,8 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Scheduled Task 
 Configure the following software deployments according to the settings under **GPO Settings** (Bottom of page)
 
 #### LAPS
-* Name of Software: LAPS
-* Name of script: installLAPS.ps1
+* Name of Software: **LAPS**
+* Name of script: **installLAPS.ps1**
 
 Close the policy window.
 
@@ -84,12 +84,12 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Scheduled Task 
 Configure the following software deployments according to the settings under **GPO Settings** (Bottom of page)
 
 #### LAPS
-* Name of Software: LAPS
-* Name of script: installLAPS.ps1
+* Name of Software: **LAPS**
+* Name of script: **installLAPS.ps1**
 
 #### MBAM Client
-* Name of software: MBAM Client
-* Name of script: installMBAM.ps1
+* Name of software: **MBAM Client**
+* Name of script: **installMBAM.ps1**
 
 Close the policy window.
 
@@ -111,10 +111,10 @@ On the Delegation tab:
 Right Click > New > Scheduled Task (At least Windows 7)
 
 General tab
-* Action: Update
-* Name: Install Feature - <Name of software>
-* Description - Install <Name of software>.
-* Run as: **NT AUTHORITY\System**, Run whether user is logged in or not
+* Action: **Update**
+* Name: **Install Feature - <Name of software>**
+* Description: **Install <Name of software>.**
+* Run as: **NT AUTHORITY\System**, **Run whether user is logged in or not**
 * Hidden: **checked**
 * Do not run with highest privileges
 * Configure for Windows Vista or Windows Server 2008
@@ -127,7 +127,7 @@ Triggers tab
 * Enabled: **Checked**
 
 Actions tab
-* Action: Start a program
+* Action: **Start a program**
 * Program: **powershell.exe**
 * Add argument(optional): **-executionpolicy bypass \\server\share\<name of script>**
 

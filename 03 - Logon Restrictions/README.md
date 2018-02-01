@@ -12,9 +12,9 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
-  * BUILTIN\Administrators
-  * BUILTIN\Users
-  * DOMAIN\PAW-Tier0Users
+  * **BUILTIN\Administrators**
+  * **BUILTIN\Users**
+  * **DOMAIN\PAW-Tier0Users**
 
 * Allow log on through Terminal Services
   * Define the settings, but do not add any users or groups to the list.  This will prevent any user from being able to logon to PAWs over RDP.
@@ -39,16 +39,16 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
-  * BUILTIN\Administrators
-  * DOMAIN\PAW-Tier0Users
+  * **BUILTIN\Administrators**
+  * **DOMAIN\PAW-Tier0Users**
 
 * Allow log on through Terminal Services
-  * DOMAIN\PAW-Tier0Users
+  * **DOMAIN\PAW-Tier0Users**
 
 * Log on as batch job
-  * BUILTIN\Administrators
-  * LogOnAsBatch - This is a local group that we will create in a subsequent GPO.
-  * taskrunner-shadowgroup - This will allow this user to run the Shadow Group script on your DC.
+  * **BUILTIN\Administrators**
+  * **LogOnAsBatch - This is a local group that we will create in a subsequent GPO.**
+  * **taskrunner-shadowgroup - This will allow this user to run the Shadow Group script on your DC.**
 
 Close the policy window.
 
@@ -71,17 +71,17 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
-  * BUILTIN\Administrators
-  * BUILTIN\Users
-  * DOMAIN\PAW-Tier1Users
+  * **BUILTIN\Administrators**
+  * **BUILTIN\Users**
+  * **DOMAIN\PAW-Tier1Users**
 
 * Allow log on through Terminal Services
   * Define the settings, but do not add any users or groups to the list.  This will prevent any user from being able to logon to PAWs over RDP.
 
 * Deny access to this computer from the network
-  * BUILTIN\Guests
-  * NT AUTHORITY\Local account
-  * NT AUTHORITY\Local account and member of Administrators group
+  * **BUILTIN\Guests**
+  * **NT AUTHORITY\Local account**
+  * **NT AUTHORITY\Local account and member of Administrators group**
 
 Close the policy window.
 
@@ -103,24 +103,24 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
-  * BUILTIN\Administrators
+  * **BUILTIN\Administrators**
 
 * Allow log on through Terminal Services
-  * BUILTIN\Administrators
-  * DOMAIN\PAW-Tier0Users
+  * **BUILTIN\Administrators**
+  * **DOMAIN\PAW-Tier0Users**
 
 * Deny access to this computer from the network
-  * BUILTIN\Guests
-  * NT AUTHORITY\Local account
-  * NT AUTHORITY\Local account and member of Administrators group
+  * **BUILTIN\Guests**
+  * **NT AUTHORITY\Local account**
+  * **NT AUTHORITY\Local account and member of Administrators group**
 
 * Log on as batch job
-  * BUILTIN\Administrators
-  * LogOnAsBatch - This is a local group that we will create in a subsequent GPO.
+  * **BUILTIN\Administrators**
+  * **LogOnAsBatch** - This is a local group that we will create in a subsequent GPO.
 
 * Log on as a service
-  * NT SERVICE\ALL Services
-  * LogOnAsService - This is a local group that we will create in a subsequent GPO.
+  * **NT SERVICE\ALL Services**
+  * **LogOnAsService** - This is a local group that we will create in a subsequent GPO.
 
 Close the policy window.
 
@@ -142,17 +142,17 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
-  * BUILTIN\Administrators
-  * BUILTIN\Users
-  * DOMAIN\PAW-Tier2Users
+  * **BUILTIN\Administrators**
+  * **BUILTIN\Users**
+  * **DOMAIN\PAW-Tier2Users**
 
 * Allow log on through Terminal Services
   * Define the settings, but do not add any users or groups to the list.  This will prevent any user from being able to logon to PAWs over RDP.
 
 * Deny access to this computer from the network
-  * BUILTIN\Guests
-  * NT AUTHORITY\Local account
-  * NT AUTHORITY\Local account and member of Administrators group
+  * **BUILTIN\Guests**
+  * **NT AUTHORITY\Local account**
+  * **NT AUTHORITY\Local account and member of Administrators group**
 
 Close the policy window.
 
@@ -174,17 +174,17 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
 * Allow log on locally:
-  * BUILTIN\Administrators
-  * BUILTIN\Users
-  * DOMAIN\PAW-Tier2Users
+  * **BUILTIN\Administrators**
+  * **BUILTIN\Users**
+  * **DOMAIN\PAW-Tier2Users**
 
 * Allow log on through Terminal Services
-  * Administrator
+  * **Administrator**
 
 * Deny access to this computer from the network
-  * BUILTIN\Guests
-  * NT AUTHORITY\Local account
-  * NT AUTHORITY\Local account and member of Administrators group
+  * **BUILTIN\Guests**
+  * **NT AUTHORITY\Local account**
+  * **NT AUTHORITY\Local account and member of Administrators group**
 
 Close the policy window.
 

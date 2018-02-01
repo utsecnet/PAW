@@ -8,72 +8,72 @@ With all the surrounding security controls (e.g., AppLocker software white list,
 Create a new GPO on the DOMAIN.COM\Company\Users\PAW Accounts OU called **Security - Windows Defender - PAW** with the following settings:
 
 ***Computer Configuration > Policies > Admin Templates > System > Device Guard***
-* Turn on Virtualization Based Security: Enabled
-    * Select Platform Security level: Secure Boot and DMA Protection
-    * Virtualization Based protection of code: Cont configured
-    * Require UEFI memory attributes table: Disabled
-    * Credential Guard Configuration: Enabled with UEFI lock
+* Turn on Virtualization Based Security: **Enabled**
+    * Select Platform Security level: **Secure Boot and DMA Protection**
+    * Virtualization Based protection of code: **Cont configured**
+    * Require UEFI memory attributes table: **Disabled**
+    * Credential Guard Configuration: **Enabled with UEFI lock**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus***
-* Turn off Windows Defender anti-virus: Disabled
+* Turn off Windows Defender anti-virus: **Disabled**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Client interface***
-* Display additional text to clients when they need to perform an action: With great power comes great fun!
+* Display additional text to clients when they need to perform an action: **With great power comes great fun!**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > MAPS***
-* Send sample files...: Disabled
+* Send sample files...: **Disabled**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Network Inspection System***
-* Turn on definition retirement: Enabled
-* Turn on protocol recognition: Enabled
+* Turn on definition retirement: **Enabled**
+* Turn on protocol recognition: **Enabled**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Real-time protection***
-* Monitor file and program activity...: Enabled
-* Scan all downloaded files and attachments: Enabled
-* Turn off real-time protection: Disabled
-* Turn on behavior monitoring: Enabled
-* Turn on process scanning whenever real-time protection is enabled: Enabled
-* Turn on raw volume write notifications: Enabled
+* Monitor file and program activity...: **Enabled**
+* Scan all downloaded files and attachments: **Enabled**
+* Turn off real-time protection: **Disabled**
+* Turn on behavior monitoring: **Enabled**
+* Turn on process scanning whenever real-time protection is enabled: **Enabled**
+* Turn on raw volume write notifications: **Enabled**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Scan***
-* Allow user to pause scan: Enabled
-* Check for the latest virus and spy-ware definitions before running a scan: Enabled
-* Run full scan on mapped network drives: Disabled
-* Scan archived files: Enabled
-* Scan network files: Disabled
-* Scan packed executables: Enabled
-* Scan removable drives: Enabled
-* Specify the maximum percentage of CPU...: Enabled
-    * 20%
-* Turn on catch-up full scan: Enabled
-* Turn on catch-up quick scan: Enabled
-* Turn on heuristics: Enabled
+* Allow user to pause scan: **Enabled**
+* Check for the latest virus and spy-ware definitions before running a scan: **Enabled**
+* Run full scan on mapped network drives: **Disabled**
+* Scan archived files: **Enabled**
+* Scan network files: **Disabled**
+* Scan packed executables: **Enabled**
+* Scan removable drives: **Enabled**
+* Specify the maximum percentage of CPU...: **Enabled**
+    * **20%**
+* Turn on catch-up full scan: **Enabled**
+* Turn on catch-up quick scan: **Enabled**
+* Turn on heuristics: **Enabled**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Signature Updates***
-* Define number of days before spy-ware definitions are out of date: Enabled
-    * 7
-* Define number of days before virus definitions are out of date: Enabled
-    * 7
+* Define number of days before spy-ware definitions are out of date: **Enabled**
+    * **7**
+* Define number of days before virus definitions are out of date: **Enabled**
+    * **7**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Windows Defender Exploit Guard > Controlled Folder Access***
-* Configure the guard my folders feature: Enabled
-* Configure protected folders: Enabled
-    * %userprofile%
-    * C:\Users\Public
+* Configure the guard my folders feature: **Enabled**
+* Configure protected folders: **Enabled**
+    * **%userprofile%**
+    * **C:\Users\Public**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > App and browser protection***
-* Prevent users from modifying settings: Enabled
+* Prevent users from modifying settings: **Enabled**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Enterprise Customization***
-* Configure custom contact info: Enabled
-* Configure custom notification: Enabled
-* Specify contact company name: Enabled
-    * Company Name: UpWell
-* Specify contact email address: Enabled
-    * helpdesk@company.com
+* Configure custom contact info: **Enabled**
+* Configure custom notification: **Enabled**
+* Specify contact company name: **Enabled**
+    * Company Name: **Company**
+* Specify contact email address: **Enabled**
+    * **helpdesk@company.com**
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Family Options***
-* Hide the family options area: Enabled
+* Hide the family options area: **Enabled**
 
 Close the policy window.
 
