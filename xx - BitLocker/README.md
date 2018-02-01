@@ -30,6 +30,10 @@ Bitlocker is drive encryption software. Configuring BitLocker includes setting u
 
 [Download the MDOP Policy Templates](https://www.microsoft.com/en-us/download/details.aspx?id=55531), and move ONLY the MBAM template files to your central store.  [Click here](https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/mbam-v25/copying-the-mbam-25-group-policy-templates) to learn how.
 
+* BitLockerManangent.adml and BitLockerUserManagement.adml go into the \\Domain.com\SYSVOL\UPWELL.COM\Policies\PolicyDefinitions\en-us directory.
+* BitLockerManangent.admx and BitLockerUserManagement.admx go into the \\Domain.com\SYSVOL\UPWELL.COM\Policies\PolicyDefinitions directory.
+
+
 ## Configure Group Policy
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - AppLocker - PAW** with the following settings:
 
@@ -139,7 +143,7 @@ NOTE: Many of the following settings will already be configured based upon the s
 Install the Bitlocker Drive Encryption Feature on your DCs
 
       1- In Server Manager > Add Roles and Features
-      2- Go through the Wizard to the Features page, and add the Bitlocker Drive Encryption feature
+      2- Go through the Wizard to the Features page, and add the BitLocker Drive Encryption feature
       3- Finish
 
 ## Configure Pre-Existing Encrypted Clients (if applicable)
