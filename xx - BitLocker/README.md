@@ -1,5 +1,5 @@
 ## What is this?
-Bitlocker is drive encryption software. Configuring BitLocker includes setting up the backend policies, then manually enabling BitLocker on the device.  That is, unless you deploy an MBAM server in your environment.  That process is outside the scope of this document as it has been [fully documented on TechNet]https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/mbam-v25/deploying-the-mbam-25-server-infrastructure).
+BitLocker is drive encryption software. Configuring BitLocker includes setting up the backend policies, then manually enabling BitLocker on the device.  That is, unless you deploy an MBAM server in your environment.  That process is outside the scope of this document as it has been [fully documented on TechNet]https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/mbam-v25/deploying-the-mbam-25-server-infrastructure).
 
 ## Configure AD
 1. [Download the BitLocker scripts](https://technet.microsoft.com/en-us/library/dn466534.aspx#Sample#scripts) to your DC.
