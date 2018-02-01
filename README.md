@@ -20,8 +20,11 @@ A PAW is the workstation the admin uses to access and administrate the network u
 
 The PAW is a physical workstation, preferably a laptop, that runs Windows 10 Enterprise Edition (1709+) as the primary host OS.  This device is used to administrate the network and all the systems on it.  It has the Hyper-V role installed that, in addition to several additional security features like Credential Guard, hosts a VM that provides the admin day-to-day Internet access and email.  PAWs have several hardware requirements to make for the most secure deployment:
 
+- Windows 10 compatible (no Chrome books or Mac)
 - TPM 2.0
 - Enough hard drive, CPU, and RAM resources to have a pleasant experience in your day-to-day VM
+
+Consider buying from a vendor that has frequent firmware updates and a long support life-cycle.  Specialized hardware like Sony Vaio and Alienware should also not be considered.
 
 Additionally, you should be aware of DMA attacks and consider purchasing hardware that does not come with DMA ports (Thunderbolt, PCI-E, Firewire, ExpressCard).  See [Sami Laiho's Win-Fu Blog](http://blog.win-fu.com/2017/02/the-true-story-of-windows-10-and-dma.html) for more details about DMA attacks and mitigation.
 
