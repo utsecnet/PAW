@@ -54,99 +54,99 @@ DOMAIN.COM
 ## Active Directory Permissions
 Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
 
-**COMPANY.COM\Company\Computers**
+***COMPANY.COM\Company\Computers***
 * ACL 1
-  * Principal: AD-Company-Computers--DeleteComputerObjects
-  * Type: Allow
-  * Applies to: Descendant Computer Objects
-  * Properties: Write Name, and Write name (capitol and lower case N & n)
+  * Principal: **AD-Company-Computers--DeleteComputerObjects**
+  * Type: **Allow**
+  * Applies to: **Descendant Computer Objects**
+  * Properties: **Write Name, and Write name (capitol and lower case N & n)**
 * ACL 2
-  * Principal: AD-Company-Computers--DeleteComputerObjects
+  * Principal: **AD-Company-Computers--DeleteComputerObjects**
   * Type: Allow
-  * Applies to: This object and all descendant Objects
-  * Permissions: Delete Computer objects
+  * Applies to: **This object and all descendant Objects**
+  * Permissions: **Delete Computer objects**
 * ACL 3
-  * Principal: AD-Company-Computers--DeleteComputerObjects
-  * Type: Allow
-  * Applies to: Descendant Computer Objects
-  * Permissions: Read all properties
+  * Principal: **AD-Company-Computers--DeleteComputerObjects**
+  * Type: **Allow**
+  * Applies to: **Descendant Computer Objects**
+  * Permissions: **Read all properties**
 
-**COMPANY.COM\Company\Users\Employees**
+***COMPANY.COM\Company\Users\Employees***
 * ACL 1
-  * Principal: AD-Company-Users--DeleteUserObjects
-  * Type: Allow
-  * Applies to: Descendant User Objects
-  * Properties: Write Name, and Write name (capitol and lower case N & n)
+  * Principal: **AD-Company-Users--DeleteUserObjects**
+  * Type: **Allow**
+  * Applies to: **Descendant User Objects**
+  * Properties: **Write Name, and Write name (capitol and lower case N & n)**
 * ACL 2
-  * Principal: AD-Company-Users--DeleteUserObjects
-  * Type: Allow
-  * Applies to: This object and all descendant objects
-  * Permissions: Delete user objects
+  * Principal: **AD-Company-Users--DeleteUserObjects**
+  * Type: **Allow**
+  * Applies to: **This object and all descendant objects**
+  * Permissions: **Delete user objects**
 * ACL 3
-  * Principal: AD-Company-Users--DeleteUserObjects
-  * Type: Allow
-  * Applies to: Descendant User Objects
-  * Properties: Read all properties
+  * Principal: **AD-Company-Users--DeleteUserObjects**
+  * Type: **Allow**
+  * Applies to: **Descendant User Objects**
+  * Properties: **Read all properties**
 
-**COMPANY.COM\Company\Computers\Disabled-Computers**
+***COMPANY.COM\Company\Computers\Disabled-Computers***
 * ACL 1
-  * Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
-  * Type: Allow
-  * Applies to: This object and all descendandt objects
-  * Permissions: Create Computer objects
+  * Principal: **AD-Company-Computers-DisabledComputers--CreateComputerObjects**
+  * Type: **Allow**
+  * Applies to: **This object and all descendandt objects**
+  * Permissions: **Create Computer objects**
 * ACL 2
-  * Principal: AD-Company-Computers-DisabledComputers--CreateComputerObjects
-  * Type: Allow
-  * Applies to: This object and all descendandt objects
-  * Permissions: List contents, Read all properties, write all properties, read permissions
+  * Principal: **AD-Company-Computers-DisabledComputers--CreateComputerObjects**
+  * Type: **Allow**
+  * Applies to: **This object and all descendandt objects**
+  * Permissions: **List contents, Read all properties, write all properties, read permissions**
 
-**COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Computers**
+***COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Computers***
 * ACL 1
-  * Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
-  * Type: Allow
-  * Applies to: This object and all descendandt objects
-  * Permissions: Create Group objects, Delete Group objects
+  * Principal: **AD-Company-Groups-ShadowGroupsComputers--Modify**
+  * Type: **Allow**
+  * Applies to: **This object and all descendandt objects**
+  * Permissions: **Create Group objects, Delete Group objects**
 * ACL 2
-  * Principal: AD-Company-Groups-ShadowGroupsComputers--Modify
-  * Type: Allow
-  * Applies to: Descendant Group objects
-  * Permissions: Full control
+  * Principal: **AD-Company-Groups-ShadowGroupsComputers--Modify**
+  * Type: **Allow**
+  * Applies to: **Descendant Group objects**
+  * Permissions: **Full control**
 
-**COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Servers**
+***COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Servers***
 * ACL 1
-  * Principal: AD-Company-Groups-ShadowGroupsServers--Modify
-  * Type: Allow
-  * Applies to: This object and all descendandt objects
-  * Permissions: Create Group objects, Delete Group objects
+  * Principal: **AD-Company-Groups-ShadowGroupsServers--Modify**
+  * Type: **Allow**
+  * Applies to: **This object and all descendandt objects**
+  * Permissions: **Create Group objects, Delete Group objects**
 * ACL 2
-  * Principal: AD-Company-Groups-ShadowGroupsServers--Modify
-  * Type: Allow
-  * Applies to: Descendant Group objects
-  * Permissions: Full control
+  * Principal: **AD-Company-Groups-ShadowGroupsServers--Modify**
+  * Type: **Allow**
+  * Applies to: **Descendant Group objects**
+  * Permissions: **Full control**
 
-**COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Users**
+***COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Users***
 * ACL 1
-  * Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
-  * Type: Allow
-  * Applies to: This object and all descendandt objects
-  * Permissions: Create Group objects, Delete Group objects
+  * Principal: **AD-Company-Groups-ShadowGroupsUsers--Modify**
+  * Type: **Allow**
+  * Applies to: **This object and all descendandt objects**
+  * Permissions: **Create Group objects, Delete Group objects**
 * ACL 2
-  * Principal: AD-Company-Groups-ShadowGroupsUsers--Modify
-  * Type: Allow
-  * Applies to: Descendant Group objects
-  *  Permissions: Full control   
+  * Principal: **AD-Company-Groups-ShadowGroupsUsers--Modify**
+  * Type: **Allow**
+  * Applies to: **Descendant Group objects**
+  *  Permissions: **Full control**
 
-**COMPANY.COM\CompanyUsers\Disabled-Users**
+***COMPANY.COM\CompanyUsers\Disabled-Users***
 * ACL 1
-  * Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
-  * Type: Allow
-  * Applies to: This object only
-  * Permissions: Create User objects
+  * Principal: **AD-Company-Users-DisabledUsers--CreateUserObjects**
+  * Type: **Allow**
+  * Applies to: **This object only**
+  * Permissions: **Create User objects**
 * ACL 2
-  * Principal: AD-Company-Users-DisabledUsers--CreateUserObjects
-  * Type: Allow
-  * Applies to: This object and all descendant objects
-  * Permissions: Full control
+  * Principal: **AD-Company-Users-DisabledUsers--CreateUserObjects**
+  * Type: **Allow**
+  * Applies to: **This object and all descendant objects**
+  * Permissions: **Full control**
 ## Users
 Each Domain Admin will have the following accounts:
 
