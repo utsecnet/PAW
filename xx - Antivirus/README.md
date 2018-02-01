@@ -50,9 +50,9 @@ Create a new GPO on the DOMAIN.COM\Company\Users\PAW Accounts OU called **Securi
 * Turn on heuristics: Enabled
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Signature Updates***
-* Define number of days before spy-ware defs are out of date: Enabled
+* Define number of days before spy-ware definitions are out of date: Enabled
     * 7
-* Define number of days before virus defs are out of date: Enabled
+* Define number of days before virus definitions are out of date: Enabled
     * 7
 
 ***Computer Configuration > Policies > Admin Templates > Windows Components > Windows Defender Antivirus > Windows Defender Exploit Guard > Controlled Folder Access***
