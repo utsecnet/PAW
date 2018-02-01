@@ -142,9 +142,9 @@ NOTE: Many of the following settings will already be configured based upon the s
          
 Install the Bitlocker Drive Encryption Feature on your DCs
 
-      1- In Server Manager > Add Roles and Features
-      2- Go through the Wizard to the Features page, and add the BitLocker Drive Encryption feature
-      3- Finish
+1. In Server Manager > Add Roles and Features
+2. Go through the Wizard to the Features page, and add the BitLocker Drive Encryption feature
+3. Finish
 
 ## Configure Pre-Existing Encrypted Clients (if applicable)
          
