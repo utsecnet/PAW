@@ -72,7 +72,7 @@ On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
 
 ## Firewall Policies all Computers
-Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Firewall - Profiles and Logging** with the following settings:
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Firewall - PAW** with the following settings:
 
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
 
@@ -87,7 +87,7 @@ Click on *Windows Firewall Properties*.  Under the each profile tab, notice we m
 * Outbound connections: **Allow (default)**
 * Settings > Customize... 
 	* Display a notification: **No**
-	* Apply local firewall rules: **Yes** (There can be some debate on this one...)
+	* Apply local firewall rules: **No** (MAKE SURE YOU UNDERSTAND WHAT THIS SETTING DOES!!!)
 	* Apply local connection security rules: **No**
 * Logging > Customize...
 	* Name: **%systemroot%\System32\LogFiles\Firewall\domain.txt**
@@ -99,11 +99,14 @@ Close the policy window.
 
 On the scope tab:
 * Ensure the Link to the Computers OU is Enabled.
-* Ensure **Authenticated Users** is listed under Security Filtering
+* Remove **Authenticated Users** from the **Security Filtering** section and add the **PAW-AllPAWComputers** group.
 * Ensure there is no WMI filter applied
 
 On the Details tab:
 * Set GPO status to: **User configuration settings disabled**
+
+On the Delegation tab:
+* Add **Authenticated Users** and give it READ permissions.
 
 ## What else?
 This will enforce inbound authentication on our PAWs.  I would recommend hardening the rest of your domain by enforcing Domain Isolation across the rest of your servers and workstations.  Hopefully the below links will help you in your quest.
