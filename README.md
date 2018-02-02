@@ -1,6 +1,6 @@
 ## How do I use this repo?
 
-I have listed each security control in a recommended order that should be followed when starting out.  Each directory is labeled **## - Title**.  Each directory contains its own README file that details what's going on and how to apply the control. 
+I have listed each security control in a recommended order that should be followed when starting out.  Each directory is labeled **## - Title**.  Each directory contains its own README file that details what's going on and how to apply the control. Follow the order of the numbers.  When done, work on the *xx - policy* controls in any order you desire. 
 
 To alleviate troubleshooting, fully test your environment before continuing on to the next section.  Literally spend several days living under the new policy to see how things work. 
 
