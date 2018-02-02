@@ -70,28 +70,9 @@ On the Details tab:
 On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
 
-## Firewall Policies on All-Workstations
-Create a new GPO on the DOMAIN.COM\Domain Controllers OU called **Security - Firewall - IPSec - Workstations** with the following settings:
-
-***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
-
-Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the Isolation.wfw configuration file.
-
-### What does this policy set?  
-This is the same policy we imported to our Domain Controllers OU.  The difference is, once all your computers in your domain have received the policy (AND YOU HAVE VERIFIED THIS!!!), then you change this to **Require inbound and request outbound**.  
-
-Close the policy window.
-
-On the scope tab:
-* Ensure the Link to the Computers OU is Enabled.
-* Remove **Authenticated Users** from the **Security Filtering** section and add the **All-Workstations** group.
-* Ensure there is no WMI filter applied
-
-On the Details tab:
-* Set GPO status to: **User configuration settings disabled**
-
-On the Delegation tab:
-* Add **Authenticated Users** and give it READ permissions.
+## What else?
+This will enforce inbound authentication on our PAWs.  I would recommend hardening the rest of your domain by enforcing Domain Isolation across the rest of your servers and workstations.  Hopefully the below links will help you in your quest.
 
 ## Resources
 * [Configuring a test environment](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754522%28v%3dws.10%29)
+* [Because sometimes people learn better via video](https://www.youtube.com/watch?v=taUdRQHfjMQ)
