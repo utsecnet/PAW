@@ -79,7 +79,7 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Fire
 Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the Profile and logging.wfw configuration file.
 
 ### What does this policy set?
-This policy configures the firewall to be enabled on all three profiles, and sets logging parameters for each.
+This policy configures the firewall to be enabled on all three profiles, and sets logging parameters for each.  Note that this policy is applied to all computers under the Computers OU.  This includes PAWs, Workstations, and Servers. If you want to change any of these setting for a specific group of devices you will need to create seperate policies for each. 
 
 Click on *Windows Firewall Properties*.  Under the each profile tab, notice we make the following settings:
 * Firewall state: **On (recommneded)**
@@ -99,14 +99,11 @@ Close the policy window.
 
 On the scope tab:
 * Ensure the Link to the Computers OU is Enabled.
-* Remove **Authenticated Users** from the **Security Filtering** section and add the **PAW-AllPAWComputers** group.
+* Ensure **Authenticated Users** is listed under Security Filtering
 * Ensure there is no WMI filter applied
 
 On the Details tab:
 * Set GPO status to: **User configuration settings disabled**
-
-On the Delegation tab:
-* Add **Authenticated Users** and give it READ permissions.
 
 ## What else?
 This will enforce inbound authentication on our PAWs.  I would recommend hardening the rest of your domain by enforcing Domain Isolation across the rest of your servers and workstations.  Hopefully the below links will help you in your quest.
