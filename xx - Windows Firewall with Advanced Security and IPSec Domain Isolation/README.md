@@ -28,10 +28,9 @@ Create a new GPO on the DOMAIN.COM\Domain Controllers OU called **Security - Fir
 
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
 
-Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the DCs.wfw configuration file.
+Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the Isolation.wfw configuration file.
 
 ### What does this policy set?  
-
 You can see there is only one setting under Connection Security Rules called **Computer and User - Request inbound and outbound**.  Double click on this rule to open the properties and click on the *Authentication* tab.  Notice it is configured to Request inbound and outbound, and applies to Users and Computers.  This allows us to use inbound/outbound rules that can target specific users/groups for computers and users.  Everything else is default.
 
 Close the policy window.
@@ -52,7 +51,6 @@ Create a new GPO on the DOMAIN.COM\Domain Controllers OU called **Security - Fir
 Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the PAWs.wfw configuration file.
 
 ### What does this policy set?  
-
 You can see there is only one Connection Security Rule called **Computer and User - Require inbound and request outbound**.  Double click on this rule to open the properties and click on the *Authentication* tab.  Notice it is configured to Require inbound and outbound, and applies to Users and Computers.  This allows us to use inbound/outbound rules that can target specific users/groups for computers and users.  Everything else is default.
 
 Click on Inbound Rules.  Notice there are two rules:
@@ -72,8 +70,28 @@ On the Details tab:
 On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
 
-## Firewall Policies on All-Servers and All-Workstations
+## Firewall Policies on All-Workstations
+Create a new GPO on the DOMAIN.COM\Domain Controllers OU called **Security - Firewall - IPSec - Workstations** with the following settings:
 
+***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
+
+Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the Isolation.wfw configuration file.
+
+### What does this policy set?  
+This is the same policy we imported to our Domain Controllers OU.  The difference is, once all your computers in your domain have received the policy (AND YOU HAVE VERIFIED THIS!!!), then you change this to **Require inbound and request outbound**.  
+
+Close the policy window.
+
+On the scope tab:
+* Ensure the Link to the Computers OU is Enabled.
+* Remove **Authenticated Users** from the **Security Filtering** section and add the **All-Workstations** group.
+* Ensure there is no WMI filter applied
+
+On the Details tab:
+* Set GPO status to: **User configuration settings disabled**
+
+On the Delegation tab:
+* Add **Authenticated Users** and give it READ permissions.
 
 ## Resources
 * [Configuring a test environment](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754522%28v%3dws.10%29)
