@@ -6,9 +6,10 @@ To authenticate traffic means we must use IPSec to ensure traffic comes from spe
 NOTE: It is outside the scope of this document to explain how IPSec works in Windows Firewall.  Go Google stuff.
 
 ## What this guide will provide
-We will be doing two things here:
-1. Configuring basic Domain Isolation rules
+We will be doing three things here:
+1. Configuring basic Domain Isolation rules for Domain Controllers
 2. Enforce inbound authentication to PAWs from Tier 0 servers (including Domain Controllers)
+3. Configuring the firewall profile's logging settings and enforcing the use of Windows Firewall (among other settings)
 
 Of course, there will be more things you will want to do in a production environment, but I am afraid if I share all the steps I take in my environment, it will not work in yours.  Instead, we will just build the above items, then I will refer you to several online resources.
 
@@ -22,7 +23,7 @@ Due to the nature of how machines refresh group policy (randomly at 90-120 minut
 
 Consider Require inbound and request outbound.  If you set it to require inbound and outbound, you wont be able to do much if you take your PAW off the corporate network.
 
-## Firewall Policies on Domain Controllers
+## Firewall IPSec Policies on Domain Controllers
 
 Create a new GPO on the DOMAIN.COM\Domain Controllers OU called **Security - Firewall - IPSec - Domain Controllers** with the following settings:
 
@@ -43,8 +44,8 @@ On the scope tab:
 On the Details tab:
 * Set GPO status to: **User configuration settings disabled**
 
-## Firewall Policies on PAWs
-Create a new GPO on the DOMAIN.COM\Domain Controllers OU called **Security - Firewall - IPSec - PAW** with the following settings:
+## Firewall IPSec Policies on PAWs
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Firewall - IPSec - PAW** with the following settings:
 
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
 
@@ -56,6 +57,43 @@ You can see there is only one Connection Security Rule called **Computer and Use
 Click on Inbound Rules.  Notice there are two rules:
 * **Deny All -- Any**: This denies all inbound traffic on any port/protocol/program/service from any computer/ip address/user.  It is your default deny.
 * **Allow Tier 0 Servers -- Any**: Open this rule. Notice under *General > Action* there is a bullet in *Allow the connection if it is secure*?  Click on *Customize...*.  Notice we are only requiring connections to be authenticated and not encrypted, and we are overriding the above **Deny All -- Any** rule because we have checked *Override block rules*.  Click *OK* on this window and navigate to the *Remote Computers* tab.  Notice we have checked *Only allow connections from these computers:* and we have selected the **DOMAIN\All-Tier0-Servers** group.  If you imported this policy, you may have to update the group and point it to your group since the SID will be incorrect for your environment.
+
+Close the policy window.
+
+On the scope tab:
+* Ensure the Link to the Computers OU is Enabled.
+* Remove **Authenticated Users** from the **Security Filtering** section and add the **PAW-AllPAWComputers** group.
+* Ensure there is no WMI filter applied
+
+On the Details tab:
+* Set GPO status to: **User configuration settings disabled**
+
+On the Delegation tab:
+* Add **Authenticated Users** and give it READ permissions.
+
+## Firewall Policies all Computers
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Firewall - Profiles and Logging** with the following settings:
+
+***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
+
+Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the Profile and logging.wfw configuration file.
+
+### What does this policy set?
+This policy configures the firewall to be enabled on all three profiles, and sets logging parameters for each.
+
+Click on *Windows Firewall Properties*.  Under the each profile tab, notice we make the following settings:
+* Firewall state: **On (recommneded)**
+* Inbound connections: **Block (default)**
+* Outbound connections: **Allow (default)**
+* Settings > Customize... 
+	* Display a notification: **No**
+	* Apply local firewall rules: **Yes** (There can be some debate on this one...)
+	* Apply local connection security rules: **No**
+* Logging > Customize...
+	* Name: **%systemroot%\System32\LogFiles\Firewall\domain.txt**
+	* Size Limit: **Uncheck *not configured* and set to 16,384**
+	* Log dropped packets: **Yes**
+	* Log successful connection: **Yes**
 
 Close the policy window.
 
