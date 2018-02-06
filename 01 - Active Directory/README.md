@@ -19,37 +19,38 @@ A scheduled task runs on a regular interval and creates groups based on your Act
 ## Recommended Active Directory Hierarchy
 ```
 DOMAIN.COM
-+-- Company
-    +-- Computers
-        +-- Disabled-Computers - - - Will hold all disabled computer accounts
-        +-- Location A
-            +-- PAW
-                +-- Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
-                +-- Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
-                +-- Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
-            +-- Servers
-                +-- Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
-                +-- Tier 1   - - - - Will hold Tier 1 servers (most member servers)
-            +-- Workstations - - - - Will hold all Computer accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
-                +-- Location     - - - - Each office location will have its own OU
-                    +-- Department   - - Each department will hold the computer accounts for that department
-            +-- VMs          - - - - All VMs, including your PAWs day-to-day VM
-    +-- Groups
-        +-- Security Groups
-            +-- PAW          - - - - All groups related to PAW management
-            +-- Shadowgroups-Computers - - - Computer object's shadowgroups
-            +-- Shadowgroups-Servers - - - - Server object's shadowgroups
-            +-- Shadowgroups-Users - - - - - User's object's shadowgroups
-    +-- Users
-        +-- Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
-            +-- Location     - - - - Each office location will have its own OU
-                +-- Department   - - Each department will hold the user accounts for that department
-        +-- Disabled-Users   - - - - Will hold all disabled user accounts
-        +-- ServiceAccounts  - - - - Will hold all service accounts, and special use accounts (like accounts that run scheduled tasks)
-        +-- PAW Accounts
-            +-- Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
-            +-- Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
-            +-- Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)```
+└── Company
+    ├── Computers
+    │   ├── Disabled-Computers - - - Will hold all disabled computer accounts
+    │   └── Location A
+    │       ├── PAW
+    │       │   ├── Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
+    │       │   ├── Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
+    │       │   └── Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
+    │       ├── Servers
+    │       │   ├── Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
+    │       │   └── Tier 1   - - - - Will hold Tier 1 servers (most member servers)
+    │       ├── Workstations - - - - Will hold all Computer accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
+    │       │   └── Location     - - - - Each office location will have its own OU
+    │       │       └── Department   - - Each department will hold the computer accounts for that department
+    │       └── VMs          - - - - All VMs, including your PAWs day-to-day VM
+    ├── Groups
+    │   └── Security Groups
+    │       ├── PAW          - - - - All groups related to PAW management
+    │       ├── Shadowgroups-Computers - - - Computer object's shadowgroups
+    │       ├── Shadowgroups-Servers - - - - Server object's shadowgroups
+    │       └── Shadowgroups-Users - - - - - User's object's shadowgroups
+    └── Users
+        ├── Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
+        │   └── Location     - - - - Each office location will have its own OU
+        │       └── Department   - - Each department will hold the user accounts for that department
+        ├── Disabled-Users   - - - - Will hold all disabled user accounts
+        ├── ServiceAccounts  - - - - Will hold all service accounts, and special use accounts (like accounts that run scheduled tasks)
+        └── PAW Accounts
+            ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+            ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
+            └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
+```
 ## Active Directory Permissions
 Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
 
