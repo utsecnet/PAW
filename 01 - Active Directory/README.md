@@ -170,8 +170,9 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
 * **Tier 2 Admin**: Normal domain user uses this to elevate certain remote management consoles (MMC) to manage remote  workstations.
 * **Access to all workstation LAPS accounts**.  They can use this if RDP with RA is too restrictive.
 
-***NOTE***: Helpdesk should never use this with /RemoteCredentailGuard.  This is because if an RDP session is initiated to a compromised client that an attacker already controls, the attacker could use that open channel to create sessions on the user's behalf (without compromising credentials) to access any of the user’s resources for a limited time (a few hours) after the session disconnects.
-
+```
+NOTE: Helpdesk should never use this with /RemoteCredentailGuard.  This is because if an RDP session is initiated to a compromised client that an attacker already controls, the attacker could use that open channel to create sessions on the user's behalf (without compromising credentials) to access any of the user’s resources for a limited time (a few hours) after the session disconnects.
+```
 ## Groups
 The following groups must be created in Company > Groups > SecurityGroups > RBAC-PAW.  The sub-bullet point are the members of the specified group.
 
