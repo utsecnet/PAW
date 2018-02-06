@@ -19,38 +19,37 @@ A scheduled task runs on a regular interval and creates groups based on your Act
 ## Recommended Active Directory Hierarchy
 ```
 DOMAIN.COM
-└── Company
-    ├── Computers
-    │   ├── Disabled-Computers - - - Will hold all disabled computer accounts
-    │   └── Location A
-    │       ├── PAW
-    │       │   ├── Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
-    │       │   ├── Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
-    │       │   └── Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
-    │       ├── Servers
-    │       │   ├── Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
-    │       │   └── Tier 1   - - - - Will hold Tier 1 servers (most member servers)
-    │       ├── Workstations - - - - Will hold all Computer accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
-    │       │   └── Location     - - - - Each office location will have its own OU
-    │       │       └── Department   - - Each department will hold the computer accounts for that department
-    │       └── VMs          - - - - All VMs, including your PAWs day-to-day VM
-    ├── Groups
-    │   └── Security Groups
-    │       ├── PAW          - - - - All groups related to PAW management
-    │       ├── Shadowgroups-Computers - - - Computer object's shadowgroups
-    │       ├── Shadowgroups-Servers - - - - Server object's shadowgroups
-    │       └── Shadowgroups-Users - - - - - User's object's shadowgroups
-    └── Users
-        ├── Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
-        │   └── Location     - - - - Each office location will have its own OU
-        │       └── Department   - - Each department will hold the user accounts for that department
-        ├── Disabled-Users   - - - - Will hold all disabled user accounts
-        ├── ServiceAccounts  - - - - Will hold all service accounts, and special use accounts (like accounts that run scheduled tasks)
-        └── PAW Accounts
-            ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
-            ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
-            └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
-```
++-- Company
+    +-- Computers
+        +-- Disabled-Computers - - - Will hold all disabled computer accounts
+        +-- Location A
+            +-- PAW
+                +-- Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
+                +-- Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
+                +-- Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
+            +-- Servers
+                +-- Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
+                +-- Tier 1   - - - - Will hold Tier 1 servers (most member servers)
+            +-- Workstations - - - - Will hold all Computer accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
+                +-- Location     - - - - Each office location will have its own OU
+                    +-- Department   - - Each department will hold the computer accounts for that department
+            +-- VMs          - - - - All VMs, including your PAWs day-to-day VM
+    +-- Groups
+        +-- Security Groups
+            +-- PAW          - - - - All groups related to PAW management
+            +-- Shadowgroups-Computers - - - Computer object's shadowgroups
+            +-- Shadowgroups-Servers - - - - Server object's shadowgroups
+            +-- Shadowgroups-Users - - - - - User's object's shadowgroups
+    +-- Users
+        +-- Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own hierarchy.  For this example, we use <Locale>\<Department>
+            +-- Location     - - - - Each office location will have its own OU
+                +-- Department   - - Each department will hold the user accounts for that department
+        +-- Disabled-Users   - - - - Will hold all disabled user accounts
+        +-- ServiceAccounts  - - - - Will hold all service accounts, and special use accounts (like accounts that run scheduled tasks)
+        +-- PAW Accounts
+            +-- Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+            +-- Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
+            +-- Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)```
 ## Active Directory Permissions
 Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
 
@@ -148,28 +147,29 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
   * Applies to: **This object and all descendant objects**
   * Permissions: **Full control**
 ## Users
-Each Domain Admin will have the following accounts:
 
-* **Tier 0 account**: Member of domain admins, but also only a local user on the Tier 0 PAW.  Does not have admin rights on PAW itself.
-* **Tier 0 - Maintenance account**:  This account is an administrator on all Tier 0 PAWs.  It is also the account I like to use to elevate my standard user to perform admin tasks on my PAW since my Tier 0 account does not have local admin access.
-* **Tier 1 account**: Used to allow the user to RDP to Tier 1 member servers.
-* **Tier 2 account (optional)**: If the user will ever log on to employee workstations, they will need this account.
-* **Normal domain user account**: used for logging into the PAW VM to do day-to-day tasks.
+### Each Domain Admin will have the following accounts:
+* **Normal domain user account**: used for logging into the Tier 0 PAW.  Will escalate to local admin to do admin stuff. Also logs into the PAW VM to do day-to-day tasks.
+* **Tier 0 Admin**: Member of domain admins, the normal domain account elevates to this account to to admin stuff on Tier 0 servers.
+* **Tier 1 Admin**: Used to allow the user to RDP to Tier 1 member servers using /RemoteCredentialGuard. Normal domain user also uses this to elevate certain remote management consoles (RSAT/Server Manager) to manage remote Tier 1 servers.
+* **Tier 2 Admin (optional)**: If the user will ever administrate workstations, they will need this account.  Used to allow the user to RDP to remote workstations using /RemoteCredentialGuard. Normal domain user also uses this to elevate certain remote management consoles (MMC) to manage  remote workstations.
 * **Local user account**: Used as a contingency for any lost domain trusts.  In other words, if you fubar the domain and you can no longer log in to your PAW, this is the account you would use.
 * **Local administrator account**: This account will be managed by LAPS.  Also used for fixing domain trust issues.  You would login with the local user account and elevate to this account to do admin stuff.
+* **Access to server LAPS accounts**.  They can use this if RDP with /RestrictedAdmin is too restrictive.
 
-Each server administrator will have:
+### Each server administrator will have:
+* **Normal domain user account**: used for logging into the Tier 1 PAW.  Will escalate to local admin to do admin stuff. Also logs into the PAW VM to do day-to-day tasks.
+* **Tier 1 Admin**: Used to allow the user to RDP to Tier 1 member servers using /RemoteCredentialGuard. Normal domain user also uses this to elevate certain remote management consoles (RSAT/Server Manager) to manage remote Tier 1 servers.
+* **Local user account**: Used as a contingency for any lost domain trusts.  In other words, if you fubar the domain and you can no longer log in to your PAW, this is the account you would use.
+* **Local administrator account**: This account will be managed by LAPS.  Also used for fixing domain trust issues.  You would login with the local user account and elevate to this account to do admin stuff.
+* **Access to server LAPS accounts**.  They can use this if RDP with /RestrictedAdmin is too restrictive.
 
-* **Tier 1 account**: They will log into their PAW with this account and RDP (with Remote Admin mode) to Tier 1 servers.
-* **Tier 1 - Maintenance account**: This account is an administrator on all Tier 1 PAWs.  It is also the account I like to use to elevate my standard Tier 1 user to perform admin tasks on my PAW since my Tier 0 account does not have local admin access.
-* **Normal domain user account**: used for logging into the PAW VM to do day-to-day tasks.
-* **Access to server LAPS accounts**.  They can use this if RDP with RA is too restrictive.
+### Each Helpdesk user will have:
+* **Normal domain user account**: used for logging into the Tier 1 PAW.  Will escalate to local admin to do admin stuff. Also logs into the PAW VM to do day-to-day tasks.
+* **Tier 2 Admin**: Normal domain user uses this to elevate certain remote management consoles (MMC) to manage remote  workstations.
+* **Access to all workstation LAPS accounts**.  They can use this if RDP with RA is too restrictive.
 
-Each Helpdesk user will have:
-
-* **Tier 2 account**: They will log into their PAW with this account and RDP (with Remote Admin mode to Tier 2 workstations.
-* **Normal domain user account**: used for logging into the PAW VM to do day-to-day tasks.
-* **Access to all workstation LAPS accounts**.  They can use this if RDP with RA is too restrictive.  
+***NOTE***: Helpdesk should never use this with /RemoteCredentailGuard.  This is because if an RDP session is initiated to a compromised client that an attacker already controls, the attacker could use that open channel to create sessions on the user's behalf (without compromising credentials) to access any of the user’s resources for a limited time (a few hours) after the session disconnects.
 
 ## Groups
 The following groups must be created in Company > Groups > SecurityGroups > RBAC-PAW.  The sub-bullet point are the members of the specified group.
