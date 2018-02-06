@@ -177,48 +177,56 @@ Modify AD Advanced Security Permissions of the following OUs (should probably be
 ## Groups
 The following groups must be created in Company > Groups > SecurityGroups > RBAC-PAW.  The sub-bullet point are the members of the specified group.
 
-**PAW-AllPAWComputers** - Members of this group include all PAW Tier groups.  It is a collection of all PAW machines.
-* PAW-Tier0Computers
-* PAW-Tier1Computers
-* PAW-Tier2Computers
+**PAW-AllPAW-Computers** - Members of this group include all PAW Tier groups.  It is a collection of all PAW machines.
+* PAW-Tier0-Computers
+* PAW-Tier1-Computers
+* PAW-Tier2-Computers
 
 **PAW-BlockPowershell** - Members of this group are blocked from using PowerShell via GPO.
 * PAW-Users
 
-**PAW-AzureAdmins** - Members of this group are permitted to connect to pre-identified cloud services via Privileged Access Workstations
+**PAW-BlockLocalLogon** - Members of this group are not literally blocked from logging in locally, but rather from running certain applications via the AppLocker GPO after they have logged in.
+* PAW-Admins
+
+**PAW-Azure-Admins** - Members of this group are permitted to connect to pre-identified cloud services via Privileged Access Workstations
 * not sure yet.
 
-**PAW-Tier0Admins** - Members of this group are Tier 0 admins.  They can administrate Tier 0 PAWs.
-* All Tier 0 Maintenance user accounts
+**PAW-Tier0-Admins** - Members of this group are Tier 0 server admins.
+* All members of the Company\Users\PAW Accounts\Tier 0 OU
 
-**PAW-Tier0Computers** - Members of this group are Tier 0 Computers.  Used mainly for GPO filtering.
+**PAW-Tier0-Computers** - Members of this group are Tier 0 PAWs.  Used mainly for GPO filtering.
 * All Tier 0 PAWs
 
-**PAW-Tier0Users** - Members of this group are tier 0 users.  They can log into Tier 0 PAWs and servers.
-* All Tier 0 user accounts (Domain Controller and AD admins)
+**PAW-Tier0-Users** - Members of this group are tier 0 PAW users.  They can log into Tier 0 PAWs.  They are a normal user account on PAWs that use the Tier 0/1/2 Admin accounts to elevate certain tasks.
+* All domain user accounts that need to log into Tier 0 PAWs
 
-**PAW-Tier1Admins** - Members of this group are Tier 1 Admins.  They can administrate Tier 1 PAWs.
-* All Tier 1 Maintenance user accounts
+**PAW-Tier1-Admins** - Members of this group are Tier 1 server admins.
+* All members of the Company\Users\PAW Accounts\Tier 1 OU
 
-**PAW-Tier1Computers** - Members of this group are Tier 1 Computers.  Used mainly for GPO filtering.
+**PAW-Tier1-Computers** - Members of this group are Tier 1 PAWs.  Used mainly for GPO filtering.
 * All Tier 1 PAWs  
 
-**PAW-Tier1Users** - Members of this group are Tier 1 users.  They can log into Tier 1 PAWs and member servers.
-* All Tier 1 user accounts (Domain Controller and AD admins)
+**PAW-Tier1-Users** - Members of this group are tier 1 PAW users.  They can log into Tier 1 PAWs.  They are a normal user account on PAWs that use their Tier 1 Admin account to elevate certain tasks.
+* All domain user accounts that need to log into Tier 0 PAWs
 
-**PAW-Tier2Admins** - Members of this group are Tier 2 Administrators.  They can administrate Tier 2 PAWs.
-* All Tier 2 Maintenance user accounts
+**PAW-Tier2-Admins** - Members of this group are Tier 2 server admins.
+* All members of the Company\Users\PAW Accounts\Tier 2 OU
 
-**PAW-Tier2Computers** - Members of this group are Tier 0 Computers.  Used mainly for GPO filtering.
+**PAW-Tier2-Computers** - Members of this group are Tier 2 PAWs.  Used mainly for GPO filtering.
 * All Tier 2 PAWs
 
-**PAW-Tier2Users** - Members of this group are Tier 2 Users.  They can log into Tier 2 PAWs.
-* All Tier 2 user accounts (Domain Controller and AD admins)
+**PAW-Tier2-Users** - Members of this group are tier 2 PAW users.  They can log into Tier 2 PAWs.  They are a normal user account on PAWs that use the Tier 2 Admin accounts to elevate certain tasks.
+* All domain user accounts that need to log into Tier 0 PAWs
 
 **PAW-Users** - Members of this groups include all the Tier 0, 1, and 2 Users
-* PAW-Tier0Users
-* PAW-Tier1Users
-* PAW-Tier2Users
+* PAW-Tier0-Users
+* PAW-Tier1-Users
+* PAW-Tier2-Users
+
+**PAW-Admins** - Members of this groups include all the Tier 0, 1, and 2 Admins
+* PAW-Tier0-Admins
+* PAW-Tier1-Admins
+* PAW-Tier2-Admins
 
 ## Additional Resources
 For more information on what accounts count as Tier 0, see [Microsoft's recommendations here](https://docs.microsoft.com/en-us/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material#T0E_BM).
