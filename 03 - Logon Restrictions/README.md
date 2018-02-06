@@ -1,5 +1,5 @@
 ## What is this?
-Here, we will be enforcing logon restrictions to all the domain joined devices.  This will involve several GPOs
+Here, we will be enforcing logon restrictions to all the domain joined devices.  This will involve several GPOs.
 
 ## Prerequisites
 * Ensure you have a functioning Shadow Group script
@@ -14,10 +14,24 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 * Allow log on locally:
   * **BUILTIN\Administrators**
   * **BUILTIN\Users**
-  * **DOMAIN\PAW-Tier0Users**
+  * **DOMAIN\PAW-Tier0-Users**
+  * **DOMAIN\PAW-Tier0-Admins**
+  * **DOMAIN\PAW-Tier1-Admins**
+  * **DOMAIN\PAW-Tier2-Admins**
 
 * Allow log on through Terminal Services
   * Define the settings, but do not add any users or groups to the list.  This will prevent any user from being able to logon to PAWs over RDP.
+
+  * Deny access to this computer from the network
+    * **BUILTIN\Guests**
+    * **NT AUTHORITY\Local account**
+    * **NT AUTHORITY\Local account and member of Administrators group**
+    * **DOMAIN\Domain Admins**
+    * **DOMAIN\Enterprise Admins**
+    * **DOMAIN\PAW-Tier1-Admins**
+    * **DOMAIN\PAW-Tier2-Admins**
+
+***NOTE***: *It is questionable if "Deny access to this computer from the network" is even needed since we lock down all inbound network traffic via the Windows Firewall with Advanced Security using IPSec to authenticate connections.  I leave it here for future testing.*
 
 Close the policy window.
 
@@ -40,15 +54,19 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 
 * Allow log on locally:
   * **BUILTIN\Administrators**
-  * **DOMAIN\PAW-Tier0Users**
 
 * Allow log on through Terminal Services
-  * **DOMAIN\PAW-Tier0Users**
+  * **BUILTIN\Administrator**
+  * **DOMAIN\PAW-Tier0-Admins**
 
 * Log on as batch job
   * **BUILTIN\Administrators**
   * **LogOnAsBatch - This is a local group that we will create in a subsequent GPO.**
   * **taskrunner-shadowgroup - This will allow this user to run the Shadow Group script on your DC.**
+
+* Log on as a service
+  * **NT SERVICE\ALL Services**
+  * **LogOnAsService** - This is a local group that we will create in a subsequent GPO.
 
 Close the policy window.
 
@@ -73,7 +91,9 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 * Allow log on locally:
   * **BUILTIN\Administrators**
   * **BUILTIN\Users**
-  * **DOMAIN\PAW-Tier1Users**
+  * **DOMAIN\PAW-Tier1-Users**
+  * **DOMAIN\PAW-Tier1-Admins**
+  * **DOMAIN\PAW-Tier2-Admins**
 
 * Allow log on through Terminal Services
   * Define the settings, but do not add any users or groups to the list.  This will prevent any user from being able to logon to PAWs over RDP.
@@ -82,6 +102,12 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
   * **BUILTIN\Guests**
   * **NT AUTHORITY\Local account**
   * **NT AUTHORITY\Local account and member of Administrators group**
+  * **DOMAIN\Domain Admins**
+  * **DOMAIN\Enterprise Admins**
+  * **DOMAIN\PAW-Tier0-Admins**
+  * **DOMAIN\PAW-Tier2-Admins**
+
+***NOTE***: *It is questionable if "Deny access to this computer from the network" is even needed since we lock down all inbound network traffic via the Windows Firewall with Advanced Security using IPSec to authenticate connections.  I leave it here for future testing.*
 
 Close the policy window.
 
@@ -107,12 +133,16 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 
 * Allow log on through Terminal Services
   * **BUILTIN\Administrators**
-  * **DOMAIN\PAW-Tier0Users**
+  * **DOMAIN\PAW-Tier1-Admins**
 
 * Deny access to this computer from the network
   * **BUILTIN\Guests**
   * **NT AUTHORITY\Local account**
   * **NT AUTHORITY\Local account and member of Administrators group**
+  * **DOMAIN\Domain Admins**
+  * **DOMAIN\Enterprise Admins**
+  * **DOMAIN\PAW-Tier0-Admins**
+  * **DOMAIN\PAW-Tier2-Admins**
 
 * Log on as batch job
   * **BUILTIN\Administrators**
@@ -144,7 +174,7 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 * Allow log on locally:
   * **BUILTIN\Administrators**
   * **BUILTIN\Users**
-  * **DOMAIN\PAW-Tier2Users**
+  * **DOMAIN\PAW-Tier2-Users**
 
 * Allow log on through Terminal Services
   * Define the settings, but do not add any users or groups to the list.  This will prevent any user from being able to logon to PAWs over RDP.
@@ -153,6 +183,12 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
   * **BUILTIN\Guests**
   * **NT AUTHORITY\Local account**
   * **NT AUTHORITY\Local account and member of Administrators group**
+  * **DOMAIN\Domain Admins**
+  * **DOMAIN\Enterprise Admins**
+  * **DOMAIN\PAW-Tier0-Admins**
+  * **DOMAIN\PAW-Tier1-Admins**
+
+***NOTE***: *It is questionable if "Deny access to this computer from the network" is even needed since we lock down all inbound network traffic via the Windows Firewall with Advanced Security using IPSec to authenticate connections.  I leave it here for future testing.*
 
 Close the policy window.
 
@@ -176,15 +212,20 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 * Allow log on locally:
   * **BUILTIN\Administrators**
   * **BUILTIN\Users**
-  * **DOMAIN\PAW-Tier2Users**
 
 * Allow log on through Terminal Services
   * **Administrator**
+
+  ***NOTE***: *Helpdesk should never use their Tier 2 admin account with RDP using /RemoteCredentailGuard.  This is because if an RDP session is initiated to a compromised client that an attacker already controls, the attacker could use that open channel to create sessions on the user's behalf (without compromising credentials) to access any of the user’s resources for a limited time (a few hours) after the session disconnects.  Therefore, they should only ever log on through Terminal Services using the LAPS account. [(Source)](https://docs.microsoft.com/en-us/windows/access-protection/remote-credential-guard)*
 
 * Deny access to this computer from the network
   * **BUILTIN\Guests**
   * **NT AUTHORITY\Local account**
   * **NT AUTHORITY\Local account and member of Administrators group**
+  * **DOMAIN\Domain Admins**
+  * **DOMAIN\Enterprise Admins**
+  * **DOMAIN\PAW-Tier0-Admins**
+  * **DOMAIN\PAW-Tier1-Admins**
 
 Close the policy window.
 
