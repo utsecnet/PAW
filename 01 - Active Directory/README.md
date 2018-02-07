@@ -19,6 +19,7 @@ A scheduled task runs on a regular interval and creates groups based on your Act
 ## Recommended Active Directory Hierarchy
 ```
 DOMAIN.COM
+├── Domain Controllers
 └── Company
     ├── Computers
     │   ├── Disabled-Computers - - - Will hold all disabled computer accounts
@@ -52,7 +53,7 @@ DOMAIN.COM
             └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
 ```
 ## Active Directory Permissions
-Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
+The shadowgroup.ps1 script will be run by a standard user account which must be given the explicit permissions listed below.  Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
 
 ***COMPANY.COM\Company\Computers***
 * ACL 1

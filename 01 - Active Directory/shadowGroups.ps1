@@ -7,7 +7,7 @@
     Change Log:
         2018-01-25 - Added Tier to servers
         2018-01-08 - Initial Creation
-        
+
 .SYNOPSIS
     This script manages shadowgroup creation and membership in Active Directory.
 
@@ -30,6 +30,7 @@
     - This script heavily relies on an accurate and well organized Active Directory heiarchy.  For this example, we will use the following tree structure:
 
     DOMAIN.COM
+    ├── Domain Controllers
     └── Company
         ├── Computers
         │   ├── Disabled-Computers - - - Will hold all disabled computer accounts
@@ -51,7 +52,7 @@
         │       ├── Shadowgroups-Servers - - - - Server object's shadowgroups
         │       └── Shadowgroups-Users - - - - - User's object's shadowgroups
         └── Users
-            └── Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own heirarchy.  For this example, we use <Locale>\<Department>
+            ├── Employees        - - - - Will hold all Employee accounts.  Feel free to organize your own heirarchy.  For this example, we use <Locale>\<Department>
             │   └── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
             │   └── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
             ├── Disabled-Users   - - - - Will hold all disabled user accounts
@@ -126,7 +127,7 @@ $desktopComputers = "All-Desktops"
 $VMComputers = "All-VMs"
 $remoteComputers = "All-Workstations-Remote"
 
-# Name of the top level Company OU (the OU directly under Domain.com).  
+# Name of the top level Company OU (the OU directly under Domain.com).
 # This is the OU that will hold Users, Computers, Groups...
 # For example: $company = "Company"
 $company = "<changeme>"
@@ -164,7 +165,7 @@ $allServerOUs = Get-ADOrganizationalUnit -Server $ADServer -SearchBase $allCompu
 $allServers = $allServerOUs | ForEach-Object { Get-ADComputer -Server $ADServer -Filter "*" -SearchBase $_ -Properties "*" }
 
 # User Objects
-$allUsers = Get-ADUser -Server $ADServer -Filter * -SearchBase $allEmployeesOU -Properties "*" 
+$allUsers = Get-ADUser -Server $ADServer -Filter * -SearchBase $allEmployeesOU -Properties "*"
 
 ###########
 # Functions
@@ -268,8 +269,8 @@ function Computers {
         $department = ($dn -split '[,\=]')[3]
         $platform = ($dn -split '[,\=]')[5]
         $locale = ($dn -split '[,\=]')[9]
-        if ( $dn -like "*Remote*" ) { 
-            $remote = '-Remote' 
+        if ( $dn -like "*Remote*" ) {
+            $remote = '-Remote'
             $isRemote = "yes"
         }
         else { $remote = '' }
@@ -341,7 +342,7 @@ function Computers {
         addGroupToGroup $gMember $parentGroupCN $parentGroup $computerGroupName "group"
 
         # If it is a remote workstation
-        # Add the All-Locale-Platform group to the All-Platform-Remote group, 
+        # Add the All-Locale-Platform group to the All-Platform-Remote group,
         if ( $isRemote -eq "yes" ) {
             $gMember = (Get-ADGroup -Server $ADServer $computerGroupName -Properties memberof).memberof
             $parentGroup = "All-$platform$remote"
@@ -376,7 +377,7 @@ function Computers {
         if (!( $dn -like "*OU=Desktops*" )) {
             removeFromGroup $member $desktopComputers $computer $computerName "computer"
         }
-                
+
         # Remove it from the All-VM group if it is not a VM
         if (!( $dn -like "*OU=VM*" )) {
             removeFromGroup $member $VMComputers $computer $computerName "computer"
@@ -484,7 +485,7 @@ function Servers {
         $tier = ($dn -split '[,\=]')[3]
         $category = ($dn -split '[,\=]')[5]
         $locale = ($dn -split '[,\=]')[9]
-        
+
 
         logging "D" "serverName: $serverName"
         logging "D" "dn: $dn"
@@ -579,8 +580,8 @@ function Users {
         $dn = $user.distinguishedname
         $department = ($dn -split '[,\=]')[3]
         $locale = ($dn -split '[,\=]')[5]
-        if ( $dn -like "*Remote*" ) { 
-            $remote = '-Remote' 
+        if ( $dn -like "*Remote*" ) {
+            $remote = '-Remote'
             $isRemote = "yes"
         }
         else { $remote = '' }
@@ -608,7 +609,7 @@ function Users {
         # If the employee is remote
         # Add the All-Employees-Locale to the All-Employees-Remote group
         if ( $isRemote -eq "yes" ) {
-            
+
             # Add the All-Employees-Locale group to the All-Employees-Remote group
             $gMember = (Get-ADGroup -Server $ADServer $userGroupName -Properties memberof).memberof
             $parentGroup = $allEmployeesRemote
@@ -626,7 +627,7 @@ function Users {
         $parentGroup = "All-Employees-$department"
         $parentGroupCN = "CN=$parentGroup,"
         addGroupToGroup $gMember $parentGroupCN $parentGroup $userGroupName "group"
-        
+
         # Add the Employees-Locale-Department group to the All-Employees-Locale group, if not allready
         $gMember = (Get-ADGroup -Server $ADServer $userGroupName -Properties memberof).memberof
         $parentGroup = "All-Employees-$locale"
