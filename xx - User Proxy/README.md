@@ -143,3 +143,5 @@ For more information on Loopback processing:
 
 For more information on proxy.pac formatting and making your own custom rules:
 * [findproxyfor url.com](http://findproxyforurl.com/example-pac-file/)
+* [Best practices for proxy.pac](https://www.websense.com/content/support/library/web/v76/pac_file_best_practices/PAC_best_pract.aspx)
+* [More best practices](https://www.websense.com/content/support/library/web/v76/pac_file_best_practices/pac_file_best_practices.pdf)
