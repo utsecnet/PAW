@@ -140,5 +140,6 @@ You must understand that in many cases, you cannot simply add each domain you se
 For more information on Loopback processing:
 * [Loopback processing of Group Policy](https://support.microsoft.com/en-us/help/231287/loopback-processing-of-group-policy)
 * [Sometimes learning by video is better](https://www.youtube.com/watch?v=2bZGMtOCXN0)
+
 For more information on proxy.pac formatting and making your own custom rules:
 * [findproxyfor url.com](http://findproxyforurl.com/example-pac-file/)
