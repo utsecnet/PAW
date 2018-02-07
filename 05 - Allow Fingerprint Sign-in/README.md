@@ -37,3 +37,12 @@ On the Details tab:
 
 On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
+
+Reboot the PAW after running *gpupdate /force*
+
+## Configure Fingerprints
+Login as each of the accounts you own and configure a fingerprint via:
+
+***Settings > Accounts > Sign-in options > Add Fingerprint***
+
+You have 10 fingers.  You figure out what user you want to assign to what finger.  Doing so will force you to create a PIN.  I would highly suggest using KeePass/LastPass to keep track of all these passwords and PINs.
