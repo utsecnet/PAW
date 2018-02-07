@@ -47,6 +47,8 @@ You must update the following policies:
 * **Executable Rules**
 	* *Deny paw-blockpowershell powershell.exe* - Add the **DOMAIN\PAW-BlockPowershell** group to the User or Group field
 	* *Deny paw-blockpowershell powershell_ise.exe* - Add the **DOMAIN\PAW-BlockPowershell** group to the User or Group field
+  * *Deny PAW-BlockLocalLogon explorer.exe* - Add the **DOMAIN\PAW-BlockLocalLogon** group to the User or Group filed
+  * *Deny PAW-BlockLocalLogon TASKMGR.exe* - Add the **DOMAIN\PAW-BlockLocalLogon** group to the User or Group filed
 * **DLL Rules**
 	* *The Deny rule that shows an SID under the *User* column* - Add the **DOMAIN\PAW-BlockPowershell** group to the User or Group field
 * **Script Rules**

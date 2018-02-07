@@ -72,6 +72,13 @@
         </FilePublisherCondition>
       </Conditions>
     </FilePublisherRule>
+    <FilePublisherRule Id="39432355-48b2-44be-a870-23a18536fb04" Name="Deny PAW-BlockLocalLogon TASKMGR.EXE" Description="Give your local users the ability to elevate to admin when needed, but if they try to logon as that local admin this rule will block them from being able to do anything.  Users should never login as an admin account!" UserOrGroupSid="S-1-5-21-2373959184-1017718198-3349084539-3969" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="TASK MANAGER" BinaryName="TASKMGR.EXE">
+          <BinaryVersionRange LowSection="1.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
     <FilePublisherRule Id="5ee49b31-280b-40c7-8990-da3adee0797c" Name="Allow everyone signed by Microsoft" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
       <Conditions>
         <FilePublisherCondition PublisherName="O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US" ProductName="*" BinaryName="*">
@@ -101,6 +108,11 @@
       </Conditions>
     </FilePublisherRule>
     <FilePathRule Id="22dc8e8c-e1c4-4a41-80e2-5d74a356929e" Name="Deny local admins explorer.exe" Description="Give your local users the ability to elevate to admin when needed, but if they try to logon as that local admin this rule will block them from being able to do anything.  Users should never login as an admin account!" UserOrGroupSid="S-1-5-114" Action="Deny">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\explorer.exe" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="5713684a-65fe-4bae-bf29-b84a896daeb5" Name="Deny PAW-BlockLocalLogon explorer.exe" Description="Give your local users the ability to elevate to admin when needed, but if they try to logon as that local admin this rule will block them from being able to do anything.  Users should never login as an admin account!" UserOrGroupSid="S-1-5-21-2373959184-1017718198-3349084539-3969" Action="Deny">
       <Conditions>
         <FilePathCondition Path="%WINDIR%\explorer.exe" />
       </Conditions>
