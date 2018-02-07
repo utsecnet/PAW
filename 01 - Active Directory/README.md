@@ -93,19 +93,19 @@ The shadowgroup.ps1 script will be run by a standard user account which must be 
 * ACL 1
   * Principal: **AD-Company-Computers-DisabledComputers--CreateComputerObjects**
   * Type: **Allow**
-  * Applies to: **This object and all descendandt objects**
+  * Applies to: **This object and all descendant objects**
   * Permissions: **Create Computer objects**
 * ACL 2
   * Principal: **AD-Company-Computers-DisabledComputers--CreateComputerObjects**
   * Type: **Allow**
-  * Applies to: **This object and all descendandt objects**
+  * Applies to: **This object and all descendant objects**
   * Permissions: **List contents, Read all properties, write all properties, read permissions**
 
 ***COMPANY.COM\Company\Groups\SecurityGroups\ShadowGroups-Computers***
 * ACL 1
   * Principal: **AD-Company-Groups-ShadowGroupsComputers--Modify**
   * Type: **Allow**
-  * Applies to: **This object and all descendandt objects**
+  * Applies to: **This object and all descendant objects**
   * Permissions: **Create Group objects, Delete Group objects**
 * ACL 2
   * Principal: **AD-Company-Groups-ShadowGroupsComputers--Modify**
@@ -117,7 +117,7 @@ The shadowgroup.ps1 script will be run by a standard user account which must be 
 * ACL 1
   * Principal: **AD-Company-Groups-ShadowGroupsServers--Modify**
   * Type: **Allow**
-  * Applies to: **This object and all descendandt objects**
+  * Applies to: **This object and all descendant objects**
   * Permissions: **Create Group objects, Delete Group objects**
 * ACL 2
   * Principal: **AD-Company-Groups-ShadowGroupsServers--Modify**
@@ -129,7 +129,7 @@ The shadowgroup.ps1 script will be run by a standard user account which must be 
 * ACL 1
   * Principal: **AD-Company-Groups-ShadowGroupsUsers--Modify**
   * Type: **Allow**
-  * Applies to: **This object and all descendandt objects**
+  * Applies to: **This object and all descendant objects**
   * Permissions: **Create Group objects, Delete Group objects**
 * ACL 2
   * Principal: **AD-Company-Groups-ShadowGroupsUsers--Modify**
@@ -152,7 +152,7 @@ The shadowgroup.ps1 script will be run by a standard user account which must be 
 
 ### Each Domain Admin will have the following accounts:
 * **Normal domain user account**: used for logging into the Tier 0 PAW.  Will escalate to local admin to do admin stuff. Also logs into the PAW VM to do day-to-day tasks.
-* **Tier 0 Admin**: Member of domain admins, the normal domain account elevates to this account to to admin stuff on Tier 0 servers.
+* **Tier 0 Admin**: Member of domain admins, the normal domain account elevates to this account to admin stuff on Tier 0 servers.
 * **Tier 1 Admin**: Used to allow the user to RDP to Tier 1 member servers using /RemoteCredentialGuard. Normal domain user also uses this to elevate certain remote management consoles (RSAT/Server Manager) to manage remote Tier 1 servers.
 * **Tier 2 Admin (optional)**: If the user will ever administrate workstations, they will need this account.  Used to allow the user to RDP to remote workstations using /RemoteCredentialGuard. Normal domain user also uses this to elevate certain remote management consoles (MMC) to manage  remote workstations.
 * **Local user account**: Used as a contingency for any lost domain trusts.  In other words, if you fubar the domain and you can no longer log in to your PAW, this is the account you would use.
