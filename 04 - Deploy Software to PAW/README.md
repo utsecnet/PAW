@@ -41,9 +41,9 @@ Configure the following software deployments according to the settings under **G
 * Name of Software: **LAPS**
 * Name of script: **installLAPS.ps1**
 
-#### LAPS
+#### VMware VI Client
 * Name of Software: **VIClient**
-* Name of script: **installLAPS.ps1**
+* Name of script: **installVIClient.ps1**
 
 Close the policy window.
 
