@@ -41,6 +41,10 @@ Configure the following software deployments according to the settings under **G
 * Name of Software: **LAPS**
 * Name of script: **installLAPS.ps1**
 
+#### LAPS
+* Name of Software: **VIClient**
+* Name of script: **installLAPS.ps1**
+
 Close the policy window.
 
 On the scope tab:
