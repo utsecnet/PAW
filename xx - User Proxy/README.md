@@ -133,7 +133,12 @@ On the scope tab:
 On the Details tab:
 * Set GPO status to: **User configuration settings disabled**
 
-## Additional Resources
-For more information on Loopback processing see:
+## Knowing what URLs to exempt from the Proxy
+You must understand that in many cases, you cannot simply add each domain you see to the whitelist and have it work every time.  Sometimes a website depends on resources hosted under a different domain.  Visit the website in a browser that is unaffected by the proxy and open Developer Tools (default Ctrl+Shift+i).  In Chrome, go to the *Sources* tab.  In Firefox, go to the *Debugger* tab.   You must get good at identifying advertising domains and ***NOT*** add these to your lists.  That is outside the scope of this article.  
+
+## Additional Resources and information
+For more information on Loopback processing:
 * [Loopback processing of Group Policy](https://support.microsoft.com/en-us/help/231287/loopback-processing-of-group-policy)
 * [Sometimes learning by video is better](https://www.youtube.com/watch?v=2bZGMtOCXN0)
+For more information on proxy.pac formatting and making your own custom rules:
+* [findproxyfor url.com](http://findproxyforurl.com/example-pac-file/)
