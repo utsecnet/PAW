@@ -113,7 +113,7 @@ On the Details tab:
 
 ## Loopback Processing
 
-The above steps will affect only the Tier 0/1/2 admin account no matter what machine they log into.  Since we don't actually use any of the PAW admin accounts when we log into our PAWs, we somehow need to apply the policy to the computer objects.  How do we do this when the GPO us a user based policy (i.e., all the settings are under User configurations)?  Answer: loopback processing.
+The above steps will affect only the Tier 0/1/2 admin account no matter what machine they log into.  Since we don't actually use any of the PAW admin accounts when we log into our PAWs, we somehow need to apply the policy to the computer objects.  How do we do this when the GPO is a user based policy (i.e., all the settings are under User configuration)?  Answer: loopback processing.
 
 In short, loopback processing allows us to take settings that are configured for users and apply them to ANY user that logs into a specific machine.  In our case, we want to apply proxy settings to any user that logs into a PAW.
 
@@ -135,5 +135,5 @@ On the Details tab:
 
 ## Additional Resources
 For more information on Loopback processing see:
-	* [Loopback processing of Group Policy](https://support.microsoft.com/en-us/help/231287/loopback-processing-of-group-policy)
-	* [Sometimes learning by video is better](https://www.youtube.com/watch?v=2bZGMtOCXN0)
+* [Loopback processing of Group Policy](https://support.microsoft.com/en-us/help/231287/loopback-processing-of-group-policy)
+* [Sometimes learning by video is better](https://www.youtube.com/watch?v=2bZGMtOCXN0)
