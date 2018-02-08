@@ -117,7 +117,7 @@ The above steps will affect only the Tier 0/1/2 admin account no matter what mac
 
 In short, loopback processing allows us to take settings that are configured for users and apply them to ANY user that logs into a specific machine.  In our case, we want to apply proxy settings to any user that logs into a PAW.
 
-Create a new GPO on the DOMAIN.COM\Company\Computers\...\PAW OU called **Configuration - Loopback processing** with the following settings:
+Create a new GPO on the DOMAIN.COM\Company\Computers\ ... \PAW OU called **Configuration - Loopback processing** with the following settings:
 
 ***Computer Configuration > Policies > Administrative Templates > System > Group Policy***
 * Configure user group policy loopback processing mode: **Enabled**
