@@ -19,7 +19,6 @@
     - Disables computer objects and moves them to a specified OU if inactive.
     - Creates shadow groups for user objects in Active Directory.  OU structure, again, is very important.
     - Adds users to the appropriate groups. Also nests groups.
-    - Adds users to appropriate chat groups for open fire server.
     - Moves all disabled users to the DisabledUsers OU
     - Removes all group membership of disabled user accounts
     - Removes all disabled users from the GAL
