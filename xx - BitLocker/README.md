@@ -55,7 +55,7 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - AppL
 	* Select the encryption method: **AES 256-bit**
 * Disable new DMA devices when this computer is locked: **Enabled**
 
-***NOTE***: *If you enable the above, your Wireless NIC may fail to enable on boot up.  This is a known issue [Microsoft has outlined here](https://support.microsoft.com/en-us/help/4057300/devices-not-working-before-log-on-a-computer-running-windows-10-1709).  If you update all your drivers and firmware and still hav ethis issue, I would recommend disabling the setting until your vendor releases a new patch.*
+***NOTE***: *If you enable the above, your Wireless NIC may fail to enable on boot up.  This is a known issue [Microsoft has outlined here](https://support.microsoft.com/en-us/help/4057300/devices-not-working-before-log-on-a-computer-running-windows-10-1709).  If you update all your drivers and firmware and still have this issue, I would recommend disabling the setting until your vendor releases a new patch.*
 
 * Store BitLocker recovery information in AD: **Enabled**
 	* Require BitLocker backup to AD DS: **Enabled**
