@@ -1,5 +1,5 @@
 ## What is this?
-LAPS is an agent-based control designed to prevent Pass-the-hash attacks and other similar internal pivoting attacks.  It does this by uniquely and automatically assigning a unique password to the local administrator account.  The password policy is configured via the Group Policy MMC snap-in.  The LAPS agent is installed via a scheduled task that calls a powershell script.  Read access to the passwords are delegated via Active Directory ACLs, much like NTFS permissions on a file share. Passwords are accessed via one of three ways:
+LAPS is an agent-based control designed to prevent Pass-the-hash attacks and other similar internal pivoting attacks.  It does this by automatically assigning a unique password to the local administrator account.  The password policy is configured via the Group Policy MMC snap-in.  The LAPS agent is installed via a scheduled task that calls a powershell script.  Read access to the passwords are delegated via Active Directory ACLs, much like NTFS permissions on a file share. Passwords are accessed via one of three ways:
 
 1. From the LAPS UI (installed on PAWs)
 2. From AD (object properties > Attribute Editor > find the LAPS password in the list)
@@ -34,4 +34,4 @@ Repeat as needed for your various locations throughout AD.
 ***NOTE***: *If you mess up and need to undo the permission, you can right click the OU > Properties > Security Tab > Advanced button.  There will be two ACLs you need to remove.*
 
 ## Install the LAPS agent
-Follow the instruction in the section titled, "04 - Deploy Software to PAW" regarding LAPS.  The script above is can also be found in that section.
+Follow the instruction in the section titled, "04 - Deploy Software to PAW" regarding LAPS.  The script above will also be found in that section.
