@@ -17,11 +17,11 @@ I'm not going to re-write what has already been written.  The point of this guid
 When you get to the section titled, "How to configure Active directory for LAPS", you will deviate from the instruction and follow these instruction instead:
 
 ### Create AD Groups
-Create the following AD groups under DOMAIN.COM/Company/Groups/SecurityGroups/LAPS-RBACK:
+Create the following AD groups under DOMAIN.COM/Company/Groups/SecurityGroups/LAPS-RBAC:
 * AD-Company-Computers-AllLocations-Servers-Tier1--LAPSPassword
 * AD-Company-Computers-AllLocations-WKS--LAPSPassword
 
-***NOTE***: The Tier 0 server will not need delegation to a specific group, since your Tier 0 Admin user is alrady a member of Domain Admins, which has full access to the LAPS password attribute.
+***NOTE***: The Tier 0 server's LAPS passwords will not need to be delegated to a specific group, since your Tier 0 Admin users are already a member of Domain Admins, which has full access to the LAPS password attribute.
 
 ### Run the following PowerShell commands to set the ACLs
 ```powershell
