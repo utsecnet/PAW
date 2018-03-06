@@ -27,7 +27,7 @@ DOMAIN.COM
     │       ├── PAW
     │       │   ├── Tier 0   - - - - Will hold Tier 0 PAWs (for domain admins)
     │       │   ├── Tier 1   - - - - Will hold Tier 1 PAWs (for server admins)
-    │       │   └── Tier 2   - - - - Will hold Tier 2 PAWs (for Helpdesk admins)
+    │       │   └── Tier 2   - - - - Will hold Tier 2 PAWs (for helpdesk admins)
     │       ├── Servers
     │       │   ├── Tier 0   - - - - Will hold Tier 0 servers (but not DCs!)
     │       │   └── Tier 1   - - - - Will hold Tier 1 servers (most member servers)
@@ -48,9 +48,9 @@ DOMAIN.COM
         ├── Disabled-Users   - - - - Will hold all disabled user accounts
         ├── ServiceAccounts  - - - - Will hold all service accounts, and special use accounts (like accounts that run scheduled tasks)
         └── PAW Accounts
-            ├── Tier 0       - - - - Will hold Tier 1 user accounts (for domain admins)
+            ├── Tier 0       - - - - Will hold Tier 0 user accounts (for domain admins)
             ├── Tier 1       - - - - Will hold Tier 1 user accounts (for server admins)
-            └── Tier 2       - - - - Will hold Tier 1 user accounts (for server admins)
+            └── Tier 2       - - - - Will hold Tier 2 user accounts (for helpdesk admins)
 ```
 ## Active Directory Permissions
 The shadowgroup.ps1 script will be run by a standard user account which must be given the explicit permissions listed below.  Modify AD Advanced Security Permissions of the following OUs (should probably be scripted in the future...)
