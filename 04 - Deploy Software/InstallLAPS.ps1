@@ -1,4 +1,4 @@
-﻿<#
+<#
 .NOTES
     NAME: installLAPS.ps1
     AUTHOR: Rich Johnson
@@ -14,12 +14,10 @@
         Actions Tab
             - Program/script: powershell.exe
             - Arguments: -executionpolicy bypass -command \\server\share\installLAPS.ps1 <org>
-
 .DESCRIPTION 
     What does this script do?
     - Checks to see if the LAPS dll is registered.  If not, it registers it.
     - If the computer is a PAW, it installs the LAPS GUI tool to C:\Program Files\LAPS
-
     What do I need to do?
     - Read the LAPS Administration guide which will walk you through extending your AD schema and setting permissions in AD for users to read your LAPS passwords
     - Download the LAPS files, extract them, and place them on a network share
