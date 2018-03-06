@@ -16,14 +16,14 @@ I'm not going to re-write what has already been written.  The point of this guid
 ## Configuring AD Permissions
 When you get to the section titled, "How to configure Active directory for LAPS", you will deviate from the instruction and follow these instruction instead:
 
-# Create AD Groups
+### Create AD Groups
 Create the following AD groups under DOMAIN.COM/Company/Groups/SecurityGroups/LAPS-RBACK:
 * AD-Company-Computers-AllLocations-Servers-Tier1--LAPSPassword
 * AD-Company-Computers-AllLocations-WKS--LAPSPassword
 
 ***NOTE***: The Tier 0 server will not need delegation to a specific group, since your Tier 0 Admin user is alrady a member of Domain Admins, which has full access to the LAPS password attribute.
 
-# Run the following PowerShell commands to set the ACLs
+### Run the following PowerShell commands to set the ACLs
 ```powershell
 Set-AdmPwdReadPasswordPermission -OrgUnit "OU=Tier1,OU=Servers,OU=Location1,OU=Computers,OU=Company,DC=DOMAIN,DC=COM" -AllowedPrincipals AD-Company-Computers-AllLocations-Servers-Tier1--LAPSPassword
 Set-AdmPwdReadPasswordPermission -OrgUnit "OU=Workstations,OU=Location 1,OU=Computers,OU=Company,DC=DOMAIN,DC=COM" -AllowedPrincipals AD-UpWell-Computers-AllLocations-Workstations--LAPSPassword
