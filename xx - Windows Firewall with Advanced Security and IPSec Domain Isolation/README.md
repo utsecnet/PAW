@@ -79,7 +79,7 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Fire
 Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the Profile and logging.wfw configuration file.
 
 ### What does this policy set?
-This policy configures the firewall to be enabled on all three profiles, and sets logging parameters for each.  Note that this policy is applied to all computers under the Computers OU.  This includes PAWs, Workstations, and Servers. If you want to change any of these setting for a specific group of devices you will need to create seperate policies for each. 
+This policy configures the firewall to be enabled on all three profiles, and sets logging parameters for each.  Note that this policy is applied to all computers under the Computers OU.  This includes PAWs, Workstations, and Servers. If you want to change any of these setting for a specific group of devices you will need to create separate policies for each. 
 
 Click on *Windows Firewall Properties*.  Under the each profile tab, notice we make the following settings:
 * Firewall state: **On (recommneded)**
@@ -115,7 +115,7 @@ Right click **Windows Firewall with Advanced Security - LDAP://...** and select 
 ### What does this policy set? 
 You can see there three Connection Security Rules:
 1. **Computer and User - Require inbound and request outbound**.  Double click on this rule to open the properties and click on the *Authentication* tab.  Notice it is configured to Require inbound and outbound, and applies to Users and Computers.  This allows us to use inbound/outbound rules that can target specific users/groups for computers and users.  Everything else is default.
-2. **Exempt Authentication -- RADIUS TCP**. Double clich on this rule to open the properties and click on the *Protocals and Ports* tab.  Notice we are setting the RADIUS ports 1812 and 1813 in the *Enpoint 2 port* field.  Click on the *Authentication* tab.  Notice we set Authentication mode to *Do not authenticate*.  Because our RADIUS clients are not on the domain (mainly WAPs and switches), we must exempt them from having to authenticate to the RADIUS servers.  
+2. **Exempt Authentication -- RADIUS TCP**. Double click on this rule to open the properties and click on the *Protocols and Ports* tab.  Notice we are setting the RADIUS ports 1812 and 1813 in the *Endpoint 2 port* field.  Click on the *Authentication* tab.  Notice we set Authentication mode to *Do not authenticate*.  Because our RADIUS clients are not on the domain (mainly WAPs and switches), we must exempt them from having to authenticate to the RADIUS servers.  
 3. **Exempt Authentication -- RADIUS UDP**. Same setting as TCP except for UDP ports (RADIUS uses both TCP and UDP).
 
 Close the policy window.
@@ -131,7 +131,7 @@ On the Details tab:
 On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
 
-***NOTE***: This policy is only applied to the *computers* OU and targets the *All-Tier0-Server*.  This policy should ***NOT*** be applied to the *Domain Controllers* OU, even though, technically they are Tier 0 servers.
+***NOTE***: This policy is only applied to the *computers* OU and targets the *All-Tier0-Servers* security group.  This policy should ***NOT*** be applied to the *Domain Controllers* OU, even though, technically they are Tier 0 servers.
 
 ## What else?
 This will enforce inbound authentication on our PAWs and Tier 0 servers.  I would recommend hardening the rest of your domain by enforcing Domain Isolation across the rest of your servers and workstations.  Hopefully the below links will help you in your quest.
