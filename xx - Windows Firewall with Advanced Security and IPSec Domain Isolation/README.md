@@ -131,8 +131,10 @@ On the Details tab:
 On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
 
+***NOTE***: This policy is only applied to the *computers* OU and targets the *All-Tier0-Server*.  This policy should ***NOT*** be applied to the *Domain Controllers* OU, even though, technically they are Tier 0 servers.
+
 ## What else?
-This will enforce inbound authentication on our PAWs.  I would recommend hardening the rest of your domain by enforcing Domain Isolation across the rest of your servers and workstations.  Hopefully the below links will help you in your quest.
+This will enforce inbound authentication on our PAWs and Tier 0 servers.  I would recommend hardening the rest of your domain by enforcing Domain Isolation across the rest of your servers and workstations.  Hopefully the below links will help you in your quest.
 
 ## Resources
 * [Configuring a test environment](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754522%28v%3dws.10%29)
