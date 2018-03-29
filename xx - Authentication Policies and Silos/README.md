@@ -75,3 +75,4 @@ I have noticed a few problems in our production environment using Authentication
 * Unable to connect to shares from my PAW if the Ffle server is outside of the silo.
 * Unable to launch my T0, T1, T2 tools that prompt for credentials.  I can only assume the since I actually log into my PAW with my normal domain user account (which is not a member of the silo) it is denying me from being able to run these tools under the context of a different user. I also assume I would be limited to running these tools only when I am logged in as the Tier 0/1/2 admin.  Which I don't want to do.
 * Laggy RDP connections to my Tier 0 servers.  The mouse would stop working for up to 10 seconds every minute or so.   I use MRemoteNG over the built-in RDP client.  Maybe that has something to do with it...
+* I could not connect to our vCenter server using the vCenter client installed on my PAW, but using my standard domain user account.
