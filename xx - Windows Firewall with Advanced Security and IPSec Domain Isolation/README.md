@@ -18,10 +18,10 @@ Of course, there will be more things you will want to do in a production environ
 ### Regarding Domain Controllers
 It is important to know that IPSec rules can be configured to *require inbound/outbound authentication* or *request inbound/outbound authentication*.  If you require authentication on the domain controllers, you will most likely kill all network traffic to and from devices that are not joined to the domain.  Don't do this.  Ensure any policy that is set on the domain controllers is configured to *request inbound/outbound authentication* only.
 
-### Regarding Require vs. Request
-Due to the nature of how machines refresh group policy (randomly at 90-120 minuted intervals) it is recommended that you set all your policies to request inbound and outbound authentication first.  If you set it to require first, it will be likely that machines will not have received the update and authentication will fail authentication, effectively stopping network traffic.  Only after you have confirmed all machines are authenticating correctly, set the policies to require.  
+### Regarding Require vs. Request (on domain clients, member servers & workstations)
+Due to the nature of how machines refresh group policy (randomly at 90-120 minuted intervals) it is recommended that you set all your policies to request inbound and outbound authentication first.  If you set it to require first, it will be likely that machines will not have received the update and authentication will fail, effectively stopping network traffic.  Only after you have confirmed all machines are authenticating correctly, set the policies to require.  
 
-Consider Require inbound and request outbound.  If you set it to require inbound and outbound, you wont be able to do much if you take your PAW off the corporate network.
+Consider Require inbound and request outbound.  If you set it to require inbound and outbound, you wont be able to do much if you take your PAW off the corporate network.  In this case you could set require inbound and outbount on only the domain profile then request outbound on public/private profiles.  However, we will not be covering this in this guide.
 
 ## Firewall IPSec Policies on Domain Controllers
 
@@ -72,7 +72,7 @@ On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
 
 ## Firewall Policies all Computers
-Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Firewall - PAW** with the following settings:
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Firewall - Servers & Workstations** with the following settings:
 
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
 
@@ -99,7 +99,30 @@ Close the policy window.
 
 On the scope tab:
 * Ensure the Link to the Computers OU is Enabled.
-* Remove **Authenticated Users** from the **Security Filtering** section and add the **PAW-AllPAWComputers** group.
+* Ensure **Authenticated Users** is added in the **Security Filtering** section.
+* Ensure there is no WMI filter applied
+
+On the Details tab:
+* Set GPO status to: **User configuration settings disabled**
+
+## Firewall IPSec Policies on Tier 0 Servers
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Firewall - IPSec - Server Tier 0** with the following settings:
+
+***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
+
+Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the tier0servers.wfw configuration file.
+
+### What does this policy set? 
+You can see there three Connection Security Rules:
+1. **Computer and User - Require inbound and request outbound**.  Double click on this rule to open the properties and click on the *Authentication* tab.  Notice it is configured to Require inbound and outbound, and applies to Users and Computers.  This allows us to use inbound/outbound rules that can target specific users/groups for computers and users.  Everything else is default.
+2. **Exempt Authentication -- RADIUS TCP**. Double clich on this rule to open the properties and click on the *Protocals and Ports* tab.  Notice we are setting the RADIUS ports 1812 and 1813 in the *Enpoint 2 port* field.  Click on the *Authentication* tab.  Notice we set Authentication mode to *Do not authenticate*.  Because our RADIUS clients are not on the domain (mainly WAPs and switches), we must exempt them from having to authenticate to the RADIUS servers.  
+3. **Exempt Authentication -- RADIUS UDP**. Same setting as TCP except for UDP ports (RADIUS uses both TCP and UDP).
+
+Close the policy window.
+
+On the scope tab:
+* Ensure the Link to the Computers OU is Enabled.
+* Remove **Authenticated Users** from the **Security Filtering** section and add the **All-Tier0-Servers** group.
 * Ensure there is no WMI filter applied
 
 On the Details tab:
@@ -114,3 +137,6 @@ This will enforce inbound authentication on our PAWs.  I would recommend hardeni
 ## Resources
 * [Configuring a test environment](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754522%28v%3dws.10%29)
 * [Because sometimes people learn better via video](https://www.youtube.com/watch?v=taUdRQHfjMQ)
+
+## Notes
+* I have found if you configure the **Allow access to this computer from the network** Group policy, IPSec policies will not work.  Or maybe I just did it wrong...
