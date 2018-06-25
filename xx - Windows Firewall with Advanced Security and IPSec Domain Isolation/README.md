@@ -142,3 +142,5 @@ This will enforce inbound authentication on our PAWs and Tier 0 servers.  I woul
 
 ## Notes
 * I have found if you configure the **Allow access to this computer from the network** Group policy, IPSec policies will not work.  Or maybe I just did it wrong...
+
+test
