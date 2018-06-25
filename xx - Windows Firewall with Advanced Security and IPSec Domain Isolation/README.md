@@ -6,12 +6,16 @@ To authenticate traffic means we must use IPSec to ensure traffic comes from spe
 NOTE: It is outside the scope of this document to explain how IPSec works in Windows Firewall.  Go Google stuff.
 
 ## What this guide will provide
-We will be doing three things here:
-1. Configuring basic Domain Isolation rules for Domain Controllers
-2. Enforce inbound authentication to PAWs from Tier 0 servers (including Domain Controllers)
-3. Configuring the firewall profile's logging settings and enforcing the use of Windows Firewall (among other settings)
+This guide will help achieve the following:
+1. On Domain Controllers, configure a Windows Firewall baseline policy (adapted from the CIS baseline for Server 2016)
+2. On Domain Controllers, configure Domain Isolation policies
+3. On all servers, configure a Windows Firewall baseline policy (adapted from the CIS baseline for Server 2016)
+4. On all servers, configure Domain Isolation policies
+5. On all workstations, configure a Windows Firewall baseline policy (adapted from the CIS baseline for Windows 10 1709)
+6. On all workstations, configure Domain Isolation policies
+7. On all PAWs, enforce inbound authentication from Tier 0 servers (including Domain Controllers)
 
-Of course, there will be more things you will want to do in a production environment, but I am afraid if I share all the steps I take in my environment, it will not work in yours.  Instead, we will just build the above items, then I will refer you to several online resources.
+Of course, there will be more things you will want to do in your production environment, but I am afraid if I share all the steps I take in my environment, it will not work in yours.  Instead, we will just build the above items, then I will refer you to several online resources.
 
 # Word of Warning
 
@@ -19,11 +23,90 @@ Of course, there will be more things you will want to do in a production environ
 It is important to know that IPSec rules can be configured to *require inbound/outbound authentication* or *request inbound/outbound authentication*.  If you require authentication on the domain controllers, you will most likely kill all network traffic to and from devices that are not joined to the domain.  Don't do this.  Ensure any policy that is set on the domain controllers is configured to *request inbound/outbound authentication* only.
 
 ### Regarding Require vs. Request (on domain clients, member servers & workstations)
-Due to the nature of how machines refresh group policy (randomly at 90-120 minuted intervals) it is recommended that you set all your policies to request inbound and outbound authentication first.  If you set it to require first, it will be likely that machines will not have received the update and authentication will fail, effectively stopping network traffic.  Only after you have confirmed all machines are authenticating correctly, set the policies to require.  
+Due to the nature of how machines refresh group policy (randomly at 90-120 minute intervals) it is recommended that you set all your policies to request inbound and outbound authentication first.  If you set it to require first, it will be likely that machines will not have received the update and authentication will fail, effectively stopping network traffic.  Only after you have confirmed all machines are authenticating correctly, set the policies to require.  
 
-Consider Require inbound and request outbound.  If you set it to require inbound and outbound, you wont be able to do much if you take your PAW off the corporate network.  In this case you could set require inbound and outbount on only the domain profile then request outbound on public/private profiles.  However, we will not be covering this in this guide.
+Consider Require inbound and request outbound.  If you set it to require inbound and outbound, you wont be able to do much if you take your PAW off the corporate network.  In this case you could set require inbound and outbound on only the domain profile then request outbound on public/private profiles.  However, we will not be covering this in this guide.
 
-## Firewall IPSec Policies on Domain Controllers
+## 1. On Domain Controllers, configure a Windows Firewall baseline policy
+
+Create a new GPO and link it to the DOMAIN.COM\Domain Controllers OU called **Security - CIS Baseline - Server 2016 - Windows Firewall** with the following settings:
+
+***Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security***
+
+Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the "Security - CIS Baseline - Server 2016 - Windows Firewall.wfw" configuration file.
+
+### What does this policy set?  
+You will notice that there are no Inbound or Outbound rules, nor Connection Security Rules.  Instead, we are simply creating the baseline firewall properties found under the *Windows Firewall Properties* link.  
+
+#### Under the *Domain Profile* tab, we set:
+* Firewall State: **On (recommended)**
+* Inbound connections: **Block (default)**
+* Outbound connections: **Allow (default)**
+* Settings > Customize ...
+ 	* Display a notification: **No**
+	* Allow unicast response: **Not configured**
+	* Apply local firewall rules: **Yes (default)** (Note: this will be over-ridden with the IPSec policy later.  This is simply a baseline.)
+	* Apply local connection security rules: **No**
+* Logging > Customize ...
+	* Name: **%systemroot%\System32\LogFiles\Firewall\domain.txt**
+	* Not configured: **unchecked**
+	* Size limit (KB): 16384
+	* Not configured: **unchecked**
+	* Log dropped packets: **Yes**
+	* Log successful connections: **Yes**
+
+#### Under the *Private Profile* tab, we set:
+* Firewall State: **On (recommended)**
+* Inbound connections: **Block (default)**
+* Outbound connections: **Allow (default)**
+* Settings > Customize ...
+ 	* Display a notification: **No**
+	* Allow unicast response: **Not configured**
+	* Apply local firewall rules: **Yes (default)** (Note: this will be over-ridden with the IPSec policy later.  This is simply a baseline.)
+	* Apply local connection security rules: **No**
+* Logging > Customize ...
+	* Name: **%systemroot%\System32\LogFiles\Firewall\private.txt**
+	* Not configured: **unchecked**
+	* Size limit (KB): 16384
+	* Not configured: **unchecked**
+	* Log dropped packets: **Yes**
+	* Log successful connections: **Yes**
+
+#### Under the *Public Profile* tab, we set:
+* Firewall State: **On (recommended)**
+* Inbound connections: **Block (default)**
+* Outbound connections: **Allow (default)**
+* Settings > Customize ...
+ 	* Display a notification: **No**
+	* Allow unicast response: **Not configured**
+	* Apply local firewall rules: **No** (Note: this will be over-ridden with the IPSec policy later.  This is simply a baseline.)
+	* Apply local connection security rules: **No**
+* Logging > Customize ...
+	* Name: **%systemroot%\System32\LogFiles\Firewall\public.txt**
+	* Not configured: **unchecked**
+	* Size limit (KB): 16384
+	* Not configured: **unchecked**
+	* Log dropped packets: **Yes**
+	* Log successful connections: **Yes**
+
+Close the policy window.
+
+On the scope tab:
+* Ensure the Link to the Domain Controllers OU is Enabled.
+* Ensure **Authenticated Users** is listed under Security Filtering
+* Since this will be used to target all Server 2016 machines, you want a WMI filter that does exactly that:
+
+Namespace: root\CIMv2
+Query: select * from Win32_OperatingSystem where Name like "%Server 2016%"
+
+On the Details tab:
+* Set GPO status to: **User configuration settings disabled**
+
+## 2. On Domain Controllers, configure Domain Isolation policies
+
+## 3. On all servers, configure a Windows Firewall baseline policy
+
+## 4. On all servers, configure Domain Isolation policies
 
 Create a new GPO on the DOMAIN.COM\Domain Controllers OU called **Security - Firewall - IPSec - Domain Controllers** with the following settings:
 
@@ -71,6 +154,12 @@ On the Details tab:
 On the Delegation tab:
 * Add **Authenticated Users** and give it READ permissions.
 
+## 5. On all workstations, configure a Windows Firewall baseline policy
+
+## 6. On all workstations, configure Domain Isolation policies
+
+## 7. On all PAWs, enforce inbound authentication from Tier 0 servers
+
 ## Firewall Policies all Computers
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Firewall - Servers & Workstations** with the following settings:
 
@@ -79,13 +168,13 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Fire
 Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the Profile and logging.wfw configuration file.
 
 ### What does this policy set?
-This policy configures the firewall to be enabled on all three profiles, and sets logging parameters for each.  Note that this policy is applied to all computers under the Computers OU.  This includes PAWs, Workstations, and Servers. If you want to change any of these setting for a specific group of devices you will need to create separate policies for each. 
+This policy configures the firewall to be enabled on all three profiles, and sets logging parameters for each.  Note that this policy is applied to all computers under the Computers OU.  This includes PAWs, Workstations, and Servers. If you want to change any of these setting for a specific group of devices you will need to create separate policies for each.
 
 Click on *Windows Firewall Properties*.  Under the each profile tab, notice we make the following settings:
 * Firewall state: **On (recommneded)**
 * Inbound connections: **Block (default)**
 * Outbound connections: **Allow (default)**
-* Settings > Customize... 
+* Settings > Customize...
 	* Display a notification: **No**
 	* Apply local firewall rules: **No** (MAKE SURE YOU UNDERSTAND WHAT THIS SETTING DOES!!!)
 	* Apply local connection security rules: **No**
@@ -112,7 +201,7 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Fire
 
 Right click **Windows Firewall with Advanced Security - LDAP://...** and select **Import Policy...**.  Import the tier0servers.wfw configuration file.
 
-### What does this policy set? 
+### What does this policy set?
 You can see there three Connection Security Rules:
 1. **Computer and User - Require inbound and request outbound**.  Double click on this rule to open the properties and click on the *Authentication* tab.  Notice it is configured to Require inbound and outbound, and applies to Users and Computers.  This allows us to use inbound/outbound rules that can target specific users/groups for computers and users.  Everything else is default.
 2. **Exempt Authentication -- RADIUS TCP**. Double click on this rule to open the properties and click on the *Protocols and Ports* tab.  Notice we are setting the RADIUS ports 1812 and 1813 in the *Endpoint 2 port* field.  Click on the *Authentication* tab.  Notice we set Authentication mode to *Do not authenticate*.  Because our RADIUS clients are not on the domain (mainly WAPs and switches), we must exempt them from having to authenticate to the RADIUS servers.  
@@ -142,4 +231,3 @@ This will enforce inbound authentication on our PAWs and Tier 0 servers.  I woul
 
 ## Notes
 * I have found if you configure the **Allow access to this computer from the network** Group policy, IPSec policies will not work.  Or maybe I just did it wrong...
-
