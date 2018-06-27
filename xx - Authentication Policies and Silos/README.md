@@ -1,7 +1,7 @@
 # This section has been deprecated
 Although I highly advocate the use of protected groups in AD, I have opted to use Domain Isolation policies via IPSec in favor of authentication polices/silos.  Why?
 
-* IPSec filters at the network level, packets aren't even allowed they come from the wrong device/user.
+* IPSec filters at the network level, packets aren't even allowed if they come from the wrong device/user.
 * Unable to connect to shares from my PAW if the File server is outside of the silo.
 * Unable to launch my T0, T1, T2 tools that prompt for credentials. I can only assume that since I actually log into my PAW with my normal domain user account (which is not a member of the silo) it is denying me from being able to run these tools under the context of a different user. I also assume I would be limited to running these tools only when I am logged in as the Tier 0/1/2 admin. Which I don't want to do.
 * I cannot authenticate to vCenter using my siloed Tier account.
