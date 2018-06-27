@@ -1,3 +1,6 @@
+# This section has been deprecated
+Although I highly advocate the use of protected groups in AD, I have opted to use Domain Isolation policies via IPSec rather than authentication polices.  I keep this here for matters of interest only.
+
 ## What is this?
 Authentication Policies and Silos allow us to restrict user accounts from accessing remote servers as long as the connection is initiated from specified hosts.  In the following example configuration, we will create a silo containing all Domain controllers and other Tier 0 servers, Tier 0 user accounts, and Tier 0 PAWs.  This will only allow Tier 0 user accounts to login to Tier 0 servers (and DCs) from their Tier 0 PAW.  All other connections will be denied.
 
