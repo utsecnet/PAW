@@ -1,5 +1,12 @@
 # This section has been deprecated
-Although I highly advocate the use of protected groups in AD, I have opted to use Domain Isolation policies via IPSec rather than authentication polices.  I keep this here for matters of interest only.
+Although I highly advocate the use of protected groups in AD, I have opted to use Domain Isolation policies via IPSec in favor of authentication polices/silos.  Why?
+
+* IPSec filters at the network level, packets aren't even allowed they come from the wrong device/user.
+* Unable to connect to shares from my PAW if the File server is outside of the silo.
+* Unable to launch my T0, T1, T2 tools that prompt for credentials. I can only assume that since I actually log into my PAW with my normal domain user account (which is not a member of the silo) it is denying me from being able to run these tools under the context of a different user. I also assume I would be limited to running these tools only when I am logged in as the Tier 0/1/2 admin. Which I don't want to do.
+* I cannot authenticate to vCenter using my siloed Tier account.
+
+I keep this section here for matters of interest only.
 
 ## What is this?
 Authentication Policies and Silos allow us to restrict user accounts from accessing remote servers as long as the connection is initiated from specified hosts.  In the following example configuration, we will create a silo containing all Domain controllers and other Tier 0 servers, Tier 0 user accounts, and Tier 0 PAWs.  This will only allow Tier 0 user accounts to login to Tier 0 servers (and DCs) from their Tier 0 PAW.  All other connections will be denied.
@@ -72,10 +79,3 @@ RDP from a DC to your Tier 0 PAW | PASS
 RDP into a member Tier 1 server from your Tier 0 PAW with your Tier 0 account | FAIL
 RDP into your Tier 0 PAW from a HelpDesk workstation | FAIL
 Log into your Tier 0 PAW with a non-Tier 0 user account | FAIL
-
-## Notes
-I have noticed a few problems in our production environment using Authentication policies and silos and have since abandoned them in favor of Domain Isolation with IPsec.  Some of the problems I ran into include:
-* Unable to connect to shares from my PAW if the File server is outside of the silo.
-* Unable to launch my T0, T1, T2 tools that prompt for credentials.  I can only assume the since I actually log into my PAW with my normal domain user account (which is not a member of the silo) it is denying me from being able to run these tools under the context of a different user. I also assume I would be limited to running these tools only when I am logged in as the Tier 0/1/2 admin.  Which I don't want to do.
-* Laggy RDP connections to my Tier 0 servers.  The mouse would stop working for up to 10 seconds every minute or so.   I use MRemoteNG over the built-in RDP client.  Maybe that has something to do with it...
-* I could not connect to our vCenter server using the vCenter client installed on my PAW, but using my standard domain user account.
