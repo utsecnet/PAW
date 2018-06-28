@@ -444,4 +444,4 @@ On the Delegation tab:
 * [Because sometimes people learn better via video](https://www.youtube.com/watch?v=taUdRQHfjMQ)
 
 ## Notes
-* I have found if you configure the **Allow access to this computer from the network** Group policy, IPSec policies will not work.  Or maybe I just did it wrong...
+* I have found if you configure the **Allow access to this computer from the network** Group policy, IPSec policies will not work.  Or maybe I just did it wrong.
