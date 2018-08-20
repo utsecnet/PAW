@@ -3,7 +3,7 @@ Here, we will be enforcing logon restrictions to all the domain joined devices. 
 
 ## Prerequisites
 * Ensure you have a functioning Shadow Group script
-* Ensure the Domain **Controllers group** is a member of the **All-Tier0-Servers** group.
+* Ensure the **Domain Controllers** group is a member of the **All-Tier0-Servers** group.
 
 ## Logon Restrictions for Tier 0 PAWs
 
