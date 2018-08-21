@@ -3,13 +3,13 @@
 ***WARNING***: *You cannot simply take the baselines and bolt them on into your environment!  Some of these settings may not be compatible with your environment.  You must read through the individual settings and understand what is happening.  If you are unsure what the effect will be, either test it or don't enable it (but note that you are not enabling it). You are the admin in your domain.  Not me.*
 
 ## What is this?
-We will be applying the CIS baselines to Windows 10 client computers.  I have broken the baseline up into several GPOs for the ease of troubleshooting potential issues.  The GPOS are:
+We will be applying the CIS baselines to Windows 10 client computers And Server 2016.  I have broken the baseline up into several GPOs for the ease of troubleshooting potential issues.  The GPOS are:
 
-* Admin Templates
-* Security settings
-* System services
-* User Rights Assignments
-* Windows Firewall
+* Server/Client Admin Templates
+* Server/Client Security settings
+* Server/Client System services
+* Server/Client User Rights Assignments
+* Server/Client Windows Firewall
 * Users
 
 ## Prerequisites
@@ -45,7 +45,9 @@ Create a WMI filter for Server 2016:
   1. Namespace: **root\CIMv2**
   2. Query: **select * from Win32_OperatingSystem where Name like "%Server 2016%"**
 
-## Win 10 - Admin Templates
+# Windows 10
+
+##  Win 10 Admin Templates
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - CIS baseline - Win 10 - Admin Templates**.
 
@@ -135,7 +137,7 @@ On the scope tab:
 On the Details tab:
 * Set GPO status to: **User configuration settings disabled**
 
-## Win 10 - Users
+## Users
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - CIS Baseline - Users**.
 
@@ -152,3 +154,10 @@ On the scope tab:
 
 On the Details tab:
 * Set GPO status to: **Computer configuration settings disabled**
+
+# Server 2016
+
+Repeat all the above steps, but name the GPOs **Security - CIS Baseline - Server 2016 - <whatever>** Instead of **Win 10**.
+Apply the **Server 2016** WMI filter to each, rather than the **Windows 10** WMI filter.
+
+***NOTE!*** *Serious consideration should go into developing a dedicated Baseline for Domain Controllers as they will have different security requirements than a member server.*
