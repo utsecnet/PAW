@@ -9,7 +9,7 @@ BitLocker is drive encryption software. Configuring BitLocker includes setting u
 	Microsoft (R) Windows Script Host Version 5.812
 	Copyright (C) Microsoft Corporation. All rights reserved.
 
-	Accessing object: DC=UPWELL,DC=COM
+	Accessing object: DC=DOMAIN,DC=COM
 	SUCCESS!
 	```
 3. Delegate msTPM-OwnerInformation
@@ -30,8 +30,8 @@ BitLocker is drive encryption software. Configuring BitLocker includes setting u
 
 [Download the MDOP Policy Templates](https://www.microsoft.com/en-us/download/details.aspx?id=55531), and move ONLY the MBAM template files to your central store.  [Click here](https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/mbam-v25/copying-the-mbam-25-group-policy-templates) to learn how.
 
-* BitLockerManangent.adml and BitLockerUserManagement.adml go into the \\Domain.com\SYSVOL\UPWELL.COM\Policies\PolicyDefinitions\en-us directory.
-* BitLockerManangent.admx and BitLockerUserManagement.admx go into the \\Domain.com\SYSVOL\UPWELL.COM\Policies\PolicyDefinitions directory.
+* BitLockerManangent.adml and BitLockerUserManagement.adml go into the \\Domain.com\SYSVOL\DOMAIN.COM\Policies\PolicyDefinitions\en-us directory.
+* BitLockerManangent.admx and BitLockerUserManagement.admx go into the \\Domain.com\SYSVOL\DOMAIN.COM\Policies\PolicyDefinitions directory.
 
 
 ## Configure Group Policy
