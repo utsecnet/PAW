@@ -23,6 +23,7 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
   * Define the settings, but do not add any users or groups to the list.  This will prevent any user from being able to logon to PAWs over RDP.
 
   * Deny access to this computer from the network
+    * **DOMAIN\Administrator**
     * **BUILTIN\Guests**
     * **NT AUTHORITY\Local account**
     * **NT AUTHORITY\Local account and member of Administrators group**
@@ -30,6 +31,14 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
     * **DOMAIN\Enterprise Admins**
     * **DOMAIN\PAW-Tier1-Admins**
     * **DOMAIN\PAW-Tier2-Admins**
+   * Deny log on as a batch job
+    * **DOMAIN\Administrator**
+   * Deny log on as a service
+    * **DOMAIN\Administrator**
+   * Deny log on locally
+    * **DOMAIN\Administrator**
+   * Deny log on through Terminal Services/Remote Desktop Services
+    * **DOMAIN\Administrator**
 
 ***NOTE***: *It is questionable if "Deny access to this computer from the network" is even needed since we lock down all inbound network traffic via the Windows Firewall with Advanced Security using IPSec to authenticate connections.  I leave it here for future testing.*
 
