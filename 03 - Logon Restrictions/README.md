@@ -11,6 +11,8 @@ For the built-in Administrator account in each domain in your forest, you should
 * Enable the *Account is sensitive and cannot be delegated* flag on the account.
 * Enable the *Smart card is required for interactive logon* flag on the account.
 
+***NOTE***: *When you enable the Smart card is required for interactive logon attribute on an account, Windows resets the account's password to a 120-character random value. By setting this flag on built-in Administrator accounts, you ensure that the password for the account is not only long and complex, but is not known to any user. It is not technically necessary to create smart cards for the accounts before enabling this attribute, but if possible, smart cards should be created for each Administrator account prior to configuring the account restrictions and the smart cards should be stored in secure locations.  Although setting the Smart card is required for interactive logon flag resets the account's password, it does not prevent a user with rights to reset the account's password from setting the account to a known value and using the account's name and new password to access resources on the network.*
+
 [Click here](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-d--securing-built-in-administrator-accounts-in-active-directory) For more information.
 
 ## Logon Restrictions for Domain Controllers
