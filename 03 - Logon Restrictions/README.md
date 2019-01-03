@@ -5,6 +5,14 @@ Here, we will be enforcing logon restrictions to all the domain joined devices. 
 * Ensure you have a functioning Shadow Group script
 * Ensure the **Domain Controllers** group is a member of the **All-Tier0-Servers** group.
 
+## Account restrictions for the BUILTIN\Administrator Domain admin user
+
+For the built-in Administrator account in each domain in your forest, you should configure the following settings:
+* Enable the Account is sensitive and cannot be delegated flag on the account.
+* Enable the Smart card is required for interactive logon flag on the account.
+
+[Click here](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-d--securing-built-in-administrator-accounts-in-active-directory) For more information.
+
 ## Logon Restrictions for Domain Controllers
 
 Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - Domain Controllers** with the following settings:
