@@ -7,7 +7,7 @@ Here, we will be enforcing logon restrictions to all the domain joined devices. 
 
 ## Logon Restrictions for Tier 0 PAWs
 
-Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - Tier 0 PAW** with the following settings:
+Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logon Restrictions - PAW Tier 0** with the following settings:
 
 ***Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > User Rights Assignment***
 
@@ -22,23 +22,23 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 * Allow log on through Terminal Services
   * Define the settings, but do not add any users or groups to the list.  This will prevent any user from being able to logon to PAWs over RDP.
 
-  * Deny access to this computer from the network
-    * **DOMAIN\Administrator**
-    * **BUILTIN\Guests**
-    * **NT AUTHORITY\Local account**
-    * **NT AUTHORITY\Local account and member of Administrators group**
-    * **DOMAIN\Domain Admins**
-    * **DOMAIN\Enterprise Admins**
-    * **DOMAIN\PAW-Tier1-Admins**
-    * **DOMAIN\PAW-Tier2-Admins**
-   * Deny log on as a batch job
-    * **DOMAIN\Administrator**
-   * Deny log on as a service
-    * **DOMAIN\Administrator**
-   * Deny log on locally
-    * **DOMAIN\Administrator**
-   * Deny log on through Terminal Services/Remote Desktop Services
-    * **DOMAIN\Administrator**
+* Deny access to this computer from the network
+  * **DOMAIN\Administrator**
+  * **BUILTIN\Guests**
+  * **NT AUTHORITY\Local account**
+  * **NT AUTHORITY\Local account and member of Administrators group**
+  * **DOMAIN\Domain Admins**
+  * **DOMAIN\Enterprise Admins**
+  * **DOMAIN\PAW-Tier1-Admins**
+  * **DOMAIN\PAW-Tier2-Admins**
+ * Deny log on as a batch job
+   * **DOMAIN\Administrator**
+ * Deny log on as a service
+   * **DOMAIN\Administrator**
+ * Deny log on locally
+   * **DOMAIN\Administrator**
+ * Deny log on through Terminal Services/Remote Desktop Services
+   * **DOMAIN\Administrator**
 
 ***NOTE***: *It is questionable if "Deny access to this computer from the network" is even needed since we lock down all inbound network traffic via the Windows Firewall with Advanced Security using IPSec to authenticate connections.  I leave it here for future testing.*
 
@@ -76,6 +76,24 @@ Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - Logo
 * Log on as a service
   * **NT SERVICE\ALL Services**
   * **LogOnAsService** - This is a local group that we will create in a subsequent GPO.
+  
+* Deny access to this computer from the network
+  * **DOMAIN\Administrator**
+  * **BUILTIN\Guests**
+  * **NT AUTHORITY\Local account**
+  * **NT AUTHORITY\Local account and member of Administrators group**
+  * **DOMAIN\Domain Admins**
+  * **DOMAIN\Enterprise Admins**
+  * **DOMAIN\PAW-Tier1-Admins**
+  * **DOMAIN\PAW-Tier2-Admins**
+ * Deny log on as a batch job
+   * **DOMAIN\Administrator**
+ * Deny log on as a service
+   * **DOMAIN\Administrator**
+ * Deny log on locally
+   * **DOMAIN\Administrator**
+ * Deny log on through Terminal Services/Remote Desktop Services
+   * **DOMAIN\Administrator**
 
 Close the policy window.
 
