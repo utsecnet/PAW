@@ -8,8 +8,8 @@ Here, we will be enforcing logon restrictions to all the domain joined devices. 
 ## Account restrictions for the BUILTIN\Administrator Domain admin user
 
 For the built-in Administrator account in each domain in your forest, you should configure the following settings:
-* Enable the Account is sensitive and cannot be delegated flag on the account.
-* Enable the Smart card is required for interactive logon flag on the account.
+* Enable the *Account is sensitive and cannot be delegated* flag on the account.
+* Enable the *Smart card is required for interactive logon* flag on the account.
 
 [Click here](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-d--securing-built-in-administrator-accounts-in-active-directory) For more information.
 
