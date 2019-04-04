@@ -102,8 +102,12 @@ Close the policy window.
 
 On the scope tab:
 * Ensure the Link to the Computers OU is Enabled.  
-* Ensure **Authenticated Users** is selected under **Security Filtering**.
+* Remove **Authenticated Users** under **Security Filtering**.
+* Add **PAW-AllPAWComputers**
 * Ensure there is no WMI filter applied.
 
 On the Details tab:
 * Set GPO status to: **User configuration settings disabled**.
+
+On the Deligation tab:
+* Add **Authenticated Users** with **Read** access.
