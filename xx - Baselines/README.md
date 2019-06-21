@@ -139,7 +139,7 @@ On the Details tab:
 
 ## Users
 
-Create a new GPO on the DOMAIN.COM\Company\Computers OU called **Security - CIS Baseline - Users**.
+Create a new GPO on the DOMAIN.COM\Company\Users OU called **Security - CIS Baseline - Users**.
 
 ***User Configuration > Policies***
 
