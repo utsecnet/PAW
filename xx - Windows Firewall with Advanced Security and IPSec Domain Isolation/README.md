@@ -333,7 +333,7 @@ Close the policy window.
 
 On the scope tab:
 * Ensure the Link to the **Computers** OU is Enabled.
-* Ensure **All-Tier1-Servers** is listed under Security Filtering
+* Ensure **All-Workstations** is listed under Security Filtering
 * Ensure that **WMI Filtering** is set to **None**.
 
 On the Details tab:
